@@ -1,27 +1,3072 @@
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 <head>
-    <meta charset="UTF-8" />
-    <title>title</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <style>
-body {overflow-x: hidden;}
-#wrap {width:0px; margin: auto;}
-#intro {margin-left: -960px; width:1920px; height:960px; background-color: rgb(255, 81, 0); text-align: center;}
-#portfolio {margin-left: -960px;width:1920px; height:960px;background-color: orange;}
-#information {margin-left: -960px;width:1920px; height:960px;background-color: rgb(255, 81, 0);}
-#footer {margin-left: -960px;width:1920px; height:960px;background-color: orange;}
-    </style>
+  <title>Creative Portfolio</title>
 
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+  <link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
+
+  <style>
+/* =========================================================
+   01. RESET
+========================================================= */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  overflow-x: hidden;
+  background: #ffffff;
+  color: #666;
+  font-family: Georgia, "Times New Roman", serif;
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+}
+
+button {
+  border: 0;
+}
+
+img,
+video {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+
+/* =========================================================
+   02. COMMON
+========================================================= */
+
+.container {
+  width: min(1280px, calc(100% - 80px));
+  margin: 0 auto;
+}
+
+.project-carrot-stage {
+  position: relative;
+  width: 100%;
+  background: url("프로젝트뒷배경.png")
+              center top / 100% 100%
+              no-repeat;
+}
+
+.project-carrot-stage .project-menu,
+.project-carrot-stage #project-carrot {
+  position: relative;
+  min-height: 100vh;
+  background: transparent;
+}
+
+
+.visual-stage {
+  position: relative;
+  width: 100%;
+  background: url("뷰티배경.png")
+              center top / 100% 100%
+              no-repeat;
+}
+
+.visual-stage .project-card {
+  position: relative;
+  background: transparent;
+}
+
+.text-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 44px;
+  background: transparent;
+  color: #666;
+  cursor: pointer;
+  font-size: clamp(18px, 1.5vw, 22px);
+  transition:
+    color 0.25s ease,
+    transform 0.25s ease;
+}
+
+.text-button:hover {
+  color: #ee8fb1;
+  transform: translateX(5px);
+}
+
+
+/* =========================================================
+   03. SIDE NAV
+========================================================= */
+
+.side-nav {
+  position: fixed;
+  top: 42px;
+  left: 18px;
+  z-index: 1000;
+  color: #666;
+  font-size: 14px;
+  line-height: 1.35;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(-30px);
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s ease;
+}
+
+.side-nav.show {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(0);
+}
+
+/* 당근 프로젝트부터 스크롤을 멈췄을 때 숨김 */
+.side-nav.show.idle-hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(-18px);
+}
+
+.side-nav__brand {
+  margin-bottom: 28px;
+}
+
+.side-nav__link {
+  display: block;
+  width: fit-content;
+  padding: 2px 0;
+}
+
+.side-nav__link::before {
+  display: inline-block;
+  width: 16px;
+  content: "";
+}
+
+.side-nav__link.active::before {
+  content: "▶";
+}
+
+/* =========================================================
+   PROJECT QUICK NAV
+========================================================= */
+
+.project-quick-nav {
+  position: fixed;
+  top: 50%;
+  right: 55px;
+  z-index: 900;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+
+  padding: 14px 10px;
+
+  /* Glass */
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.16);
+  border-radius: 999px;
+  
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.05);
+
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(25px, -50%);
+
+  transition:
+    opacity 0.4s ease,
+    transform 0.4s ease;
+}
+
+.project-quick-nav.show {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translate(0, -50%);
+}
+
+.project-quick-nav__button {
+  display: grid;
+  place-items: center;
+
+  width: 68px;
+  height: 68px;
+
+  background: transparent;
+  cursor: pointer;
+
+  opacity: 0.82;
+
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s ease;
+}
+
+.project-quick-nav__button img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.project-quick-nav__button:nth-child(2) img {
+  width: 67%;
+}
+
+.project-quick-nav__button:nth-child(3) img {
+  width: 50%;
+}
+
+.project-quick-nav__button:nth-child(4) img {
+  width: 80%;
+}
+
+.project-quick-nav__button:hover {
+  opacity: 1;
+  transform: scale(1.08);
+}
+
+.project-quick-nav__button.active {
+  opacity: 1;
+  transform: scale(1.12);
+}
+
+@media (max-width: 820px) {
+  .project-quick-nav {
+    right: 16px;
+    gap: 12px;
+    padding: 10px 8px;
+  }
+
+  .project-quick-nav__button {
+    width: 48px;
+    height: 48px;
+  }
+}
+
+/* =========================================================
+   04. INTRO
+========================================================= */
+
+.intro {
+  position: relative;
+  display: grid;
+  place-items: center;
+
+  width: 100%;
+  height: 100vh;
+  min-height: 720px;
+  overflow: hidden;
+
+  background:
+    linear-gradient(
+      120deg,
+      #ffdce9,
+      #dff4ff,
+      #fff0f6,
+      #e9dcff
+    );
+
+  background-size: 300% 300%;
+  animation: introGradientMove 10s ease infinite;
+}
+
+.intro__media {
+  position: relative;
+
+  width: min(1180px, calc(100% - 120px));
+  aspect-ratio: 16 / 9;
+
+  overflow: hidden;
+}
+
+.intro__open-video {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  transition: opacity 0.45s ease;
+}
+
+.intro__final-door {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 1;
+
+  display: none;
+
+  width: 420px;
+  max-width: 70%;
+  height: auto;
+
+  opacity: 0;
+  object-fit: contain;
+
+  transform: translate(-50%, -50%) scale(0.96);
+
+  transition:
+    opacity 0.45s ease,
+    transform 0.45s ease;
+}
+
+.intro__final-door.show {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+@keyframes introGradientMove {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+
+/* =========================================================
+   05. PROJECT MENU
+========================================================= */
+
+.project-menu {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.project-menu__inner {
+  position: relative;
+  min-height: 100vh;
+}
+
+.project-menu__title {
+  position: absolute;
+  left: 50%;
+  top: 48%;
+  z-index: 8;
+  color: #ee8fb1;
+  font-size: clamp(44px, 5vw, 66px);
+  font-weight: 400;
+  opacity: 0.8;
+  transform: translate(-50%, -50%);
+}
+
+.cloud {
+  position: absolute;
+  z-index: 3;
+  opacity: 0.9;
+  pointer-events: none;
+  animation: cloud-float 12s ease-in-out infinite alternate;
+}
+
+.cloud--top {
+  top: 55px;
+  right: -250px;
+  width: 220px;
+}
+
+.cloud--left-one {
+  left: -250px;
+  bottom: 145px;
+  width: 210px;
+  animation-delay: 1s;
+}
+
+.cloud--left-two {
+  left: -120px;
+  bottom: 55px;
+  width: 230px;
+  animation-delay: 2s;
+}
+
+.project-symbol {
+  position: absolute;
+  z-index: 10;
+  background: transparent;
+  cursor: pointer;
+  animation: float 4s ease-in-out infinite;
+  transition: transform 0.3s ease;
+}
+
+.project-symbol__number {
+  position: absolute;
+  top: 50%;
+  left: -40px;
+  z-index: 20;
+
+  color: #999;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0.18em;
+  line-height: 1;
+  white-space: nowrap;
+
+  pointer-events: none;
+  transform: translateY(-50%);
+
+  
+}
+
+.project-symbol:hover .project-symbol__number {
+  color: #ee8fb1;
+}
+
+.project-symbol:hover {
+  animation-play-state: paused;
+}
+
+.project-symbol--angel {
+  top: 130px;
+  left: 33%;
+  width: 360px;
+  transform: translateX(-50%);
+}
+
+.project-symbol--angel:hover {
+  transform: translateX(-50%) scale(1.06);
+}
+
+.project-symbol--flower {
+  top: 60%;
+  left: 28%;
+  width: 165px;
+  animation-delay: 0.8s;
+}
+
+.project-symbol--flower:hover {
+  transform: scale(1.06);
+}
+
+.project-symbol--feather {
+  top: 60%;
+  right: 28%;
+  width: 135px;
+  animation-delay: 1.4s;
+}
+
+.project-symbol--feather:hover {
+  transform: scale(1.06);
+}
+
+.project-symbol--butterfly {
+  top: 13%;
+  left: 67%;
+  width: 170px;
+  transform: translateX(-50%);
+  animation-delay: 2s;
+}
+
+.project-symbol--butterfly:hover {
+  transform: translateX(-50%) scale(1.06);
+}
+.project-symbol--butterfly img {
+  width: 100%;
+  transition: transform 0.3s ease;
+}
+
+.project-symbol--butterfly:hover img {
+  transform: scale(1.5);
+}
+
+
+/* =========================================================
+   06. PROJECT LIST
+========================================================= */
+
+.project-list {
+  position: relative;
+}
+
+
+/* =========================================================
+   06-2. CARROT EDITORIAL LAYOUT
+========================================================= */
+
+.carrot-project {
+  display: block;
+  min-height: 100vh;
+  padding: clamp(110px, 13vh, 165px) 0;
+}
+
+.carrot-project__inner {
+  width: min(980px, calc(100% - 80px));
+  margin: 0 auto;
+}
+
+.carrot-project__heading {
+  margin-bottom: 52px;
+}
+
+.carrot-project__number {
+  margin-bottom: 8px;
+  font-size: 15px;
+  letter-spacing: 0.14em;
+}
+
+.carrot-project__title {
+  color: #666;
+  font-family: "Pretendard", "Noto Sans KR", sans-serif;
+  font-size: clamp(28px, 3vw, 42px);
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.carrot-project__category {
+  margin-top: 10px;
+  color: #999;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 15px;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+}
+
+.carrot-project__poster-wrap {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.carrot-project__poster-button {
+  display: block;
+  width: min(440px, 100%);
+  background: transparent;
+  cursor: pointer;
+}
+
+.carrot-project__poster {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  transition:
+    transform 0.45s ease,
+    filter 0.45s ease;
+}
+
+.carrot-project__poster-button:hover .carrot-project__poster {
+  filter: drop-shadow(0 18px 30px rgba(0, 0, 0, 0.12));
+  transform: scale(1.012);
+}
+
+.carrot-project__watch-row {
+  display: flex;
+  justify-content: center;
+  margin-top: 14px;
+}
+
+.carrot-project__details {
+  margin-top: 56px;
+  font-family: "Pretendard", "Noto Sans KR", sans-serif;
+}
+
+.carrot-project__label {
+  display: inline-block;
+  margin-bottom: 28px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid rgba(102, 102, 102, 0.65);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 16px;
+}
+
+.carrot-project__description {
+  max-width: 700px;
+  font-size: clamp(16px, 1.35vw, 20px);
+  line-height: 1.65;
+  word-break: keep-all;
+}
+
+.carrot-project__storyboard {
+  margin-top: 25px;
+}
+
+@media (max-width: 820px) {
+  .carrot-project__inner {
+    width: min(100% - 64px, 760px);
+  }
+
+  .carrot-project__heading {
+    margin-bottom: 38px;
+  }
+
+  .carrot-project__poster-button {
+    width: min(390px, 100%);
+  }
+}
+
+@media (max-width: 560px) {
+  .carrot-project {
+    padding: 95px 0 80px;
+  }
+
+  .carrot-project__inner {
+    width: calc(100% - 40px);
+  }
+
+  .carrot-project__heading {
+    margin-bottom: 28px;
+  }
+
+  .carrot-project__poster-button {
+    width: min(320px, 100%);
+  }
+
+  .carrot-project__watch-row {
+    margin-top: 8px;
+  }
+
+  .carrot-project__details {
+    margin-top: 42px;
+  }
+}
+
+
+
+/* =========================================================
+   06-1. BEAUTY EDITORIAL LAYOUT
+========================================================= */
+
+.beauty-project {
+  display: block;
+  min-height: 100vh;
+  padding: clamp(110px, 13vh, 165px) 0;
+}
+
+.beauty-project__inner {
+  width: min(980px, calc(100% - 80px));
+  margin: 0 auto;
+}
+
+.beauty-project__heading {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-bottom: 52px;
+}
+
+.beauty-project__flower {
+  width: 76px;
+  flex: 0 0 auto;
+  opacity: 0.7;
+}
+
+.beauty-project__number {
+  margin-bottom: 8px;
+  font-size: 15px;
+  letter-spacing: 0.14em;
+}
+
+.beauty-project__title {
+  color: #666;
+  font-family: "Pretendard", "Noto Sans KR", sans-serif;
+  font-size: clamp(28px, 3vw, 42px);
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.beauty-project__category{
+    margin-top: 10px;
+    color: #999;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 15px;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+}
+
+.beauty-project__poster-button {
+  display: block;
+  width: 100%;
+  overflow: hidden;
+  background: transparent;
+  cursor: pointer;
+}
+
+.beauty-project__poster {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  transition: transform 0.45s ease, filter 0.45s ease;
+}
+
+.beauty-project__poster-button:hover .beauty-project__poster {
+  filter: brightness(1.02);
+  transform: scale(1.012);
+}
+
+.beauty-project__watch-row {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 14px;
+}
+
+.beauty-project__details {
+  margin-top: 56px;
+  font-family: "Pretendard", "Noto Sans KR", sans-serif;
+}
+
+.beauty-project__label {
+  display: inline-block;
+  margin-bottom: 28px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid rgba(102, 102, 102, 0.65);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 16px;
+}
+
+.beauty-project__description {
+  max-width: 700px;
+  font-size: clamp(16px, 1.35vw, 20px);
+  line-height: 1.65;
+  word-break: keep-all;
+}
+
+.beauty-project__process {
+  margin-top: 25px;
+}
+
+@media (max-width: 820px) {
+  .beauty-project__inner {
+    width: min(100% - 64px, 760px);
+  }
+
+  .beauty-project__heading {
+    margin-bottom: 38px;
+  }
+
+  .beauty-project__flower {
+    width: 58px;
+  }
+}
+
+@media (max-width: 560px) {
+  .beauty-project {
+    padding: 95px 0 80px;
+  }
+
+  .beauty-project__inner {
+    width: calc(100% - 40px);
+  }
+
+  .beauty-project__heading {
+    gap: 12px;
+    margin-bottom: 28px;
+  }
+
+  .beauty-project__flower {
+    width: 46px;
+  }
+
+  .beauty-project__watch-row {
+    margin-top: 8px;
+  }
+
+  .beauty-project__details {
+    margin-top: 42px;
+  }
+}
+
+/* =========================================================
+   06-3. ANOTHER WORLD EDITORIAL LAYOUT
+========================================================= */
+
+.world-project {
+  display: block;
+  min-height: 100vh;
+  padding: clamp(110px, 13vh, 165px) 0;
+}
+
+.world-project__inner {
+  width: min(980px, calc(100% - 80px));
+  margin: 0 auto;
+}
+
+.world-project__heading {
+  margin-bottom: 52px;
+}
+
+.world-project__number {
+  margin-bottom: 8px;
+  font-size: 15px;
+  letter-spacing: 0.14em;
+}
+
+.world-project__title {
+  color: #666;
+  font-family: "Pretendard", "Noto Sans KR", sans-serif;
+  font-size: clamp(28px, 3vw, 42px);
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.world-project__category {
+  margin-top: 10px;
+  color: #999;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 15px;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+}
+
+.world-project__poster-button {
+  display: block;
+  width: 100%;
+  overflow: hidden;
+  background: transparent;
+  cursor: pointer;
+}
+
+.world-project__poster {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  transition:
+    transform 0.45s ease,
+    filter 0.45s ease;
+}
+
+.world-project__poster-button:hover .world-project__poster {
+  filter: brightness(1.03);
+  transform: scale(1.012);
+}
+
+.world-project__watch-row {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 14px;
+}
+
+.world-project__details {
+  margin-top: 56px;
+  font-family: "Pretendard", "Noto Sans KR", sans-serif;
+}
+
+.world-project__label {
+  display: inline-block;
+  margin-bottom: 28px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid rgba(102, 102, 102, 0.65);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 16px;
+}
+
+.world-project__description {
+  max-width: 700px;
+  font-size: clamp(16px, 1.35vw, 20px);
+  line-height: 1.65;
+  word-break: keep-all;
+}
+
+@media (max-width: 820px) {
+  .world-project__inner {
+    width: min(100% - 64px, 760px);
+  }
+
+  .world-project__heading {
+    margin-bottom: 38px;
+  }
+}
+
+@media (max-width: 560px) {
+  .world-project {
+    padding: 95px 0 80px;
+  }
+
+  .world-project__inner {
+    width: calc(100% - 40px);
+  }
+
+  .world-project__heading {
+    margin-bottom: 28px;
+  }
+
+  .world-project__watch-row {
+    margin-top: 8px;
+  }
+
+  .world-project__details {
+    margin-top: 42px;
+  }
+}
+
+
+/* =========================================================
+   06-4. ARTWORK EDITORIAL LAYOUT
+========================================================= */
+
+.artwork-project {
+  position: relative;
+  display: block;
+  min-height: 100vh;
+  padding: clamp(110px, 13vh, 165px) 0;
+}
+
+.artwork-project__inner {
+  width: min(980px, calc(100% - 80px));
+  margin: 0 auto;
+}
+
+.artwork-project__heading {
+  margin-bottom: 52px;
+}
+
+.artwork-project__number {
+  margin-bottom: 8px;
+  font-size: 15px;
+  letter-spacing: 0.14em;
+}
+
+.artwork-project__title {
+  color: #666;
+  font-family: "Pretendard", "Noto Sans KR", sans-serif;
+  font-size: clamp(28px, 3vw, 42px);
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.artwork-project__category {
+  margin-top: 10px;
+  color: #999;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 15px;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+}
+
+/* 폴더와 포스터가 들어가는 큰 가로 영역 */
+.artwork-project__visual {
+  position: relative;
+  width: 100%;
+}
+
+/* 뒤에 깔리는 폴더 이미지 */
+.artwork-project__folder {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: auto;
+  pointer-events: none;
+}
+
+/* 폴더 위의 메인 작품 */
+.artwork-project__poster {
+  position: absolute;
+  top: 51%;
+  left: 50%;
+  z-index: 2;
+
+  width: 34%;
+  max-height: 78%;
+  object-fit: contain;
+
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+
+  filter: drop-shadow(0 16px 24px rgba(0, 0, 0, 0.14));
+}
+
+.artwork-project__details {
+  margin-top: 56px;
+  font-family: "Pretendard", "Noto Sans KR", sans-serif;
+}
+
+.artwork-project__label {
+  display: inline-block;
+  margin-bottom: 28px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid rgba(102, 102, 102, 0.65);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 16px;
+}
+
+.artwork-project__description {
+  max-width: 700px;
+  font-size: clamp(16px, 1.35vw, 20px);
+  line-height: 1.65;
+  word-break: keep-all;
+}
+
+@media (max-width: 820px) {
+  .artwork-project__inner {
+    width: min(100% - 64px, 760px);
+  }
+
+  .artwork-project__heading {
+    margin-bottom: 38px;
+  }
+
+  .artwork-project__poster {
+    width: 36%;
+  }
+}
+
+@media (max-width: 560px) {
+  .artwork-project {
+    padding: 95px 0 80px;
+  }
+
+  .artwork-project__inner {
+    width: calc(100% - 40px);
+  }
+
+  .artwork-project__heading {
+    margin-bottom: 28px;
+  }
+
+  .artwork-project__details {
+    margin-top: 42px;
+  }
+
+  .artwork-project__poster {
+    width: 40%;
+  }
+}
+
+/* 양옆 작은 작품 */
+.artwork-project__side {
+  position: absolute;
+  top: 51%;
+  z-index: 2;
+
+  width: 18%;
+  max-height: 230px;
+  object-fit: contain;
+
+  opacity: 0.68;
+  pointer-events: none;
+
+  filter: drop-shadow(0 12px 20px rgba(0, 0, 0, 0.1));
+
+  transition:
+    opacity 0.25s ease,
+    transform 0.35s ease;
+}
+
+.artwork-project__side--left {
+  left: 8%;
+  transform: translateY(-50%) rotate(-4deg);
+}
+
+.artwork-project__side--right {
+  right: 8%;
+  transform: translateY(-50%) rotate(4deg);
+}
+
+/* 이미지가 바뀔 때 부드럽게 */
+.artwork-project__poster,
+.artwork-project__side {
+  transition:
+    opacity 0.2s ease,
+    transform 0.35s ease;
+}
+
+.artwork-project__visual {
+  cursor: ns-resize;
+}
+
+/* 폴더 위에 마우스를 올렸다는 안내 */
+.artwork-project__wheel-guide {
+  position: absolute;
+  left: 50%;
+  bottom: 7%;
+  z-index: 5;
+
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  color: #777;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  white-space: nowrap;
+
+  opacity: 0.6;
+  pointer-events: none;
+  transform: translate(-50%, 0px);
+
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
+}
+
+
+/* 호버하면 세 작품이 아주 살짝 펼쳐짐 */
+.artwork-project__visual:hover
+.artwork-project__side--left {
+  opacity: 0.82;
+  transform:
+    translateY(-50%)
+    translateX(-8px)
+    rotate(-5deg);
+}
+
+.artwork-project__visual:hover
+.artwork-project__side--right {
+  opacity: 0.82;
+  transform:
+    translateY(-50%)
+    translateX(8px)
+    rotate(5deg);
+}
+
+.artwork-project__visual:hover
+.artwork-project__poster {
+  filter:
+    drop-shadow(0 19px 28px rgba(0, 0, 0, 0.17));
+}
+
+/* =========================================================
+   PROFILE STAGE
+========================================================= */
+
+.profile-stage {
+  position: relative;
+  width: 100%;
+
+  background:
+    url("프로필뒷배경.jpg")
+    center -1px / 100% 100%
+    no-repeat;
+}
+
+/* =========================================================
+   07. ABOUT
+========================================================= */
+
+.about {
+  position: relative;
+  min-height: 100vh;
+  margin-top: -1px;
+  padding: clamp(110px, 13vh, 165px) 0 100px;
+  overflow: hidden;
+
+  
+}
+
+.about__inner {
+  width: min(1180px, calc(100% - 80px));
+  margin: 0 auto;
+}
+
+.about__card {
+  display: grid;
+  grid-template-columns:
+    minmax(0, 1.15fr)
+    minmax(300px, 0.85fr);
+  gap: clamp(60px, 8vw, 120px);
+
+  padding: clamp(55px, 7vw, 90px);
+
+  border: 1px solid rgba(255, 255, 255, 0.78);
+  border-radius: 36px;
+
+  background: rgba(255, 255, 255, 0.74);
+
+  box-shadow:
+    0 30px 70px rgba(178, 126, 151, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.about__intro {
+  min-width: 0;
+}
+
+.about__number {
+  margin-bottom: 26px;
+  color: #999;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 15px;
+  letter-spacing: 0.14em;
+}
+
+.about__title {
+  color: #666;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(40px, 4.5vw, 68px);
+  font-weight: 400;
+  line-height: 1.08;
+}
+
+.about__description {
+  margin-top: 48px;
+  color: #666;
+  font-family: "Pretendard", "Noto Sans KR", sans-serif;
+  font-size: clamp(16px, 1.35vw, 20px);
+  line-height: 1.75;
+  word-break: keep-all;
+}
+
+.about__information {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 44px;
+  font-family: "Pretendard", "Noto Sans KR", sans-serif;
+}
+
+.about__group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  padding-bottom: 28px;
+  border-bottom: 1px solid rgba(102, 102, 102, 0.16);
+}
+
+.about__group:last-child {
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
+.about__label {
+  display: inline-block;
+  margin-bottom: 18px;
+  padding-bottom: 5px;
+
+  border-bottom: 1px solid rgba(102, 102, 102, 0.58);
+
+  color: #777;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 16px;
+}
+
+.about__text {
+  color: #666;
+  font-size: 16px;
+  line-height: 1.8;
+}
+
+.about__skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.about__skills span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 38px;
+  padding: 8px 14px;
+
+  border: 1px solid rgba(238, 143, 177, 0.3);
+  border-radius: 999px;
+
+  background: rgba(255, 255, 255, 0.5);
+
+  color: #777;
+  font-size: 14px;
+  line-height: 1;
+}
+
+.about__email {
+  display: inline-block;
+  color: #666;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(19px, 2vw, 26px);
+
+  transition:
+    color 0.25s ease,
+    transform 0.25s ease;
+}
+
+.about__email:hover {
+  color: #ee8fb1;
+  transform: translateX(5px);
+}
+
+@media (max-width: 900px) {
+  .about__card {
+    grid-template-columns: 1fr;
+    gap: 65px;
+  }
+}
+
+@media (max-width: 560px) {
+  .about {
+    min-height: 150vh;
+    padding: 90px 0 70px;
+  }
+
+  .about__inner {
+    width: calc(100% - 40px);
+  }
+
+  .about__card {
+    gap: 52px;
+    padding: 42px 25px;
+    border-radius: 26px;
+  }
+
+  .about__description {
+    margin-top: 36px;
+  }
+
+  .about__information {
+    gap: 34px;
+  }
+}
+
+/* =========================================================
+   07-2. CONTACT
+========================================================= */
+
+.contact {
+  position: relative;
+  min-height: 100vh;
+  margin-top: -1px;
+
+  display: flex;
+  align-items: center;
+
+  padding: 110px 0 70px;
+  overflow: hidden;
+
+  background: none;
+}
+
+.contact__inner {
+  width: min(1180px, calc(100% - 80px));
+  margin: 0 auto;
+  text-align: center;
+}
+
+.contact__eyebrow {
+  margin-bottom: 26px;
+
+  color: #999;
+  font-size: 15px;
+  letter-spacing: 0.18em;
+}
+
+.contact__title {
+  color: #666;
+  font-size: clamp(64px, 8vw, 130px);
+  font-weight: 400;
+  line-height: 0.95;
+}
+
+.contact__message {
+  margin-top: 40px;
+
+  color: #777;
+  font-family: "Pretendard", "Noto Sans KR", sans-serif;
+  font-size: clamp(16px, 1.3vw, 19px);
+  line-height: 1.75;
+}
+
+.contact__links {
+  width: min(720px, 100%);
+  margin: 65px auto 0;
+
+  border-top: 1px solid rgba(102, 102, 102, 0.2);
+}
+
+.contact__link {
+  display: grid;
+  grid-template-columns: 130px 1fr;
+  gap: 30px;
+
+  padding: 22px 0;
+  border-bottom: 1px solid rgba(102, 102, 102, 0.2);
+
+  color: #666;
+  text-align: left;
+
+  transition:
+    color 0.25s ease,
+    padding-left 0.25s ease;
+}
+
+.contact__link span {
+  color: #999;
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.contact__link:hover {
+  padding-left: 8px;
+  color: #ee8fb1;
+}
+
+.contact__top-button {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+
+  margin-top: 70px;
+  background: transparent;
+  color: #888;
+  cursor: pointer;
+
+  font-size: 12px;
+  letter-spacing: 0.1em;
+}
+
+.contact__top-button img {
+  width: 48px;
+  height: 70px;
+  object-fit: contain;
+
+  transition:
+    transform 0.3s ease,
+    filter 0.3s ease;
+}
+
+.contact__top-button:hover img {
+  transform: translateY(-7px) scale(1.04);
+  filter: drop-shadow(0 10px 16px rgba(238, 143, 177, 0.25));
+}
+
+.contact__credit {
+  margin-top: 60px;
+
+  color: rgba(102, 102, 102, 0.55);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+}
+
+@media (max-width: 560px) {
+  .contact {
+    padding: 90px 0 50px;
+  }
+
+  .contact__inner {
+    width: calc(100% - 40px);
+  }
+
+  .contact__links {
+    margin-top: 48px;
+  }
+
+  .contact__link {
+    grid-template-columns: 1fr;
+    gap: 7px;
+    padding: 18px 0;
+  }
+
+  .contact__top-button {
+    margin-top: 55px;
+  }
+}
+
+/* =========================================================
+   08. VIDEO MODAL
+========================================================= */
+
+.video-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: none;
+}
+
+.video-modal.active {
+  display: block;
+}
+
+.video-modal__background {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.76);
+  cursor: pointer;
+}
+
+.video-modal__content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: min(92vw, 900px);
+  transform: translate(-50%, -50%);
+}
+
+.video-modal__video {
+  width: 100%;
+  max-height: 85vh;
+  margin: 0 auto;
+  border-radius: 18px;
+  background: #000;
+}
+
+.video-modal__close {
+  position: absolute;
+  top: -50px;
+  right: 0;
+  background: transparent;
+  color: #fff;
+  cursor: pointer;
+  font-size: 38px;
+  line-height: 1;
+}
+
+/* =========================================================
+   08-2. CREATIVE PROCESS MODAL
+========================================================= */
+
+.process-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: none;
+}
+
+.process-modal.active {
+  display: block;
+}
+
+.process-modal__background {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.18);
+  cursor: pointer;
+}
+
+.process-modal__content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  width: min(92vw, 1400px);
+  height: 88vh;
+
+  transform: translate(-50%, -50%);
+
+  overflow: visible;
+
+  background: transparent;
+}
+
+.process-modal__scroll {
+  width: 100%;
+  height: 100%;
+
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  border: 1px solid rgba(180, 160, 170, 0.22);
+  border-radius: 18px;
+  clip-path: inset(0 round 18px);
+
+  background: #fff;
+
+  box-shadow:
+    0 20px 60px rgba(90, 70, 80, 0.16);
+
+  scrollbar-width: thin;
+}
+
+.process-modal__image {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.process-modal__close {
+  position: absolute;
+  top: -48px;
+  right: 0;
+  z-index: 10;
+
+  background: transparent;
+  color: #444;
+  cursor: pointer;
+
+  font-size: 38px;
+  line-height: 1;
+}
+
+@media (max-width: 560px) {
+  .process-modal__content {
+    width: calc(100% - 30px);
+    height: 84vh;
+  }
+
+  .process-modal__close {
+    top: -42px;
+  }
+}
+
+
+/* =========================================================
+   09. ANIMATION
+========================================================= */
+
+@keyframes float {
+  0% {
+    translate: 0 0;
+  }
+
+  50% {
+    translate: 0 -10px;
+  }
+
+  100% {
+    translate: 0 0;
+  }
+}
+
+@keyframes cloud-float {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(25px);
+  }
+}
+
+
+/* =========================================================
+   10. RESPONSIVE
+========================================================= */
+
+@media (max-width: 1100px) {
+  .container {
+    width: min(900px, calc(100% - 64px));
+  }
+
+  .project-symbol--flower {
+    left: 16%;
+  }
+
+  .project-symbol--feather {
+    right: 16%;
+  }
+}
+
+@media (max-width: 820px) {
+  .side-nav {
+    top: 20px;
+    left: 16px;
+    font-size: 11px;
+  }
+
+  .side-nav__brand {
+    display: none;
+  }
+
+  .project-menu,
+  .project-menu__inner {
+    min-height: 760px;
+  }
+
+  .project-symbol--angel {
+    top: 100px;
+    width: 280px;
+  }
+
+  .project-symbol--flower {
+    top: 58%;
+    left: 12%;
+    width: 130px;
+  }
+
+  .project-symbol--feather {
+    top: 54%;
+    right: 12%;
+    width: 110px;
+  }
+
+  .cloud--top {
+    width: 170px;
+  }
+
+  .cloud--left-one,
+  .cloud--left-two {
+    width: 160px;
+  }
+}
+
+@media (max-width: 560px) {
+  .container {
+    width: calc(100% - 40px);
+  }
+
+  .intro {
+    min-height: 650px;
+  }
+
+  .project-menu,
+  .project-menu__inner {
+    min-height: 680px;
+  }
+
+  .project-menu__title {
+    top: 50%;
+  }
+
+  .project-symbol--angel {
+    top: 105px;
+    width: 235px;
+  }
+
+  .project-symbol--flower {
+    top: 61%;
+    left: 7%;
+    width: 105px;
+  }
+
+  .project-symbol--feather {
+    top: 58%;
+    right: 7%;
+    width: 90px;
+  }
+
+  .cloud--top {
+    right: -45px;
+  }
+
+  .cloud--left-one {
+    left: -45px;
+  }
+
+  .cloud--left-two {
+    left: 25px;
+  }
+
+  .video-modal__content {
+    width: calc(100% - 30px);
+  }
+}
+
+
+
+
+</style>
 </head>
+
 <body>
 
-<div id="wrap">
-    <div id="intro"><video id="introbg" src="intro.mp4" autoplay muted loop></video></div>
-    <div id="portfolio"></div>
-    <div id="information"></div>
-    <div id="footer"></div>
-</div>
+  <!-- ======================================================
+       SIDE NAV
+  ======================================================= -->
+  <nav class="side-nav" aria-label="페이지 내비게이션">
+    <p class="side-nav__brand">● CREATIVE PORTFOLIO</p>
 
+    <a class="side-nav__link" href="#intro" data-nav="intro">INTRO</a>
+    <a class="side-nav__link active" href="#project" data-nav="project">PROJECT</a>
+    <a class="side-nav__link" href="#about" data-nav="about">ABOUT</a>
+    <a class="side-nav__link" href="#contact" data-nav="contact">CONTACT</a> 
+  </nav>
+
+<!-- 프로젝트 전용 오른쪽 네비 -->
+<nav class="project-quick-nav" aria-label="프로젝트 바로가기">
+
+    <button
+      class="project-quick-nav__button active"
+      type="button"
+      data-project-link="#project-carrot"
+      data-normal="천사클릭전.png"
+      data-active="천사클릭후2.png"
+      aria-label="당근 프로젝트">
+      <img src="천사클릭후2.png" alt="">
+    </button>
+  
+    <button
+      class="project-quick-nav__button"
+      type="button"
+      data-project-link="#project-ai"
+      data-normal="꽃클릭전.png"
+      data-active="꽃클릭후2.png"
+      aria-label="Beauty 프로젝트">
+      <img src="꽃클릭전.png" alt="">
+    </button>
+  
+    <button
+      class="project-quick-nav__button"
+      type="button"
+      data-project-link="#project-world"
+      data-normal="깃털클릭전.png"
+      data-active="깃털클릭후2.png"
+      aria-label="Another World 프로젝트">
+      <img src="깃털클릭전.png" alt="">
+    </button>
+  
+    <button
+      class="project-quick-nav__button"
+      type="button"
+      data-project-link="#project-art"
+      data-normal="나비클릭전.png"
+      data-active="나비클릭후2.png"
+      aria-label="Artwork 프로젝트">
+      <img src="나비클릭전.png" alt="">
+    </button>
+  
+  </nav>  
+
+
+  <!-- ======================================================
+     INTRO
+======================================================= -->
+<section class="intro" id="intro">
+
+    <div class="intro__media">
+  
+      <video
+        class="intro__open-video"
+        autoplay
+        muted
+        playsinline>
+  
+        <source src="새인트로.mp4" type="video/mp4">
+  
+      </video>
+  
+      <img
+        class="intro__final-door"
+        src="door.png"
+        alt="문">
+  
+    </div>
+  
+  </section>
+
+
+  <!-- ======================================================
+       PROJECT SELECT + CARROT BACKGROUND
+  ======================================================= -->
+  <div class="project-carrot-stage">
+
+  <section class="project-menu" id="project">
+    <div class="container project-menu__inner">
+      <h2 class="project-menu__title">PROJECT</h2>
+
+      <img class="cloud cloud--top" src="구름클릭전.png" alt="">
+      <img class="cloud cloud--left-one" src="구름클릭전.png" alt="">
+      <img class="cloud cloud--left-two" src="구름클릭전.png" alt="">
+
+      <button
+        class="project-symbol project-symbol--angel"
+        type="button"
+        data-target="#project-carrot"
+        data-normal="천사클릭전.png"
+        data-hover="천사클릭후2.png"
+        aria-label="당근 프로젝트 보기">
+        <img src="천사클릭전.png" alt="">
+
+        <span class="project-symbol__number">01</span>
+        
+
+      </button>
+
+      <button
+        class="project-symbol project-symbol--flower"
+        type="button"
+        data-target="#project-ai"
+        data-normal="꽃클릭전.png"
+        data-hover="꽃클릭후2.png"
+        aria-label="AI Beauty 프로젝트 보기">
+        <img src="꽃클릭전.png" alt="">
+
+        <span class="project-symbol__number">02</span>
+        
+
+      </button>
+
+      <button
+        class="project-symbol project-symbol--feather"
+        type="button"
+        data-target="#project-world"
+        data-normal="깃털클릭전.png"
+        data-hover="깃털클릭후2.png"
+        aria-label="Another World 프로젝트 보기">
+        <img src="깃털클릭전.png" alt="">
+
+        <span class="project-symbol__number">03</span>
+        
+
+      </button>
+
+      <button
+        class="project-symbol project-symbol--butterfly"
+        type="button"
+        data-target="#project-art"
+        data-normal="나비클릭전.png"
+        data-hover="나비클릭후2.png"
+        aria-label="Artwork 프로젝트 보기">
+        <img src="나비클릭전.png" alt="">
+
+        <span class="project-symbol__number">04</span>
+        
+
+        </button>
+
+    </div>
+  </section>
+
+
+  <!-- ======================================================
+       PROJECT 01 : CARROT
+  ======================================================= -->
+
+    <!-- PROJECT 01 -->
+    <article class="carrot-project" id="project-carrot">
+        <div class="carrot-project__inner">
+      
+            <div class="beauty-project__heading">
+
+                <img
+                  class="beauty-project__flower"
+                  src="당근숫자옆.png"
+                  alt="">
+              
+                <div>
+                  <p class="carrot-project__number">01</p>
+              
+                  <h2 class="carrot-project__title">
+                    Service Feature Campaign
+                  </h2>
+              
+                  <p class="carrot-project__category">
+                    Motion Graphics · Concept Advertisement
+                  </p>
+                </div>
+
+            </div>
+      
+          <div class="carrot-project__poster-wrap">
+            <button
+              class="carrot-project__poster-button"
+              type="button"
+              data-video="당근영상.mp4"
+              aria-label="당근 모임 서비스 홍보 영상 보기">
+      
+              <img
+                class="carrot-project__poster"
+                src="당근포스터.png"
+                alt="당근 모임 서비스 홍보 포스터">
+            </button>
+          </div>
+      
+          <div class="carrot-project__watch-row">
+            <button
+              class="text-button"
+              type="button"
+              data-video="당근영상.mp4">
+              ▶ Watch Video
+            </button>
+          </div>
+      
+          <div class="carrot-project__details">
+            <p class="carrot-project__label">Overview</p>
+      
+            <p class="carrot-project__description">
+              당근 앱이 중고 거래뿐 아니라 이웃과 관심사를 나누는<br>
+              ‘모임’ 서비스를 제공한다는 점에 주목했습니다.<br><br>
+      
+              친근한 캐릭터와 모션그래픽을 활용해 서비스의 특징을<br>
+              쉽고 따뜻하게 전달한 홍보 콘셉트 프로젝트입니다.
+            </p>
+      
+            <div class="carrot-project__storyboard">
+                <button
+                  class="text-button"
+                  type="button"
+                  data-process="Creative Process.jpg">
+                  → Creative Process
+                </button>
+              </div>
+          </div>
+      
+        </div>
+      </article>
+
+  </div>
+
+  <!-- ======================================================
+       BEAUTY + ARTWORK + ANOTHER WORLD BACKGROUND
+  ======================================================= -->
+  <div class="visual-stage">
+
+  <!-- ======================================================
+       PROJECT LIST
+  ======================================================= -->
+  <main class="project-list">
+
+    <!-- PROJECT 02 -->
+    <article class="beauty-project" id="project-ai">
+      <div class="beauty-project__inner">
+
+        <div class="beauty-project__heading">
+          <img
+            class="beauty-project__flower"
+            src="꽃클릭전.png"
+            alt="">
+
+          <div>
+            <p class="beauty-project__number">02</p>
+            <h2 class="beauty-project__title">Beauty Campaign</h2>
+            <p class="beauty-project__category">AI Video · Beauty Advertisement
+            </p>
+          </div>
+        </div>
+
+        <button
+          class="beauty-project__poster-button"
+          type="button"
+          data-video="뷰티영상.mp4"
+          aria-label="AI Beauty Campaign 영상 보기">
+          <img
+            class="beauty-project__poster"
+            src="뷰티포스터.png"
+            alt="AI Beauty Campaign 가로 포스터">
+        </button>
+
+        <div class="beauty-project__watch-row">
+          <button
+            class="text-button"
+            type="button"
+            data-video="뷰티영상.mp4">
+            ▶ Watch Video
+          </button>
+        </div>
+
+        <div class="beauty-project__details">
+          <p class="beauty-project__label">Overview</p>
+
+          <p class="beauty-project__description">
+            18세기 로코코 미술에서 영감을 받아 우아한 색감과 조형미를<br>
+            현대적인 뷰티 캠페인으로 재해석했습니다.<br><br>
+
+            생성형 AI를 활용해 이미지와 영상을 제작하고,<br>
+            하나의 브랜드 광고처럼 기획부터 편집까지 전 과정을 구성한 프로젝트입니다.
+          </p>
+
+          <div class="beauty-project__process">
+            <button
+              class="text-button"
+              type="button"
+              data-pdf="AI프로세스북.pdf">
+              → Process Book
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </article>
+
+        <!-- PROJECT 03 : ANOTHER WORLD -->
+<article class="world-project" id="project-world">
+    <div class="world-project__inner">
+  
+        <div class="beauty-project__heading">
+
+            <img
+                class="beauty-project__flower"
+                src="어나더숫자옆.png"
+                alt="">
+        
+            <div>
+                <p class="world-project__number">03</p>
+        
+                <h2 class="world-project__title">
+                    Another World
+                </h2>
+        
+                <p class="world-project__category">
+                    Blender · 3D Motion
+                </p>
+            </div>
+        
+        </div>
+  
+      <button
+        class="world-project__poster-button"
+        type="button"
+        data-video="어나더월드영상.mp4"
+        aria-label="Another World 영상 보기">
+  
+        <img
+          class="world-project__poster"
+          src="블렌더.jpg"
+          alt="Another World 대표 이미지">
+      </button>
+  
+      <div class="world-project__watch-row">
+        <button
+          class="text-button"
+          type="button"
+          data-video="어나더월드영상.mp4">
+          ▶ Watch Video
+        </button>
+      </div>
+  
+      <div class="world-project__details">
+        <p class="world-project__label">Overview</p>
+  
+        <p class="world-project__description">
+          현실과 상상의 경계를 넘나드는 몽환적인 공간을<br>
+          3D 오브젝트와 카메라 무빙으로 표현했습니다.<br><br>
+  
+          Blender를 활용해 장면 구성과 애니메이션을 제작하고,<br>
+          하나의 짧은 3D 모션 영상으로 완성한 개인 프로젝트입니다.
+        </p>
+      </div>
+  
+    </div>
+  </article>
+          
+      
+
+    <!-- PROJECT 04 : ARTWORK -->
+<article class="artwork-project" id="project-art">
+    <div class="artwork-project__inner">
+  
+        <div class="beauty-project__heading">
+
+            <img
+              class="beauty-project__flower"
+              src="워크숫자옆.png"
+              alt="">
+          
+            <div>
+              <p class="artwork-project__number">04</p>
+          
+              <h2 class="artwork-project__title">
+                Artwork Collection
+              </h2>
+          
+              <p class="artwork-project__category">
+                Illustration · Poster Design
+              </p>
+            </div>
+          
+          </div>
+  
+      <!-- 폴더 + 메인 포스터 -->
+      <div class="artwork-project__visual">
+
+        <!-- 폴더 -->
+        <img
+          class="artwork-project__folder"
+          src="폴더이미지.png"
+          alt="">
+      
+        <!-- 왼쪽 작품 -->
+        <img
+          class="artwork-project__side artwork-project__side--left"
+          src="포스터/3.jpg"
+          alt="">
+      
+        <!-- 가운데 메인 작품 -->
+        <img
+          class="artwork-project__poster"
+          src="포스터/2.jpg"
+          alt="">
+      
+        <!-- 오른쪽 작품 -->
+        <img
+          class="artwork-project__side artwork-project__side--right"
+          src="포스터/4.jpg"
+          alt="">
+          <p class="artwork-project__wheel-guide">
+            Scroll to explore
+            <span>↕</span>
+          </p>
+      
+      </div>
+  
+      <div class="artwork-project__details">
+        <p class="artwork-project__label">
+          Overview
+        </p>
+  
+        <p class="artwork-project__description">
+          다양한 색감과 그래픽 표현을 실험하며 제작한<br>
+          개인 아트워크 및 포스터 컬렉션입니다.<br><br>
+  
+          일러스트레이션과 이미지 편집을 활용해 각기 다른 무드와<br>
+          시각적 이야기를 하나의 컬렉션으로 구성했습니다.
+        </p>
+      </div>
+  
+    </div>
+  </article>
+
+
+
+  </main>
+
+  </div>
+
+  <!-- ======================================================
+     ABOUT + CONTACT BACKGROUND
+======================================================= -->
+<div class="profile-stage">
+
+  <!-- ======================================================
+     ABOUT
+======================================================= -->
+<section class="about" id="about">
+
+    <div class="about__inner">
+  
+      <div class="about__card">
+  
+        <!-- 왼쪽 -->
+        <div class="about__intro">
+  
+          <p class="about__number">ABOUT</p>
+  
+          <h2 class="about__title">
+            Creating dreamy<br>
+            visual experiences.
+          </h2>
+  
+          <p class="about__description">
+            3D Motion과 Interactive Web을 중심으로<br>
+            감성과 이야기를 담은 콘텐츠를 제작합니다.<br><br>
+
+            Blender를 활용한 3D Motion,<br>
+            인터랙티브 웹, 브랜딩 프로젝트를 통해<br>
+            사용자가 몰입할 수 있는 경험을 디자인합니다.
+          </p>
+  
+        </div>
+
+  
+        <!-- 오른쪽 -->
+        
+        <div class="about__information">
+  
+          <div class="about__group">
+            <p class="about__label">Education</p>
+  
+            <div class="about__text">
+              오산대학교 패션디자인과<br>
+              
+            </div>
+          </div>
+  
+          <div class="about__group">
+            <p class="about__label">Skills</p>
+  
+            <div class="about__skills">
+  
+              <span>Blender</span>
+              <span>After Effects</span>
+              <span>Premiere Pro</span>
+              <span>Photoshop</span>
+              <span>Illustrator</span>
+              <span>HTML</span>
+              <span>CSS</span>
+  
+            </div>
+          </div>
+
+  
+        </div>
+  
+      </div>
+  
+    </div>
+  
+  </section>
+
+<!-- ======================================================
+     CONTACT
+======================================================= -->
+<section class="contact" id="contact">
+
+    <div class="contact__inner">
+  
+      <p class="contact__eyebrow">
+        CONTACT
+      </p>
+  
+      <h2 class="contact__title">
+        Thank you.
+      </h2>
+  
+      <p class="contact__message">
+        Thanks for visiting my portfolio.<br>
+        Feel free to get in touch.
+      </p>
+  
+      <div class="contact__links">
+  
+        <a
+          class="contact__link"
+          href="mailto:livehappilyforgood@gmail.com">
+          <span>Email</span>
+          livehappilyforgood@gmail.com
+        </a>
+  
+        <a
+          class="contact__link"
+          href="#"
+          target="_blank"
+          rel="noopener noreferrer">
+          <span>Instagram</span>
+          @fsiffil
+        </a>
+  
+    
+  
+      </div>
+  
+      <button
+        class="contact__top-button"
+        type="button"
+        aria-label="맨 위로 이동">
+  
+        <img
+          src="door.png"
+          alt="">
+  
+        <span>Back to top</span>
+      </button>
+  
+      <p class="contact__credit">
+        Designed &amp; created by me · 2026
+      </p>
+  
+    </div>
+  
+   </section>
+    
+  </div> 
+ 
+
+  
+
+  <!-- ======================================================
+       VIDEO MODAL
+  ======================================================= -->
+  <div class="video-modal" aria-hidden="true">
+    <button class="video-modal__background" type="button" aria-label="영상 닫기"></button>
+
+    <div class="video-modal__content">
+      <button class="video-modal__close" type="button" aria-label="영상 닫기">
+        ×
+      </button>
+
+      <video class="video-modal__video" controls playsinline></video>
+    </div>
+  </div>
+
+  <!-- ======================================================
+     CREATIVE PROCESS IMAGE MODAL
+======================================================= -->
+<div class="process-modal" aria-hidden="true">
+
+    <button
+      class="process-modal__background"
+      type="button"
+      aria-label="Creative Process 닫기">
+    </button>
+  
+    <div class="process-modal__content">
+  
+      <button
+        class="process-modal__close"
+        type="button"
+        aria-label="Creative Process 닫기">
+        ×
+      </button>
+  
+      <div class="process-modal__scroll">
+        <img
+          class="process-modal__image"
+          src=""
+          alt="Creative Process">
+      </div>
+  
+    </div>
+  
+  </div>
+
+  <script>
+
+const contactTopButton =
+  document.querySelector(".contact__top-button");
+
+const projectQuickNav =
+  document.querySelector(".project-quick-nav");
+
+const projectQuickButtons =
+  document.querySelectorAll(
+    ".project-quick-nav__button"
+  );
+
+const beautyProject =
+  document.querySelector("#project-ai");
+
+const worldProject =
+  document.querySelector("#project-world");
+
+const artworkSection =
+  document.querySelector("#project-art");
+
+const intro = document.querySelector(".intro");
+const openVideo = document.querySelector(".intro__open-video");
+const finalDoor = document.querySelector(".intro__final-door");
+
+const projectMenu = document.querySelector("#project");
+const carrotProject = document.querySelector("#project-carrot");
+const about = document.querySelector("#about");
+const contact = document.querySelector("#contact");
+
+let sideNavTimer;
+
+const sideNav = document.querySelector(".side-nav");
+const navLinks = document.querySelectorAll(".side-nav__link");
+
+const projectSymbols = document.querySelectorAll(".project-symbol");
+
+const modal = document.querySelector(".video-modal");
+const modalVideo = document.querySelector(".video-modal__video");
+const modalClose = document.querySelector(".video-modal__close");
+const modalBackground = document.querySelector(".video-modal__background");
+
+const processModal =
+  document.querySelector(".process-modal");
+
+const processModalImage =
+  document.querySelector(".process-modal__image");
+
+const processModalClose =
+  document.querySelector(".process-modal__close");
+
+const processModalBackground =
+  document.querySelector(".process-modal__background");
+
+
+const artworkVisual =
+  document.querySelector(".artwork-project__visual");
+
+const artworkMainImage =
+  document.querySelector(".artwork-project__poster");
+
+const artworkLeftImage =
+  document.querySelector(".artwork-project__side--left");
+
+const artworkRightImage =
+  document.querySelector(".artwork-project__side--right");
+
+contactTopButton.addEventListener(
+  "click",
+  function () {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+
+    window.setTimeout(function () {
+      replayIntro();
+    }, 700);
+  }
+); 
+
+
+/* =========================================================
+   INTRO
+========================================================= */
+
+openVideo.addEventListener("ended", finishIntro);
+
+function finishIntro() {
+  openVideo.style.opacity = "0";
+
+  finalDoor.style.display = "block";
+  finalDoor.classList.remove("show");
+
+  requestAnimationFrame(function () {
+    requestAnimationFrame(function () {
+      finalDoor.classList.add("show");
+    });
+  });
+
+  window.setTimeout(function () {
+    openVideo.style.display = "none";
+  }, 450);
+
+  window.setTimeout(function () {
+    projectMenu.scrollIntoView({
+      behavior: "smooth"
+    });
+  }, 1100);
+}
+
+function replayIntro() {
+  finalDoor.classList.remove("show");
+  finalDoor.style.display = "none";
+
+  openVideo.style.display = "block";
+  openVideo.style.opacity = "1";
+  openVideo.currentTime = 0;
+
+  const playPromise = openVideo.play();
+
+  if (playPromise !== undefined) {
+    playPromise.catch(function () {
+      openVideo.muted = true;
+      openVideo.play();
+    });
+  }
+}
+
+
+/* =========================================================
+   PROJECT SYMBOLS
+========================================================= */
+
+projectSymbols.forEach(function (symbol) {
+  const image = symbol.querySelector("img");
+
+  symbol.addEventListener("mouseenter", function () {
+    image.src = symbol.dataset.hover;
+  });
+
+  symbol.addEventListener("mouseleave", function () {
+    image.src = symbol.dataset.normal;
+  });
+
+  symbol.addEventListener("click", function () {
+    const target = document.querySelector(symbol.dataset.target);
+
+    if (target) {
+      target.scrollIntoView({
+        behavior: "smooth"
+      });
+    }
+  });
+});
+
+projectQuickButtons.forEach(function (button) {
+  button.addEventListener("click", function () {
+    const target =
+      document.querySelector(
+        button.dataset.projectLink
+      );
+
+    if (target) {
+      target.scrollIntoView({
+        behavior: "smooth"
+      });
+    }
+  });
+});
+
+function setActiveProjectQuickNav(activeTarget) {
+  projectQuickButtons.forEach(function (button) {
+    const image = button.querySelector("img");
+
+    const isActive =
+      button.dataset.projectLink === activeTarget;
+
+    button.classList.toggle("active", isActive);
+
+    image.src = isActive
+      ? button.dataset.active
+      : button.dataset.normal;
+  });
+}
+
+function getPageTop(element) {
+  return element.getBoundingClientRect().top + window.scrollY;
+}
+
+function updateProjectQuickNav() {
+  const currentPosition =
+    window.scrollY + window.innerHeight * 0.45;
+
+  const carrotStart = getPageTop(carrotProject);
+  const beautyStart = getPageTop(beautyProject);
+  const worldStart = getPageTop(worldProject);
+  const artworkStart = getPageTop(artworkSection);
+  const aboutStart = getPageTop(about);
+
+  /* 당근 프로젝트 이전과 About부터는 숨김 */
+  if (
+    currentPosition < carrotStart ||
+    currentPosition >= aboutStart
+  ) {
+    projectQuickNav.classList.remove("show");
+    return;
+  }
+
+  projectQuickNav.classList.add("show");
+
+  /* 현재 보고 있는 프로젝트 활성화 */
+  if (currentPosition >= artworkStart) {
+    setActiveProjectQuickNav("#project-art");
+  } else if (currentPosition >= worldStart) {
+    setActiveProjectQuickNav("#project-world");
+  } else if (currentPosition >= beautyStart) {
+    setActiveProjectQuickNav("#project-ai");
+  } else {
+    setActiveProjectQuickNav("#project-carrot");
+  }
+}
+
+
+/* =========================================================
+   SIDE NAV
+========================================================= */
+
+function setActiveNav(sectionName) {
+  navLinks.forEach(function (link) {
+    link.classList.toggle(
+      "active",
+      link.dataset.nav === sectionName
+    );
+  });
+}
+
+function updateSideNav() {
+  const currentPosition =
+    window.scrollY + window.innerHeight * 0.45;
+
+  const introBottom =
+    getPageTop(intro) + intro.offsetHeight;
+
+  const projectStart =
+    getPageTop(projectMenu);
+
+  const carrotStart =
+    getPageTop(carrotProject);
+
+  const aboutStart =
+    getPageTop(about);
+
+  const contactStart =
+    getPageTop(contact);
+
+  /* 인트로에서는 네비 숨김 */
+  if (window.scrollY < introBottom - 100) {
+    sideNav.classList.remove("show");
+    sideNav.classList.remove("idle-hidden");
+    clearTimeout(sideNavTimer);
+    return;
+  }
+
+  /* 프로젝트부터 네비 표시 */
+  sideNav.classList.add("show");
+  sideNav.classList.remove("idle-hidden");
+
+  clearTimeout(sideNavTimer);
+
+  /* 당근 프로젝트부터는 스크롤을 멈추면 숨김 */
+  if (currentPosition >= carrotStart) {
+    sideNavTimer = window.setTimeout(function () {
+      sideNav.classList.add("idle-hidden");
+    }, 1000);
+  }
+
+  /* 현재 구간 활성 표시 */
+  if (currentPosition >= contactStart) {
+    setActiveNav("contact");
+  } else if (currentPosition >= aboutStart) {
+    setActiveNav("about");
+  } else if (currentPosition >= projectStart) {
+    setActiveNav("project");
+  }
+}
+
+sideNav.addEventListener("mouseenter", function () {
+  clearTimeout(sideNavTimer);
+  sideNav.classList.remove("idle-hidden");
+});
+
+sideNav.addEventListener("mouseleave", function () {
+  const carrotStart =
+    getPageTop(carrotProject);
+
+  if (
+    window.scrollY + window.innerHeight * 0.45
+    >= carrotStart
+  ) {
+    clearTimeout(sideNavTimer);
+
+    sideNavTimer = window.setTimeout(function () {
+      sideNav.classList.add("idle-hidden");
+    }, 700);
+  }
+});
+
+window.addEventListener(
+  "scroll",
+  updateSideNav,
+  {
+    passive: true
+  }
+);
+
+window.addEventListener(
+  "resize",
+  updateSideNav
+);
+
+window.addEventListener(
+  "load",
+  updateSideNav
+);
+
+window.addEventListener(
+  "scroll",
+  updateProjectQuickNav,
+  {
+    passive: true
+  }
+);
+
+window.addEventListener(
+  "resize",
+  updateProjectQuickNav
+);
+
+window.addEventListener(
+  "load",
+  updateProjectQuickNav
+);
+
+/* =========================================================
+   ARTWORK FOLDER WHEEL GALLERY
+========================================================= */
+
+const artworkImages = [
+  "포스터/3.jpg",
+  "포스터/2.jpg",
+  "포스터/4.jpg",
+  "포스터/5.png",
+  "포스터/5-1.png",
+  "포스터/7.jpg",
+  "포스터/8.png"
+];
+
+/* 처음 가운데 메인은 2.jpg */
+let currentArtworkIndex = 1;
+let artworkWheelLocked = false;
+
+function getArtworkIndex(index) {
+  return (
+    index + artworkImages.length
+  ) % artworkImages.length;
+}
+
+function showArtworkImages(index, direction = 1) {
+  const previousIndex =
+    getArtworkIndex(index - 1);
+
+  const nextIndex =
+    getArtworkIndex(index + 1);
+
+  const moveDistance = direction > 0 ? -45 : 45;
+
+  artworkLeftImage.style.transition =
+    "transform .42s ease, opacity .42s ease";
+
+  artworkMainImage.style.transition =
+    "transform .42s ease, opacity .42s ease";
+
+  artworkRightImage.style.transition =
+    "transform .42s ease, opacity .42s ease";
+
+  /* 현재 세 장을 휠 방향으로 함께 이동 */
+  artworkLeftImage.style.transform =
+    `translateY(-50%) translateX(${moveDistance}px) rotate(-4deg)`;
+
+  artworkMainImage.style.transform =
+    `translate(-50%, -50%) translateX(${moveDistance}px)`;
+
+  artworkRightImage.style.transform =
+    `translateY(-50%) translateX(${moveDistance}px) rotate(4deg)`;
+
+  artworkLeftImage.style.opacity = "0";
+  artworkMainImage.style.opacity = "0.35";
+  artworkRightImage.style.opacity = "0";
+
+  window.setTimeout(function () {
+    artworkLeftImage.src =
+      artworkImages[previousIndex];
+
+    artworkMainImage.src =
+      artworkImages[index];
+
+    artworkRightImage.src =
+      artworkImages[nextIndex];
+
+    const startDistance =
+      direction > 0 ? 45 : -45;
+
+    /* 새 이미지들을 반대편에서 준비 */
+    artworkLeftImage.style.transition = "none";
+    artworkMainImage.style.transition = "none";
+    artworkRightImage.style.transition = "none";
+
+    artworkLeftImage.style.transform =
+      `translateY(-50%) translateX(${startDistance}px) rotate(-4deg)`;
+
+    artworkMainImage.style.transform =
+      `translate(-50%, -50%) translateX(${startDistance}px)`;
+
+    artworkRightImage.style.transform =
+      `translateY(-50%) translateX(${startDistance}px) rotate(4deg)`;
+
+    artworkLeftImage.style.opacity = "0";
+    artworkMainImage.style.opacity = "0.35";
+    artworkRightImage.style.opacity = "0";
+
+    requestAnimationFrame(function () {
+      requestAnimationFrame(function () {
+        artworkLeftImage.style.transition =
+          "transform .42s ease, opacity .42s ease";
+
+        artworkMainImage.style.transition =
+          "transform .42s ease, opacity .42s ease";
+
+        artworkRightImage.style.transition =
+          "transform .42s ease, opacity .42s ease";
+
+        artworkLeftImage.style.transform =
+          "translateY(-50%) rotate(-4deg)";
+
+        artworkMainImage.style.transform =
+          "translate(-50%, -50%)";
+
+        artworkRightImage.style.transform =
+          "translateY(-50%) rotate(4deg)";
+
+        artworkLeftImage.style.opacity = "0.68";
+        artworkMainImage.style.opacity = "1";
+        artworkRightImage.style.opacity = "0.68";
+      });
+    });
+  }, 420);
+}
+
+if (
+  artworkVisual &&
+  artworkMainImage &&
+  artworkLeftImage &&
+  artworkRightImage
+) {
+  artworkVisual.addEventListener(
+    "wheel",
+    function (event) {
+      event.preventDefault();
+
+      if (artworkWheelLocked) return;
+
+      artworkWheelLocked = true;
+
+      let direction = 1;
+
+      if (event.deltaY > 0) {
+        direction = 1;
+
+        currentArtworkIndex =
+          getArtworkIndex(currentArtworkIndex + 1);
+      } else if (event.deltaY < 0) {
+        direction = -1;
+
+        currentArtworkIndex =
+          getArtworkIndex(currentArtworkIndex - 1);
+      }
+
+      showArtworkImages(
+        currentArtworkIndex,
+        direction
+      );
+
+      window.setTimeout(function () {
+        artworkWheelLocked = false;
+      }, 900);
+    },
+    {
+      passive: false
+    }
+  );
+
+  window.addEventListener("load", function () {
+    const previousIndex =
+      getArtworkIndex(currentArtworkIndex - 1);
+
+    const nextIndex =
+      getArtworkIndex(currentArtworkIndex + 1);
+
+    artworkLeftImage.src =
+      artworkImages[previousIndex];
+
+    artworkMainImage.src =
+      artworkImages[currentArtworkIndex];
+
+    artworkRightImage.src =
+      artworkImages[nextIndex];
+  });
+}
+
+
+/* =========================================================
+   VIDEO MODAL
+========================================================= */
+
+document
+  .querySelectorAll("[data-video]")
+  .forEach(function (trigger) {
+    trigger.addEventListener("click", function () {
+      openModal(trigger.dataset.video);
+    });
+  });
+
+function openModal(videoSource) {
+  if (!videoSource) return;
+
+  modal.classList.add("active");
+  modal.setAttribute("aria-hidden", "false");
+  document.body.style.overflow = "hidden";
+
+  modalVideo.src = videoSource;
+  modalVideo.currentTime = 0;
+
+  const playPromise = modalVideo.play();
+
+  if (playPromise !== undefined) {
+    playPromise.catch(function () {
+      /* 자동 재생 제한 시 사용자가 재생 버튼을 누르면 됩니다. */
+    });
+  }
+}
+
+function closeModal() {
+  modalVideo.pause();
+  modalVideo.removeAttribute("src");
+  modalVideo.load();
+
+  modal.classList.remove("active");
+  modal.setAttribute("aria-hidden", "true");
+  document.body.style.overflow = "";
+}
+
+modalClose.addEventListener("click", closeModal);
+modalBackground.addEventListener("click", closeModal);
+
+document.addEventListener("keydown", function (event) {
+  if (
+    event.key === "Escape" &&
+    modal.classList.contains("active")
+  ) {
+    closeModal();
+  }
+});
+
+
+
+
+/* =========================================================
+   CREATIVE PROCESS MODAL
+========================================================= */
+
+document
+  .querySelectorAll("[data-process]")
+  .forEach(function (button) {
+    button.addEventListener("click", function () {
+      const imageSource =
+        button.dataset.process;
+
+      if (!imageSource) return;
+
+      processModalImage.src =
+        imageSource;
+
+      processModal.classList.add("active");
+      processModal.setAttribute(
+        "aria-hidden",
+        "false"
+      );
+
+      document.body.style.overflow =
+        "hidden";
+
+      const scrollArea =
+        processModal.querySelector(
+          ".process-modal__scroll"
+        );
+
+      if (scrollArea) {
+        scrollArea.scrollTop = 0;
+      }
+    });
+  });
+
+function closeProcessModal() {
+  processModal.classList.remove("active");
+
+  processModal.setAttribute(
+    "aria-hidden",
+    "true"
+  );
+
+  processModalImage.removeAttribute("src");
+
+  document.body.style.overflow = "";
+}
+
+processModalClose.addEventListener(
+  "click",
+  closeProcessModal
+);
+
+processModalBackground.addEventListener(
+  "click",
+  closeProcessModal
+);
+
+document.addEventListener(
+  "keydown",
+  function (event) {
+    if (
+      event.key === "Escape" &&
+      processModal.classList.contains("active")
+    ) {
+      closeProcessModal();
+    }
+  }
+);
+
+</script>
 </body>
 </html>
