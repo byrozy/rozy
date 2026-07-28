@@ -601,9 +601,9 @@ a {
   margin-top: 28px;
 
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 0px;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
 }
 
 .carrot-project__visual {
@@ -700,7 +700,7 @@ a {
 .beauty-project {
   display: block;
   min-height: 100vh;
-  padding: clamp(110px, 13vh, 165px) 0;
+  padding: clamp(70px, 9vh, 130px) 0;
 }
 
 .beauty-project__inner {
@@ -712,7 +712,7 @@ a {
   display: flex;
   align-items: center;
   gap: 18px;
-  margin-bottom: 52px;
+  margin-bottom: 36px;
 }
 
 .beauty-project__flower {
@@ -769,17 +769,19 @@ a {
 .beauty-project__watch-row {
   display: flex;
   justify-content: flex-end;
-  margin-top: 14px;
+  width: 100%;
+  max-width: 660px;
+  margin: 14px auto 0;
 }
 
 .beauty-project__details {
-  margin-top: 56px;
+  margin-top: 34px;
   font-family: "Pretendard", "Noto Sans KR", sans-serif;
 }
 
 .beauty-project__label {
   display: inline-block;
-  margin-bottom: 28px;
+  margin-bottom: 16px;
   padding-bottom: 5px;
   border-bottom: 1px solid rgba(102, 102, 102, 0.65);
   font-family: Georgia, "Times New Roman", serif;
@@ -797,9 +799,9 @@ a {
   margin-top: 28px;
 
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 0px;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
 }
 
 @media (max-width: 820px) {
@@ -850,7 +852,7 @@ a {
 .world-project {
   display: block;
   min-height: 100vh;
-  padding: clamp(110px, 13vh, 165px) 0;
+  padding: clamp(70px, 9vh, 130px) 0;
 }
 
 .world-project__inner {
@@ -912,17 +914,19 @@ a {
 .world-project__watch-row {
   display: flex;
   justify-content: flex-end;
-  margin-top: 14px;
+  width: 100%;
+  max-width: 660px;
+  margin: 14px auto 0;
 }
 
 .world-project__details {
-  margin-top: 56px;
+  margin-top: 34px;
   font-family: "Pretendard", "Noto Sans KR", sans-serif;
 }
 
 .world-project__label {
   display: inline-block;
-  margin-bottom: 28px;
+  margin-bottom: 16px;
   padding-bottom: 5px;
   border-bottom: 1px solid rgba(102, 102, 102, 0.65);
   font-family: Georgia, "Times New Roman", serif;
@@ -1825,7 +1829,7 @@ a {
 .beauty-project,
 .world-project,
 .artwork-project {
-  padding: clamp(55px, 6vh, 85px) 0 90px;
+  padding: clamp(40px, 4.5vh, 65px) 0 70px;
 }
 
 
@@ -1877,7 +1881,7 @@ a {
       data-project-link="#project-world"
       data-normal="깃털클릭전.png"
       data-active="깃털클릭후2.png"
-      aria-label="Another World 프로젝트">
+      aria-label="DAY 프로젝트">
       <img src="깃털클릭전.png" alt="">
     </button>
   
@@ -1968,7 +1972,7 @@ a {
         data-target="#project-world"
         data-normal="깃털클릭전.png"
         data-hover="깃털클릭후2.png"
-        aria-label="Another World 프로젝트 보기">
+        aria-label="DAY 프로젝트 보기">
         <img src="깃털클릭전.png" alt="">
 
         <span class="project-symbol__number">03</span>
@@ -2135,8 +2139,8 @@ a {
           <p class="beauty-project__label">Overview</p>
 
           <p class="beauty-project__description">
-            18세기 로코코 미술에서 영감을 받아<br>
-            우아한 색감과 조형미를 현대적인 뷰티 캠페인으로 재해석했습니다.<br><br>
+            18세기 로코코 미술의 우아한 색감과 조형미에서 영감을 받아,<br>
+            현대적인 뷰티 캠페인으로 재해석했습니다.<br><br>
 
             생성형 AI를 활용해 기획부터 제작, 편집까지<br>
             브랜드 광고 형태로 완성한 프로젝트입니다.
@@ -2162,7 +2166,7 @@ a {
       </div>
     </article>
 
-        <!-- PROJECT 03 : ANOTHER WORLD -->
+        <!-- PROJECT 03 : DAY -->
 <article class="world-project" id="project-world">
     <div class="world-project__inner">
   
@@ -2181,7 +2185,7 @@ a {
                 </h2>
         
                 <p class="world-project__category">
-                    Blender · 3D Motion
+                    Blender · Generative AI · 3D Motion
                 </p>
             </div>
         
@@ -2190,20 +2194,20 @@ a {
       <button
         class="world-project__poster-button"
         type="button"
-        data-video="어나더월드영상.mp4"
-        aria-label="Another World 영상 보기">
+        data-video="데이영상.mp4"
+        aria-label="DAY 영상 보기">
   
         <img
           class="world-project__poster"
-          src="블렌더.jpg"
-          alt="Another World 대표 이미지">
+          src="데이포스터.png"
+          alt="DAY 대표 이미지">
       </button>
   
       <div class="world-project__watch-row">
         <button
           class="text-button"
           type="button"
-          data-video="DAY.mp4">
+          data-video="데이영상.mp4">
           ▶ Watch Video
         </button>
       </div>
@@ -2219,6 +2223,22 @@ a {
           Blender와 생성형 AI를 결합한 하이브리드 제작으로<br>
           DAY의 화장품 광고 영상을 완성한 프로젝트입니다.
         </p>
+
+        <div class="beauty-project__process">
+          <button
+            class="text-button"
+            type="button"
+            data-process="DAY_CreativeProcess.png">
+            → Process Book
+          </button>
+
+          <button
+            class="text-button"
+            type="button"
+            data-storyboard="DAY_Storyboard.jpg">
+            → View Storyboard
+          </button>
+        </div>
       </div>
   
     </div>
@@ -2290,11 +2310,8 @@ a {
         </p>
   
         <p class="artwork-project__description">
-          다양한 색감과 그래픽 표현을 실험하며 제작한<br>
-          개인 아트워크 및 포스터 컬렉션입니다.<br><br>
-  
-          일러스트레이션과 이미지 편집을 활용해 각기 다른 무드와<br>
-          시각적 이야기를 하나의 컬렉션으로 구성했습니다.
+          다양한 색감과 그래픽을 실험한 개인 아트워크·포스터 컬렉션입니다.<br>
+          일러스트와 이미지 편집으로 각기 다른 무드와 이야기를 담았습니다.
         </p>
       </div>
   
