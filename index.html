@@ -483,12 +483,13 @@ a {
 }
 
 .artwork-project__category {
-  margin-top: 10px;
-  color: #999;
+  margin-top: 20px;
+  color: var(--muted, #8c8880);
   font-family: "Space Mono", monospace;
-  font-size: 15px;
+  font-size: 10.5px;
   font-weight: 400;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
 }
 
 .artwork-project__visual {
@@ -529,7 +530,7 @@ a {
   margin-bottom: 28px;
   padding-bottom: 5px;
   border-bottom: 1px solid rgba(102, 102, 102, 0.65);
-  font-family: "Instrument Serif", Georgia, serif; font-style:italic;
+  font-family: Georgia, "Times New Roman", serif;
   font-size: 16px;
 }
 
@@ -847,6 +848,16 @@ a {
   letter-spacing:.12em;
   text-transform:uppercase;
   color:var(--muted, #8c8880);
+}
+.proj__label{
+  display:inline-block;
+  margin-top:20px;
+  margin-bottom:0;
+  padding-bottom:5px;
+  border-bottom:1px solid rgba(102, 102, 102, 0.65);
+  font-family:Georgia, "Times New Roman", serif;
+  font-size:16px;
+  color:var(--ink, #2d2825);
 }
 .proj__desc{
   margin-top:26px;
@@ -1284,10 +1295,11 @@ a {
         <h2 class="proj__title">NYMPHÉA</h2>
         <p class="proj__category">Perfume Branding · AI Film</p>
         <p class="proj__desc">
-          연꽃이 피어나는 아침빛에서 영감을 받은 향수 브랜드 NYMPHÉA의 브랜딩 프로젝트입니다.
+          연꽃의 맑고 투명한 이미지와 동양적인 여백의 미를 바탕으로, 모네의 수련 연작에서 참고한 색감과 분위기를 더해 완성한 향수 브랜딩 프로젝트입니다.
         </p>
         <div class="proj__actions">
           <button class="text-button" type="button" data-video="님페아영상.mp4">▶ Watch Video</button>
+          <button class="text-button" type="button" data-process="님페아9컷.png">→ Visual Board</button>
         </div>
       </div>
     </article>
@@ -1315,7 +1327,6 @@ a {
       <div class="artwork-project__inner">
 
         <div class="beauty-project__heading">
-          <img class="beauty-project__flower" src="워크숫자옆.png" alt="">
           <div>
             <p class="artwork-project__number">06</p>
             <h2 class="artwork-project__title">Artwork Collection</h2>
@@ -1332,7 +1343,6 @@ a {
         </div>
 
         <div class="artwork-project__details">
-          <p class="artwork-project__label">Overview</p>
           <p class="artwork-project__description">
             다양한 색감과 그래픽을 실험한 개인 아트워크·포스터 컬렉션입니다.<br>
             일러스트와 이미지 편집으로 각기 다른 무드와 이야기를 담았습니다.
