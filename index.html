@@ -101,8 +101,10 @@ a {
   color: #666;
   cursor: pointer;
 
-  font-family: "Instrument Serif", Georgia, serif;
-  font-size: 16px;                                
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 15px;
+  font-weight: 400;
+  letter-spacing: 0.01em;
 
   transition:
     color 0.25s ease,
@@ -465,17 +467,19 @@ a {
 
 .artwork-project__number {
   margin-bottom: 8px;
-  font-size: 15px;
-  letter-spacing: 0.14em;
+  font-family: "Space Mono", monospace;
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  color: var(--muted, #8c8880);
 }
 
 .artwork-project__title{
   color:#666;
-  font-family:Georgia, serif;
+  font-family:Georgia, "Times New Roman", serif;
   font-weight:400;
   font-size:clamp(30px,3vw,42px);
   line-height:1.08;
-  letter-spacing:-0.01em;
+  letter-spacing:-0.008em;
 }
 
 .artwork-project__category {
@@ -640,17 +644,44 @@ a {
 
 .contact { position: relative; min-height: 100vh; margin-top: -1px; display: flex; align-items: center; padding: 110px 0 70px; overflow: hidden; background: none; }
 .contact__inner { width: min(1180px, calc(100% - 80px)); margin: 0 auto; text-align: center; }
-.contact__eyebrow { margin-bottom: 26px; color: #999; font-size: 15px; letter-spacing: 0.18em; }
-.contact__title { color: #666; font-size: clamp(64px, 8vw, 130px); font-weight: 400; line-height: 0.95; }
+.contact__eyebrow {
+  margin-bottom: 26px;
+  color: #999;
+  font-family: "Space Mono", monospace;
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+.contact__title {
+  color: #666;
+  font-family: "Instrument Serif", Georgia, serif;
+  font-style: italic;
+  font-size: clamp(64px, 8vw, 130px);
+  font-weight: 400;
+  line-height: 0.95;
+  letter-spacing: -0.015em;
+}
 .contact__message { margin-top: 40px; color: #777; font-family: "Pretendard","Noto Sans KR",sans-serif; font-size: clamp(16px, 1.3vw, 19px); line-height: 1.75; }
 .contact__links { width: min(720px, 100%); margin: 65px auto 0; border-top: 1px solid rgba(102, 102, 102, 0.2); }
 .contact__link { display: grid; grid-template-columns: 130px 1fr; gap: 30px; padding: 22px 0; border-bottom: 1px solid rgba(102, 102, 102, 0.2); color: #666; text-align: left; transition: color 0.25s ease, padding-left 0.25s ease; }
-.contact__link span { color: #999; font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; }
+.contact__link span {
+  color: #999;
+  font-family: "Space Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
 .contact__link:hover { padding-left: 8px; color: #ee8fb1; }
 .contact__top-button { display: inline-flex; flex-direction: column; align-items: center; gap: 8px; margin-top: 70px; background: transparent; color: #888; cursor: pointer; font-size: 12px; letter-spacing: 0.1em; }
 .contact__top-button img { width: 48px; height: 70px; object-fit: contain; transition: transform 0.3s ease, filter 0.3s ease; }
 .contact__top-button:hover img { transform: translateY(-7px) scale(1.04); filter: drop-shadow(0 10px 16px rgba(238, 143, 177, 0.25)); }
-.contact__credit { margin-top: 60px; color: rgba(102, 102, 102, 0.55); font-size: 11px; letter-spacing: 0.12em; }
+.contact__credit {
+  margin-top: 60px;
+  color: rgba(102, 102, 102, 0.55);
+  font-family: "Space Mono", monospace;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+}
 
 
 /* =========================================================
@@ -802,12 +833,12 @@ a {
 }
 .proj__title{
   margin-top:16px;
-  font-family:Georgia, serif;
+  font-family:Georgia, "Times New Roman", serif;
   font-weight:400;
   font-size:clamp(36px,4.8vw,60px);
-  line-height:1.02;
-  letter-spacing:-0.015em;
-  color:var(--ink, #221f1c);
+  line-height:1.04;
+  letter-spacing:-0.012em;
+  color:var(--ink, #2d2825);
 }
 .proj__category{
   margin-top:20px;
@@ -843,7 +874,7 @@ a {
 
 :root{
   --bone:#f1efea;
-  --ink:#221f1c;
+  --ink:#2d2825;
   --muted:#8c8880;
   --rose:#c98f8a;
   --line: rgba(34,31,28,0.14);
@@ -1102,7 +1133,7 @@ a {
 
       <div class="hero__bottom">
         <span class="hero__scroll">Scroll to view</span>
-        <span>04 Selected Works</span>
+        <span>06 Selected Works</span>
       </div>
     </div>
   </header>
