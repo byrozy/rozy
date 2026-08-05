@@ -376,7 +376,7 @@ a {
 .process-modal.active { display: block; }
 .process-modal__background { position: absolute; inset: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.18); cursor: pointer; transition: background .3s ease; }
 .process-modal__content { position: absolute; top: 50%; left: 50%; width: min(92vw, 1400px); height: 88vh; transform: translate(-50%, -50%); overflow: visible; background: transparent; transition: width .3s ease, height .3s ease; }
-.process-modal__scroll { width: 100%; height: 100%; overflow-y: auto; overflow-x: hidden; border: 1px solid rgba(180, 160, 170, 0.22); border-radius: 18px; clip-path: inset(0 round 18px); background: #fff; box-shadow: 0 20px 60px rgba(90, 70, 80, 0.16); scrollbar-width: thin; line-height: 0; }
+.process-modal__scroll { width: 100%; height: 100%; overflow-y: auto; overflow-x: hidden; border: 1px solid rgba(180, 160, 170, 0.22); border-radius: 18px; clip-path: inset(0 round 18px); background: #fff; box-shadow: 0 20px 60px rgba(90, 70, 80, 0.16); scrollbar-width: thin; }
 .process-modal__image { display: block; width: 100%; height: auto; }
 .process-modal__controls { position: absolute; top: -48px; right: 0; z-index: 10; display: flex; align-items: center; gap: 12px; }
 .process-modal__expand,
@@ -789,194 +789,6 @@ a {
   .hero__scroll{ bottom:28px; }
 }
 
-
-/* =========================================================
-   FINAL PROJECT EXPERIENCE
-   - 현재의 2단 정보 구조 유지
-   - 예전 포트폴리오의 파스텔 공간감 복원
-   - 예전 캡슐 네비를 프로젝트 퀵 네비로 재해석
-========================================================= */
-
-/* 포스터를 조금 줄이고 설명을 안쪽으로 당겨 여백을 확보 */
-.proj {
-  grid-template-columns: minmax(0, 1.02fr) minmax(330px, .78fr);
-  gap: clamp(34px, 4.2vw, 68px);
-  padding-left: clamp(42px, 6vw, 96px);
-  padding-right: clamp(112px, 9vw, 150px);
-  isolation: isolate;
-  overflow: hidden;
-}
-
-.proj__media {
-  min-height: 56vh;
-}
-
-.proj__frame.is-landscape {
-  max-width: 760px;
-}
-
-.proj__frame.is-portrait {
-  max-width: 455px;
-}
-
-.proj__info {
-  max-width: 480px;
-  transform: translateX(clamp(-22px, -1.5vw, -8px));
-}
-
-/* 프로젝트 전체를 하나의 배경 이미지로 연결
-   - 인덱스는 기존 배경 유지
-   - 당근부터 Artwork까지 하나의 project-zone
-   - 뷰티배경.png의 끝을 About 시작점에 맞춤
-   - 이미지가 없는 위쪽 구간은 자연스럽게 흰색으로 유지 */
-.project-zone {
-  position: relative;
-  width: 100%;
-  background-color: #fff;
-  background-image: url("뷰티배경.png");
-  background-repeat: no-repeat;
-  background-position: center bottom;
-  background-size: 100% auto;
-}
-
-/* 기존 래퍼와 각 프로젝트의 개별 배경 제거 */
-.project-zone .project-carrot-stage,
-.project-zone .visual-stage {
-  background: transparent;
-}
-
-.project-zone .proj,
-.project-zone .artwork-project,
-.project-zone #project-carrot,
-.project-zone #project-ai,
-.project-zone #project-world,
-.project-zone #project-nymphea,
-.project-zone #project-gez,
-.project-zone #project-art {
-  background: transparent;
-}
-
-/* 섹션 사이 인위적인 경계선 제거 */
-.project-zone .proj + .proj,
-.project-zone #project-art {
-  border-top: 0;
-}
-
-/* 예전 캡슐 네비 감성을 살린 프로젝트 퀵 네비 */
-.project-quicknav {
-  position: fixed;
-  top: 50%;
-  right: clamp(18px, 2.2vw, 34px);
-  z-index: 55;
-  width: 58px;
-  padding: 13px 8px;
-  border: 1px solid rgba(45, 40, 37, .16);
-  border-radius: 999px;
-  background: rgba(255,255,255,.46);
-  box-shadow: 0 14px 34px rgba(55, 47, 42, .08);
-  backdrop-filter: blur(13px);
-  -webkit-backdrop-filter: blur(13px);
-  opacity: 0;
-  visibility: hidden;
-  transform: translate(18px, -50%);
-  transition: opacity .35s ease, transform .45s cubic-bezier(.16,1,.3,1), visibility .35s;
-}
-
-.project-quicknav.is-visible {
-  opacity: 1;
-  visibility: visible;
-  transform: translate(0, -50%);
-}
-
-.project-quicknav__list {
-  display: grid;
-  gap: 5px;
-  list-style: none;
-}
-
-.project-quicknav__link {
-  position: relative;
-  display: grid;
-  place-items: center;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  color: rgba(45, 40, 37, .43);
-  font-family: "Space Mono", monospace;
-  font-size: 9px;
-  letter-spacing: .08em;
-  transition: color .25s ease, background .25s ease, transform .25s ease;
-}
-
-.project-quicknav__link::after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  bottom: 6px;
-  width: 0;
-  height: 1px;
-  background: currentColor;
-  transform: translateX(-50%);
-  transition: width .3s cubic-bezier(.19,1,.22,1);
-}
-
-.project-quicknav__link:hover,
-.project-quicknav__link.is-active {
-  color: var(--ink);
-  background: rgba(255,255,255,.62);
-}
-
-.project-quicknav__link:hover {
-  transform: scale(1.04);
-}
-
-.project-quicknav__link:hover::after,
-.project-quicknav__link.is-active::after {
-  width: 13px;
-}
-
-/* 캡슐 폭은 그대로 두고 이름만 왼쪽 툴팁으로 노출 */
-.project-quicknav__name {
-  position: absolute;
-  top: 50%;
-  right: calc(100% + 13px);
-  min-width: max-content;
-  padding: 7px 10px 6px;
-  border: 1px solid rgba(45,40,37,.10);
-  border-radius: 999px;
-  background: rgba(255,255,255,.72);
-  color: var(--ink);
-  box-shadow: 0 9px 24px rgba(55,47,42,.07);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: 12px;
-  letter-spacing: .015em;
-  opacity: 0;
-  pointer-events: none;
-  transform: translate(8px, -50%);
-  transition: opacity .22s ease, transform .28s cubic-bezier(.16,1,.3,1);
-}
-
-.project-quicknav__link:hover .project-quicknav__name,
-.project-quicknav__link:focus-visible .project-quicknav__name {
-  opacity: 1;
-  transform: translate(0, -50%);
-}
-
-.project-quicknav__link:focus-visible {
-  outline: 1px solid rgba(45,40,37,.55);
-  outline-offset: 2px;
-}
-
-@media (max-width: 900px) {
-  .proj {
-    padding-right: clamp(28px, 6vw, 58px);
-  }
-  .proj__info { transform: none; }
-  .project-quicknav { display: none; }
-}
-
 </style>
 </head>
 
@@ -1072,8 +884,6 @@ a {
   </section>
 
 
-  <div class="project-zone">
-
   <!-- ======================================================
        PROJECT 01 : CARROT
   ======================================================= -->
@@ -1086,7 +896,7 @@ a {
         </button>
       </div>
       <div class="proj__info">
-        <p class="proj__no">01</p>
+        <p class="proj__no">01 / 06</p>
         <h2 class="proj__title">DAANGN</h2>
         <p class="proj__category">Moim · Motion Graphics · Concept Advertisement</p>
         <p class="proj__desc">
@@ -1117,7 +927,7 @@ a {
         </button>
       </div>
       <div class="proj__info">
-        <p class="proj__no">02</p>
+        <p class="proj__no">02 / 06</p>
         <h2 class="proj__title">AETHEL</h2>
         <p class="proj__category">AI Video · Beauty Advertisement</p>
         <p class="proj__desc">
@@ -1139,7 +949,7 @@ a {
         </button>
       </div>
       <div class="proj__info">
-        <p class="proj__no">03</p>
+        <p class="proj__no">03 / 06</p>
         <h2 class="proj__title">DAY</h2>
         <p class="proj__category">Blender · Generative AI · 3D Motion</p>
         <p class="proj__desc">
@@ -1148,7 +958,8 @@ a {
         </p>
         <div class="proj__actions">
           <button class="text-button" type="button" data-video="데이영상.mp4">▶ Watch Video</button>
-          <button class="text-button" type="button" data-process-images="DAY_Creative1.png,DAY_Creative2.png">→ Creative Process</button>
+          <button class="text-button" type="button" data-process="DAY_CreativeProcess.png">→ Process Book</button>
+          <button class="text-button" type="button" data-storyboard="DAY_Storyboard.jpg">→ View Storyboard</button>
         </div>
       </div>
     </article>
@@ -1160,7 +971,7 @@ a {
         </button>
       </div>
       <div class="proj__info">
-        <p class="proj__no">04</p>
+        <p class="proj__no">04 / 06</p>
         <h2 class="proj__title">NYMPHÉA</h2>
         <p class="proj__category">Perfume Branding · AI Film</p>
         <p class="proj__desc">
@@ -1180,7 +991,7 @@ a {
         </button>
       </div>
       <div class="proj__info">
-        <p class="proj__no">05</p>
+        <p class="proj__no">05 / 06</p>
         <h2 class="proj__title">GEZ</h2>
         <p class="proj__category">Camera Branding · Advertisement</p>
         <p class="proj__desc">
@@ -1224,8 +1035,6 @@ a {
   </main>
 
   </div>
-
-  </div><!-- /.project-zone -->
 
   <!-- ======================================================
        ABOUT + CONTACT
@@ -1301,19 +1110,6 @@ a {
   </div>
 
 
-
-  <!-- 프로젝트 구간에서만 보이는 퀵 네비 -->
-  <nav class="project-quicknav" aria-label="프로젝트 바로가기">
-    <ol class="project-quicknav__list">
-      <li><a class="project-quicknav__link" href="#project-carrot" data-project-link="project-carrot"><span>01</span><span class="project-quicknav__name">DAANGN</span></a></li>
-      <li><a class="project-quicknav__link" href="#project-ai" data-project-link="project-ai"><span>02</span><span class="project-quicknav__name">AETHEL</span></a></li>
-      <li><a class="project-quicknav__link" href="#project-world" data-project-link="project-world"><span>03</span><span class="project-quicknav__name">DAY</span></a></li>
-      <li><a class="project-quicknav__link" href="#project-nymphea" data-project-link="project-nymphea"><span>04</span><span class="project-quicknav__name">NYMPHÉA</span></a></li>
-      <li><a class="project-quicknav__link" href="#project-gez" data-project-link="project-gez"><span>05</span><span class="project-quicknav__name">GEZ</span></a></li>
-      <li><a class="project-quicknav__link" href="#project-art" data-project-link="project-art"><span>06</span><span class="project-quicknav__name">Artwork</span></a></li>
-    </ol>
-  </nav>
-
   <!-- ======================================================
        VIDEO MODAL
   ======================================================= -->
@@ -1335,7 +1131,9 @@ a {
         <button class="process-modal__expand" type="button" aria-label="확대 보기" title="확대 보기">⛶</button>
         <button class="process-modal__close" type="button" aria-label="Creative Process 닫기">×</button>
       </div>
-      <div class="process-modal__scroll" id="processModalScroll"></div>
+      <div class="process-modal__scroll">
+        <img class="process-modal__image" src="" alt="Creative Process">
+      </div>
     </div>
   </div>
 
@@ -1348,7 +1146,7 @@ const modalClose = document.querySelector(".video-modal__close");
 const modalBackground = document.querySelector(".video-modal__background");
 
 const processModal = document.querySelector(".process-modal");
-const processModalScroll = document.querySelector("#processModalScroll");
+const processModalImage = document.querySelector(".process-modal__image");
 const processModalClose = document.querySelector(".process-modal__close");
 const processModalExpand = document.querySelector(".process-modal__expand");
 const processModalBackground = document.querySelector(".process-modal__background");
@@ -1369,71 +1167,6 @@ contactTopButton.addEventListener("click", function () {
   window.addEventListener("scroll", function () {
     topnav.classList.toggle("is-scrolled", window.scrollY > 24);
   }, { passive: true });
-})();
-
-/* ---------- TOPNAV — 현재 보이는 구간에 따라 active 변경 ---------- */
-(function () {
-  const navLinks = Array.from(document.querySelectorAll(".topnav__link"));
-
-  const introLink = document.querySelector('.topnav__link[href="#hero"]');
-  const projectLink = document.querySelector('.topnav__link[href="#project-carrot"]');
-  const aboutLink = document.querySelector('.topnav__link[href="#about"]');
-  const contactLink = document.querySelector('.topnav__link[href="#contact"]');
-
-  const projectStart = document.getElementById("project-carrot");
-  const aboutSection = document.getElementById("about");
-  const contactSection = document.getElementById("contact");
-
-  if (
-    !introLink ||
-    !projectLink ||
-    !aboutLink ||
-    !contactLink ||
-    !projectStart ||
-    !aboutSection ||
-    !contactSection
-  ) return;
-
-  function setActive(activeLink) {
-    navLinks.forEach(function (link) {
-      const isActive = link === activeLink;
-      link.classList.toggle("active", isActive);
-
-      if (isActive) {
-        link.setAttribute("aria-current", "page");
-      } else {
-        link.removeAttribute("aria-current");
-      }
-    });
-  }
-
-  function getDocumentTop(element) {
-    return element.getBoundingClientRect().top + window.scrollY;
-  }
-
-  function updateTopnavActive() {
-    const currentY = window.scrollY + 120;
-
-    const projectTop = getDocumentTop(projectStart);
-    const aboutTop = getDocumentTop(aboutSection);
-    const contactTop = getDocumentTop(contactSection);
-
-    if (currentY >= contactTop) {
-      setActive(contactLink);
-    } else if (currentY >= aboutTop) {
-      setActive(aboutLink);
-    } else if (currentY >= projectTop) {
-      setActive(projectLink);
-    } else {
-      setActive(introLink);
-    }
-  }
-
-  updateTopnavActive();
-
-  window.addEventListener("scroll", updateTopnavActive, { passive: true });
-  window.addEventListener("resize", updateTopnavActive);
-  window.addEventListener("load", updateTopnavActive);
 })();
 
 /* =========================================================
@@ -1545,36 +1278,20 @@ document.querySelectorAll("[data-video]").forEach(function (trigger) {
   });
 });
 
-let videoPlayTimer = null;
-
 function openModal(videoSource) {
   if (!videoSource) return;
-
-  if (videoPlayTimer) window.clearTimeout(videoPlayTimer);
-
-  modalVideo.pause();
-  modalVideo.src = videoSource;
-  modalVideo.currentTime = 0;
-  modalVideo.volume = 1;
-
   modal.classList.add("active");
   modal.setAttribute("aria-hidden", "false");
   document.body.style.overflow = "hidden";
-
-  /* 모달이 먼저 열린 뒤, 원래 볼륨과 싱크 그대로 재생 */
-  videoPlayTimer = window.setTimeout(function () {
-    const playPromise = modalVideo.play();
-    if (playPromise !== undefined) {
-      playPromise.catch(function () { /* 제한 시 기본 컨트롤로 재생 */ });
-    }
-  }, 250);
+  modalVideo.src = videoSource;
+  modalVideo.currentTime = 0;
+  const playPromise = modalVideo.play();
+  if (playPromise !== undefined) {
+    playPromise.catch(function () { /* 자동 재생 제한 시 사용자가 재생 버튼을 누르면 됩니다. */ });
+  }
 }
 
 function closeModal() {
-  if (videoPlayTimer) {
-    window.clearTimeout(videoPlayTimer);
-    videoPlayTimer = null;
-  }
   modalVideo.pause();
   modalVideo.removeAttribute("src");
   modalVideo.load();
@@ -1594,34 +1311,12 @@ document.addEventListener("keydown", function (event) {
    CREATIVE PROCESS MODAL
 ========================================================= */
 
-document.querySelectorAll("[data-process], [data-process-images], [data-storyboard]").forEach(function (button) {
+document.querySelectorAll("[data-process], [data-storyboard]").forEach(function (button) {
   button.addEventListener("click", function () {
-    const singleImageSource = button.dataset.process || button.dataset.storyboard;
-    const multipleImageSources = button.dataset.processImages
-      ? button.dataset.processImages
-          .split(",")
-          .map(function (source) { return source.trim(); })
-          .filter(Boolean)
-      : [];
+    const imageSource = button.dataset.process || button.dataset.storyboard;
+    if (!imageSource) return;
 
-    const imageSources = multipleImageSources.length
-      ? multipleImageSources
-      : (singleImageSource ? [singleImageSource] : []);
-
-    if (!imageSources.length) return;
-
-    processModalScroll.innerHTML = "";
-
-    imageSources.forEach(function (imageSource, index) {
-      const image = document.createElement("img");
-      image.className = "process-modal__image";
-      image.src = imageSource;
-      image.alt = imageSources.length > 1
-        ? "Creative Process " + (index + 1)
-        : "Creative Process";
-      processModalScroll.appendChild(image);
-    });
-
+    processModalImage.src = imageSource;
     processModal.classList.remove("is-expanded");
     processModal.classList.toggle("fit-contain", button.dataset.fit === "contain");
     processModalExpand.textContent = "⛶";
@@ -1630,7 +1325,9 @@ document.querySelectorAll("[data-process], [data-process-images], [data-storyboa
     processModal.classList.add("active");
     processModal.setAttribute("aria-hidden", "false");
     document.body.style.overflow = "hidden";
-    processModalScroll.scrollTop = 0;
+
+    const scrollArea = processModal.querySelector(".process-modal__scroll");
+    if (scrollArea) scrollArea.scrollTop = 0;
   });
 });
 
@@ -1644,7 +1341,7 @@ function toggleProcessModalSize() {
 function closeProcessModal() {
   processModal.classList.remove("active", "fit-contain", "is-expanded");
   processModal.setAttribute("aria-hidden", "true");
-  processModalScroll.innerHTML = "";
+  processModalImage.removeAttribute("src");
   processModalExpand.textContent = "⛶";
   document.body.style.overflow = "";
 }
@@ -1656,62 +1353,6 @@ processModalBackground.addEventListener("click", closeProcessModal);
 document.addEventListener("keydown", function (event) {
   if (event.key === "Escape" && processModal.classList.contains("active")) closeProcessModal();
 });
-
-
-/* =========================================================
-   PROJECT QUICK NAV — 프로젝트 구간에서만 표시 + 현재 작품 강조
-========================================================= */
-(function () {
-  const quicknav = document.querySelector('.project-quicknav');
-  const projectSections = Array.from(document.querySelectorAll(
-    '#project-carrot, #project-ai, #project-world, #project-nymphea, #project-gez, #project-art'
-  ));
-  const links = Array.from(document.querySelectorAll('[data-project-link]'));
-  const about = document.getElementById('about');
-
-  if (!quicknav || !projectSections.length || !about) return;
-
-  links.forEach(function (link) {
-    link.addEventListener('click', function (event) {
-      event.preventDefault();
-      const target = document.getElementById(link.dataset.projectLink);
-      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    });
-  });
-
-  function updateQuicknav() {
-    const scrollCenter = window.scrollY + window.innerHeight * 0.5;
-    const firstTop = projectSections[0].offsetTop;
-    const aboutTop = about.offsetTop;
-    const inProjectRange = scrollCenter >= firstTop && scrollCenter < aboutTop;
-
-    quicknav.classList.toggle('is-visible', inProjectRange);
-    if (!inProjectRange) return;
-
-    let active = projectSections[0];
-    let smallestDistance = Infinity;
-
-    projectSections.forEach(function (section) {
-      const sectionCenter = section.offsetTop + section.offsetHeight * 0.5;
-      const distance = Math.abs(scrollCenter - sectionCenter);
-      if (distance < smallestDistance) {
-        smallestDistance = distance;
-        active = section;
-      }
-    });
-
-    links.forEach(function (link) {
-      const isActive = link.dataset.projectLink === active.id;
-      link.classList.toggle('is-active', isActive);
-      if (isActive) link.setAttribute('aria-current', 'true');
-      else link.removeAttribute('aria-current');
-    });
-  }
-
-  updateQuicknav();
-  window.addEventListener('scroll', updateQuicknav, { passive: true });
-  window.addEventListener('resize', updateQuicknav);
-})();
 
 /* =========================================================
    NEW HERO — 마우스 파럈렉스 배경
