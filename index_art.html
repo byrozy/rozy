@@ -73,7 +73,6 @@ a {
   background: var(--bone, #f1efea);
 }
 
-.project-carrot-stage .project-menu,
 .project-carrot-stage #project-carrot {
   position: relative;
   min-height: 100vh;
@@ -101,8 +100,10 @@ a {
   color: #666;
   cursor: pointer;
 
-  font-family: "Instrument Serif", Georgia, serif;
-  font-size: 16px;                                
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 15px;
+  font-weight: 400;
+  letter-spacing: 0.01em;
 
   transition:
     color 0.25s ease,
@@ -112,334 +113,6 @@ a {
 .text-button:hover {
   color: #ee8fb1;
   transform: translateX(5px);
-}
-
-
-/* =========================================================
-   06-1. BEAUTY EDITORIAL LAYOUT
-========================================================= */
-
-.beauty-project {
-  display: block;
-  min-height: 100vh;
-  padding: clamp(70px, 9vh, 130px) 0;
-}
-
-.beauty-project__inner {
-  width: min(980px, calc(100% - 80px));
-  margin: 0 auto;
-}
-
-.beauty-project__heading {
-  display: flex;
-  align-items: center;
-  gap: 18px;
-  margin-bottom: 36px;
-}
-
-.beauty-project__flower {
-  width: 76px;
-  flex: 0 0 auto;
-  opacity: 0.7;
-}
-
-.beauty-project__number {
-  margin-bottom: 8px;
-  font-size: 15px;
-  letter-spacing: 0.14em;
-}
-
-.beauty-project__title {
-  color: #666;
-  font-family: "Instrument Serif", Georgia, serif; font-style:italic;
-  font-size: clamp(28px, 3vw, 42px);
-  font-weight: 500;
-  line-height: 1.2;
-}
-
-.beauty-project__category{
-    margin-top: 10px;
-    color: #999;
-    font-family: "Space Mono", monospace;
-    font-size: 15px;
-    font-weight: 400;
-    letter-spacing: 0.08em;
-}
-
-.beauty-project__poster-button {
-  display: block;
-  width: 100%;
-  max-width: 660px;
-  margin: 0 auto;
-  overflow: hidden;
-  background: transparent;
-  cursor: pointer;
-}
-
-.beauty-project__poster {
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  object-fit: cover;
-  transition: transform 0.45s ease, filter 0.45s ease;
-}
-
-.beauty-project__poster-button:hover .beauty-project__poster {
-  filter: brightness(1.02);
-  transform: scale(1.012);
-}
-
-.beauty-project__watch-row {
-  display: flex;
-  justify-content: flex-end;
-  width: 100%;
-  max-width: 660px;
-  margin: 14px auto 0;
-}
-
-.beauty-project__details {
-  margin-top: 34px;
-  font-family: "Pretendard","Noto Sans KR",sans-serif;
-}
-
-.beauty-project__label {
-  display: inline-block;
-  margin-bottom: 16px;
-  padding-bottom: 5px;
-  border-bottom: 1px solid rgba(102, 102, 102, 0.65);
-  font-family: "Instrument Serif", Georgia, serif; font-style:italic;
-  font-size: 16px;
-}
-
-.beauty-project__description {
-  max-width: 700px;
-  font-size: clamp(16px, 1.2vw, 18px);
-  line-height: 1.65;
-  word-break: keep-all;
-}
-
-.beauty-project__process {
-  margin-top: 28px;
-
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 12px;
-}
-
-
-/* =========================================================
-   06-2. CARROT EDITORIAL LAYOUT
-========================================================= */
-
-.carrot-project {
-  display: block;
-  min-height: 100vh;
-  padding: clamp(95px, 10vh, 135px) 0;
-}
-
-.carrot-project__inner {
-  width: min(1080px, calc(100% - 80px));
-  margin: 0 auto;
-}
-
-.carrot-project__heading {
-  display: flex;
-  align-items: center;
-  gap: 18px;
-  margin-bottom: 48px;
-}
-
-.carrot-project__icon {
-  width: 76px;
-  flex: 0 0 auto;
-  opacity: 0.7;
-}
-
-.carrot-project__number {
-  margin-bottom: 8px;
-  font-size: 15px;
-  letter-spacing: 0.14em;
-}
-
-.carrot-project__title {
-  color: #666;
-  font-family: "Instrument Serif", Georgia, serif; font-style:italic;
-  font-size: clamp(28px, 3vw, 42px);
-  font-weight: 500;
-  line-height: 1.2;
-}
-
-.carrot-project__category {
-  margin-top: 10px;
-  color: #999;
-  font-family: "Space Mono", monospace;
-  font-size: 15px;
-  font-weight: 400;
-  letter-spacing: 0.08em;
-}
-
-.carrot-project__layout {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(330px, 430px);
-  align-items: start;
-  gap: clamp(70px, 8vw, 125px);
-}
-
-.carrot-project__details {
-  padding-top: 8px;
-  font-family: "Pretendard","Noto Sans KR",sans-serif;
-}
-
-.carrot-project__label {
-  display: inline-block;
-  margin-bottom: 28px;
-  padding-bottom: 5px;
-  border-bottom: 1px solid rgba(102, 102, 102, 0.65);
-  font-family: "Instrument Serif", Georgia, serif; font-style:italic;
-  font-size: 16px;
-}
-
-.carrot-project__description {
-  max-width: 520px;
-  font-size: clamp(16px, 1.2vw, 18px);
-  line-height: 1.65;
-  word-break: keep-all;
-}
-
-.carrot-project__storyboard {
-  margin-top: 28px;
-
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 12px;
-}
-
-.carrot-project__visual {
-  width: 100%;
-}
-
-.carrot-project__poster-button {
-  display: block;
-  width: 100%;
-  background: transparent;
-  cursor: pointer;
-}
-
-.carrot-project__poster {
-  width: 100%;
-  height: auto;
-  object-fit: contain;
-  transition:
-    transform 0.45s ease,
-    filter 0.45s ease;
-}
-
-.carrot-project__poster-button:hover .carrot-project__poster {
-  filter: brightness(1.02);
-  transform: scale(1.012);
-}
-
-.carrot-project__watch-row {
-  display: flex;
-  justify-content: flex-start;
-  margin-top: 14px;
-}
-
-
-/* =========================================================
-   06-3. ANOTHER WORLD EDITORIAL LAYOUT
-========================================================= */
-
-.world-project {
-  display: block;
-  min-height: 100vh;
-  padding: clamp(70px, 9vh, 130px) 0;
-}
-
-.world-project__inner {
-  width: min(980px, calc(100% - 80px));
-  margin: 0 auto;
-}
-
-.world-project__heading {
-  margin-bottom: 52px;
-}
-
-.world-project__number {
-  margin-bottom: 8px;
-  font-size: 15px;
-  letter-spacing: 0.14em;
-}
-
-.world-project__title {
-  color: #666;
-  font-family: "Instrument Serif", Georgia, serif; font-style:italic;
-  font-size: clamp(28px, 3vw, 42px);
-  font-weight: 500;
-  line-height: 1.2;
-}
-
-.world-project__category {
-  margin-top: 10px;
-  color: #999;
-  font-family: "Space Mono", monospace;
-  font-size: 15px;
-  font-weight: 400;
-  letter-spacing: 0.08em;
-}
-
-.world-project__poster-button {
-  display: block;
-  width: 100%;
-  max-width: 660px;
-  margin: 0 auto;
-  overflow: hidden;
-  background: transparent;
-  cursor: pointer;
-}
-
-.world-project__poster {
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  object-fit: cover;
-  transition:
-    transform 0.45s ease,
-    filter 0.45s ease;
-}
-
-.world-project__poster-button:hover .world-project__poster {
-  filter: brightness(1.03);
-  transform: scale(1.012);
-}
-
-.world-project__watch-row {
-  display: flex;
-  justify-content: flex-end;
-  width: 100%;
-  max-width: 660px;
-  margin: 14px auto 0;
-}
-
-.world-project__details {
-  margin-top: 34px;
-  font-family: "Pretendard","Noto Sans KR",sans-serif;
-}
-
-.world-project__label {
-  display: inline-block;
-  margin-bottom: 16px;
-  padding-bottom: 5px;
-  border-bottom: 1px solid rgba(102, 102, 102, 0.65);
-  font-family: "Instrument Serif", Georgia, serif; font-style:italic;
-  font-size: 16px;
-}
-
-.world-project__description {
-  max-width: 700px;
-  font-size: clamp(16px, 1.2vw, 18px);
-  line-height: 1.65;
-  word-break: keep-all;
 }
 
 
@@ -465,26 +138,29 @@ a {
 
 .artwork-project__number {
   margin-bottom: 8px;
-  font-size: 15px;
-  letter-spacing: 0.14em;
+  font-family: "Space Mono", monospace;
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  color: var(--muted, #8c8880);
 }
 
 .artwork-project__title{
   color:#666;
-  font-family:Georgia, serif;
+  font-family:Georgia, "Times New Roman", serif;
   font-weight:400;
   font-size:clamp(30px,3vw,42px);
   line-height:1.08;
-  letter-spacing:-0.01em;
+  letter-spacing:-0.008em;
 }
 
 .artwork-project__category {
-  margin-top: 10px;
-  color: #999;
+  margin-top: 20px;
+  color: var(--muted, #8c8880);
   font-family: "Space Mono", monospace;
-  font-size: 15px;
+  font-size: 10.5px;
   font-weight: 400;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
 }
 
 .artwork-project__visual {
@@ -511,7 +187,8 @@ a {
   max-height: 78%;
   object-fit: contain;
   transform: translate(-50%, -50%);
-  pointer-events: none;
+  pointer-events: auto;
+  cursor: zoom-in;
   filter: drop-shadow(0 16px 24px rgba(0, 0, 0, 0.14));
 }
 
@@ -525,7 +202,7 @@ a {
   margin-bottom: 28px;
   padding-bottom: 5px;
   border-bottom: 1px solid rgba(102, 102, 102, 0.65);
-  font-family: "Instrument Serif", Georgia, serif; font-style:italic;
+  font-family: Georgia, "Times New Roman", serif;
   font-size: 16px;
 }
 
@@ -640,17 +317,44 @@ a {
 
 .contact { position: relative; min-height: 100vh; margin-top: -1px; display: flex; align-items: center; padding: 110px 0 70px; overflow: hidden; background: none; }
 .contact__inner { width: min(1180px, calc(100% - 80px)); margin: 0 auto; text-align: center; }
-.contact__eyebrow { margin-bottom: 26px; color: #999; font-size: 15px; letter-spacing: 0.18em; }
-.contact__title { color: #666; font-size: clamp(64px, 8vw, 130px); font-weight: 400; line-height: 0.95; }
+.contact__eyebrow {
+  margin-bottom: 26px;
+  color: #999;
+  font-family: "Space Mono", monospace;
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+.contact__title {
+  color: #666;
+  font-family: "Instrument Serif", Georgia, serif;
+  font-style: italic;
+  font-size: clamp(64px, 8vw, 130px);
+  font-weight: 400;
+  line-height: 0.95;
+  letter-spacing: -0.015em;
+}
 .contact__message { margin-top: 40px; color: #777; font-family: "Pretendard","Noto Sans KR",sans-serif; font-size: clamp(16px, 1.3vw, 19px); line-height: 1.75; }
 .contact__links { width: min(720px, 100%); margin: 65px auto 0; border-top: 1px solid rgba(102, 102, 102, 0.2); }
 .contact__link { display: grid; grid-template-columns: 130px 1fr; gap: 30px; padding: 22px 0; border-bottom: 1px solid rgba(102, 102, 102, 0.2); color: #666; text-align: left; transition: color 0.25s ease, padding-left 0.25s ease; }
-.contact__link span { color: #999; font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; }
+.contact__link span {
+  color: #999;
+  font-family: "Space Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
 .contact__link:hover { padding-left: 8px; color: #ee8fb1; }
 .contact__top-button { display: inline-flex; flex-direction: column; align-items: center; gap: 8px; margin-top: 70px; background: transparent; color: #888; cursor: pointer; font-size: 12px; letter-spacing: 0.1em; }
 .contact__top-button img { width: 48px; height: 70px; object-fit: contain; transition: transform 0.3s ease, filter 0.3s ease; }
 .contact__top-button:hover img { transform: translateY(-7px) scale(1.04); filter: drop-shadow(0 10px 16px rgba(238, 143, 177, 0.25)); }
-.contact__credit { margin-top: 60px; color: rgba(102, 102, 102, 0.55); font-size: 11px; letter-spacing: 0.12em; }
+.contact__credit {
+  margin-top: 60px;
+  color: rgba(102, 102, 102, 0.55);
+  font-family: "Space Mono", monospace;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+}
 
 
 /* =========================================================
@@ -671,34 +375,68 @@ a {
 
 .process-modal { position: fixed; inset: 0; z-index: 10000; display: none; }
 .process-modal.active { display: block; }
-.process-modal__background { position: absolute; inset: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.18); cursor: pointer; }
-.process-modal__content { position: absolute; top: 50%; left: 50%; width: min(92vw, 1400px); height: 88vh; transform: translate(-50%, -50%); overflow: visible; background: transparent; }
-.process-modal__scroll { width: 100%; height: 100%; overflow-y: auto; overflow-x: hidden; border: 1px solid rgba(180, 160, 170, 0.22); border-radius: 18px; clip-path: inset(0 round 18px); background: #fff; box-shadow: 0 20px 60px rgba(90, 70, 80, 0.16); scrollbar-width: thin; }
+.process-modal__background { position: absolute; inset: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.18); cursor: pointer; transition: background .3s ease; }
+.process-modal__content { position: absolute; top: 50%; left: 50%; width: min(92vw, 1400px); height: 88vh; transform: translate(-50%, -50%); overflow: visible; background: transparent; transition: width .3s ease, height .3s ease; }
+.process-modal__scroll { width: 100%; height: 100%; overflow-y: auto; overflow-x: hidden; border: 1px solid rgba(180, 160, 170, 0.22); border-radius: 18px; clip-path: inset(0 round 18px); background: #fff; box-shadow: 0 20px 60px rgba(90, 70, 80, 0.16); scrollbar-width: thin; line-height: 0; }
 .process-modal__image { display: block; width: 100%; height: auto; }
-.process-modal__close { position: absolute; top: -48px; right: 0; z-index: 10; background: transparent; color: #444; cursor: pointer; font-size: 38px; line-height: 1; }
+.process-modal__controls { position: absolute; top: -48px; right: 0; z-index: 10; display: flex; align-items: center; gap: 12px; }
+.process-modal__expand,
+.process-modal__close { display: inline-flex; align-items: center; justify-content: center; width: 38px; height: 38px; background: transparent; color: #444; cursor: pointer; line-height: 1; transition: color .2s ease, transform .2s ease; }
+.process-modal__expand { font-size: 25px; }
+.process-modal__close { font-size: 38px; }
+.process-modal__expand:hover,
+.process-modal__close:hover { color: #ee8fb1; transform: translateY(-2px); }
+
+/* 확대 보기: 브라우저 안에서 거의 전체화면으로 확장 */
+.process-modal.is-expanded .process-modal__background { background: rgba(0,0,0,0.72); }
+.process-modal.is-expanded .process-modal__content { width: 96vw; height: 94vh; }
+.process-modal.is-expanded .process-modal__controls { top: 10px; right: 14px; }
+.process-modal.is-expanded .process-modal__expand,
+.process-modal.is-expanded .process-modal__close { color: #fff; text-shadow: 0 1px 8px rgba(0,0,0,.35); }
 
 @media (max-width: 560px) {
   .process-modal__content { width: calc(100% - 30px); height: 84vh; }
-  .process-modal__close { top: -42px; }
+  .process-modal__controls { top: -42px; }
+  .process-modal.is-expanded .process-modal__content { width: calc(100% - 12px); height: 96vh; }
+}
+
+/* Visual Board: 전체 이미지를 한 화면에 맞춰 표시 */
+.process-modal.fit-contain .process-modal__content {
+  width: min(94vw, 1200px);
+  height: 90vh;
+}
+
+.process-modal.fit-contain .process-modal__scroll {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+  clip-path: none;
+}
+
+.process-modal.fit-contain .process-modal__image {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  border-radius: 12px;
+}
+
+.process-modal.fit-contain.is-expanded .process-modal__content {
+  width: 96vw;
+  height: 94vh;
 }
 
 
 /* =========================================================
-   RESPONSIVE (기존 프로젝트 섹션들)
+   RESPONSIVE
 ========================================================= */
 
 @media (max-width: 820px) {
-  .carrot-project__inner { width: min(100% - 64px, 760px); }
-  .carrot-project__heading { margin-bottom: 38px; }
-  .carrot-project__icon { width: 58px; }
-  .carrot-project__layout { grid-template-columns: 1fr; gap: 42px; }
-  .carrot-project__details { padding-top: 0; }
-  .carrot-project__visual { width: min(430px, 100%); }
-  .beauty-project__inner { width: min(100% - 64px, 760px); }
-  .beauty-project__heading { margin-bottom: 38px; }
-  .beauty-project__flower { width: 58px; }
-  .world-project__inner { width: min(100% - 64px, 760px); }
-  .world-project__heading { margin-bottom: 38px; }
   .artwork-project__inner { width: min(100% - 64px, 760px); }
   .artwork-project__heading { margin-bottom: 38px; }
   .artwork-project__poster { width: 36%; }
@@ -706,26 +444,6 @@ a {
 }
 
 @media (max-width: 560px) {
-  .carrot-project { padding: 95px 0 80px; }
-  .carrot-project__inner { width: calc(100% - 40px); }
-  .carrot-project__heading { gap: 12px; margin-bottom: 28px; }
-  .carrot-project__icon { width: 46px; }
-  .carrot-project__layout { gap: 34px; }
-  .carrot-project__watch-row { margin-top: 8px; }
-
-  .beauty-project { padding: 95px 0 80px; }
-  .beauty-project__inner { width: calc(100% - 40px); }
-  .beauty-project__heading { gap: 12px; margin-bottom: 28px; }
-  .beauty-project__flower { width: 46px; }
-  .beauty-project__watch-row { margin-top: 8px; }
-  .beauty-project__details { margin-top: 42px; }
-
-  .world-project { padding: 95px 0 80px; }
-  .world-project__inner { width: calc(100% - 40px); }
-  .world-project__heading { margin-bottom: 28px; }
-  .world-project__watch-row { margin-top: 8px; }
-  .world-project__details { margin-top: 42px; }
-
   .artwork-project { padding: 95px 0 80px; }
   .artwork-project__inner { width: calc(100% - 40px); }
   .artwork-project__heading { margin-bottom: 28px; }
@@ -745,13 +463,6 @@ a {
   .contact__top-button { margin-top: 55px; }
 
   .video-modal__content { width: calc(100% - 30px); }
-}
-
-.carrot-project,
-.beauty-project,
-.world-project,
-.artwork-project {
-  padding: clamp(40px, 4.5vh, 65px) 0 70px;
 }
 
 /* =========================================================
@@ -802,12 +513,12 @@ a {
 }
 .proj__title{
   margin-top:16px;
-  font-family:Georgia, serif;
+  font-family:Georgia, "Times New Roman", serif;
   font-weight:400;
   font-size:clamp(36px,4.8vw,60px);
-  line-height:1.02;
-  letter-spacing:-0.015em;
-  color:var(--ink, #221f1c);
+  line-height:1.04;
+  letter-spacing:-0.012em;
+  color:var(--ink, #2d2825);
 }
 .proj__category{
   margin-top:20px;
@@ -816,6 +527,16 @@ a {
   letter-spacing:.12em;
   text-transform:uppercase;
   color:var(--muted, #8c8880);
+}
+.proj__label{
+  display:inline-block;
+  margin-top:20px;
+  margin-bottom:0;
+  padding-bottom:5px;
+  border-bottom:1px solid rgba(102, 102, 102, 0.65);
+  font-family:Georgia, "Times New Roman", serif;
+  font-size:16px;
+  color:var(--ink, #2d2825);
 }
 .proj__desc{
   margin-top:26px;
@@ -843,7 +564,7 @@ a {
 
 :root{
   --bone:#f1efea;
-  --ink:#221f1c;
+  --ink:#2d2825;
   --muted:#8c8880;
   --rose:#c98f8a;
   --line: rgba(34,31,28,0.14);
@@ -1005,7 +726,9 @@ a {
 }
 
 .bleed{
-  position:relative; height:32vh; min-height:180px;
+  position:relative;
+  height:10vh;
+  min-height:60px;
   background:linear-gradient(to bottom, var(--bone) 0%, #f6eeea 100%);
 }
 
@@ -1069,353 +792,190 @@ a {
 
 
 /* =========================================================
-   ART DIRECTION V2 — editorial rhythm / cleaner hierarchy
+   FINAL PROJECT EXPERIENCE
+   - 현재의 2단 정보 구조 유지
+   - 예전 포트폴리오의 파스텔 공간감 복원
+   - 예전 캡슐 네비를 프로젝트 퀵 네비로 재해석
 ========================================================= */
 
-/* ---------- Selected Works: wider, calmer, more editorial ---------- */
-.gallery{
-  padding:clamp(52px,7vh,92px) 0 clamp(90px,11vh,138px);
-}
-.gallery__inner{
-  width:min(1240px, calc(100% - 80px));
-}
-.gallery__row{
-  gap:34px;
-  padding:clamp(20px,2.6vh,30px) 4px;
-}
-.gallery__num{
-  min-width:38px;
-  font-size:11px;
-}
-.gallery__title{
-  font-size:clamp(34px,5vw,68px);
-  line-height:1;
-}
-.gallery__cat{
-  font-size:10px;
-  letter-spacing:.13em;
-}
-.gallery__list .gallery__row:hover{
-  padding-left:18px;
+/* 포스터를 조금 줄이고 설명을 안쪽으로 당겨 여백을 확보 */
+.proj {
+  grid-template-columns: minmax(0, 1.02fr) minmax(330px, .78fr);
+  gap: clamp(34px, 4.2vw, 68px);
+  padding-left: clamp(42px, 6vw, 96px);
+  padding-right: clamp(112px, 9vw, 150px);
+  isolation: isolate;
+  overflow: hidden;
 }
 
-/* ---------- Project chapters ---------- */
-.project-carrot-stage,
-.visual-stage{
-  background:#f1efea;
+.proj__media {
+  min-height: 56vh;
 }
 
-.proj{
-  width:min(1500px, 100%);
-  margin:0 auto;
-  min-height:100svh;
-  grid-template-columns:minmax(0,1.35fr) minmax(340px,.65fr);
-  gap:clamp(54px,7vw,120px);
-  padding:clamp(96px,11vh,138px) clamp(30px,5vw,84px);
-  border-bottom:1px solid rgba(45,40,37,.10);
-  align-items:center;
+.proj__frame.is-landscape {
+  max-width: 760px;
 }
 
-.proj__media{
-  min-height:auto;
-  align-items:center;
+.proj__frame.is-portrait {
+  max-width: 455px;
 }
 
-.proj__frame{
-  max-width:1020px;
-  box-shadow:0 22px 55px rgba(45,40,37,.08);
-  transition:box-shadow .45s ease, transform .45s ease;
+.proj__info {
+  max-width: 480px;
+  transform: translateX(clamp(-22px, -1.5vw, -8px));
 }
 
-.proj__frame:hover{
-  transform:translateY(-4px);
-  box-shadow:0 30px 70px rgba(45,40,37,.12);
+/* 프로젝트 전체를 하나의 배경 이미지로 연결
+   - 인덱스는 기존 배경 유지
+   - 당근부터 Artwork까지 하나의 project-zone
+   - 뷰티배경.png의 끝을 About 시작점에 맞춤
+   - 이미지가 없는 위쪽 구간은 자연스럽게 흰색으로 유지 */
+.project-zone {
+  position: relative;
+  width: 100%;
+  background-color: #fff;
+  background-image: url("뷰티배경.png");
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  background-size: 100% auto;
 }
 
-.proj__poster{
-  transition:transform .85s cubic-bezier(.16,1,.3,1), filter .45s ease;
-}
-.proj__frame:hover .proj__poster{
-  transform:scale(1.025);
-  filter:saturate(1.02);
+/* 기존 래퍼와 각 프로젝트의 개별 배경 제거 */
+.project-zone .project-carrot-stage,
+.project-zone .visual-stage {
+  background: transparent;
 }
 
-.proj__info{
-  max-width:500px;
-  position:relative;
+.project-zone .proj,
+.project-zone .artwork-project,
+.project-zone #project-carrot,
+.project-zone #project-ai,
+.project-zone #project-world,
+.project-zone #project-nymphea,
+.project-zone #project-gez,
+.project-zone #project-art {
+  background: transparent;
 }
 
-.proj__no{
-  font-size:10px;
-  letter-spacing:.18em;
+/* 섹션 사이 인위적인 경계선 제거 */
+.project-zone .proj + .proj,
+.project-zone #project-art {
+  border-top: 0;
 }
 
-.proj__title{
-  margin-top:18px;
-  font-family:Georgia, "Times New Roman", serif;
-  font-weight:400;
-  font-size:clamp(46px,5vw,76px);
-  line-height:.98;
-  letter-spacing:-.018em;
-  color:#2d2825;
+/* 예전 캡슐 네비 감성을 살린 프로젝트 퀵 네비 */
+.project-quicknav {
+  position: fixed;
+  top: 50%;
+  right: clamp(18px, 2.2vw, 34px);
+  z-index: 55;
+  width: 58px;
+  padding: 13px 8px;
+  border: 1px solid rgba(45, 40, 37, .16);
+  border-radius: 999px;
+  background: rgba(255,255,255,.46);
+  box-shadow: 0 14px 34px rgba(55, 47, 42, .08);
+  backdrop-filter: blur(13px);
+  -webkit-backdrop-filter: blur(13px);
+  opacity: 0;
+  visibility: hidden;
+  transform: translate(18px, -50%);
+  transition: opacity .35s ease, transform .45s cubic-bezier(.16,1,.3,1), visibility .35s;
 }
 
-.proj__category{
-  margin-top:22px;
-  max-width:440px;
-  font-size:10px;
-  line-height:1.7;
+.project-quicknav.is-visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(0, -50%);
 }
 
-.proj__desc{
-  margin-top:34px;
-  max-width:470px;
-  font-size:15px;
-  line-height:1.9;
-  color:#625d57;
+.project-quicknav__list {
+  display: grid;
+  gap: 5px;
+  list-style: none;
 }
 
-.proj__actions{
-  margin-top:38px;
-  padding-top:18px;
-  border-top:1px solid rgba(45,40,37,.12);
-  gap:4px 24px;
+.project-quicknav__link {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  color: rgba(45, 40, 37, .43);
+  font-family: "Space Mono", monospace;
+  font-size: 9px;
+  letter-spacing: .08em;
+  transition: color .25s ease, background .25s ease, transform .25s ease;
 }
 
-.text-button{
-  min-height:38px;
-  font-family:Georgia, "Times New Roman", serif;
-  font-size:15px;
-  letter-spacing:.005em;
+.project-quicknav__link::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 6px;
+  width: 0;
+  height: 1px;
+  background: currentColor;
+  transform: translateX(-50%);
+  transition: width .3s cubic-bezier(.19,1,.22,1);
 }
 
-/* alternate visual rhythm after the first project */
-.project-list .proj:nth-of-type(even) .proj__media{
-  order:2;
-}
-.project-list .proj:nth-of-type(even) .proj__info{
-  order:1;
+.project-quicknav__link:hover,
+.project-quicknav__link.is-active {
+  color: var(--ink);
+  background: rgba(255,255,255,.62);
 }
 
-/* ---------- Artwork: match project chapter tone ---------- */
-.artwork-project{
-  min-height:100svh;
-  padding:clamp(100px,12vh,150px) 0;
-  border-bottom:1px solid rgba(45,40,37,.10);
-}
-.artwork-project__inner{
-  width:min(1180px, calc(100% - 80px));
-}
-.artwork-project__title{
-  font-family:Georgia, "Times New Roman", serif;
-  font-weight:400;
-  font-size:clamp(42px,4.5vw,68px);
-  line-height:1;
-  color:#2d2825;
-}
-.artwork-project__number,
-.artwork-project__category,
-.artwork-project__wheel-guide{
-  font-family:"Space Mono", monospace;
-}
-.artwork-project__visual{
-  width:min(860px,100%);
-  margin:-30px auto 0;
-}
-.artwork-project__details{
-  max-width:720px;
-  margin:46px auto 0;
-}
-.artwork-project__label{
-  font-family:"Instrument Serif", Georgia, serif;
-  font-style:italic;
-  font-size:18px;
+.project-quicknav__link:hover {
+  transform: scale(1.04);
 }
 
-/* ---------- About: remove glass-card feeling, make it editorial ---------- */
-.profile-stage{
-  background:
-    linear-gradient(rgba(255,255,255,.18),rgba(255,255,255,.18)),
-    url("프로필뒷배경.jpg") center top / cover no-repeat;
+.project-quicknav__link:hover::after,
+.project-quicknav__link.is-active::after {
+  width: 13px;
 }
 
-.about{
-  min-height:100svh;
-  padding:clamp(120px,14vh,180px) 0;
+/* 캡슐 폭은 그대로 두고 이름만 왼쪽 툴팁으로 노출 */
+.project-quicknav__name {
+  position: absolute;
+  top: 50%;
+  right: calc(100% + 13px);
+  min-width: max-content;
+  padding: 7px 10px 6px;
+  border: 1px solid rgba(45,40,37,.10);
+  border-radius: 999px;
+  background: rgba(255,255,255,.72);
+  color: var(--ink);
+  box-shadow: 0 9px 24px rgba(55,47,42,.07);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 12px;
+  letter-spacing: .015em;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(8px, -50%);
+  transition: opacity .22s ease, transform .28s cubic-bezier(.16,1,.3,1);
 }
 
-.about__inner{
-  width:min(1240px, calc(100% - 80px));
+.project-quicknav__link:hover .project-quicknav__name,
+.project-quicknav__link:focus-visible .project-quicknav__name {
+  opacity: 1;
+  transform: translate(0, -50%);
 }
 
-.about__card{
-  grid-template-columns:minmax(0,1.05fr) minmax(340px,.95fr);
-  gap:clamp(80px,10vw,150px);
-  padding:0;
-  border:0;
-  border-radius:0;
-  background:transparent;
-  box-shadow:none;
-  backdrop-filter:none;
-  -webkit-backdrop-filter:none;
+.project-quicknav__link:focus-visible {
+  outline: 1px solid rgba(45,40,37,.55);
+  outline-offset: 2px;
 }
 
-.about__intro{
-  padding-right:clamp(20px,4vw,60px);
-}
-
-.about__number{
-  margin-bottom:32px;
-  font-size:11px;
-}
-
-.about__title{
-  color:#2d2825;
-  font-size:clamp(56px,6.4vw,92px);
-  line-height:.98;
-  letter-spacing:-.02em;
-}
-
-.about__description{
-  max-width:560px;
-  margin-top:50px;
-  font-size:16px;
-  line-height:1.9;
-}
-
-.about__information{
-  justify-content:flex-start;
-  gap:0;
-  padding-top:72px;
-  border-top:1px solid rgba(45,40,37,.18);
-}
-
-.about__group{
-  padding:28px 0 32px;
-  border-bottom:1px solid rgba(45,40,37,.14);
-}
-
-.about__label{
-  margin-bottom:20px;
-  border-bottom:0;
-  color:#2d2825;
-  font-size:19px;
-}
-
-.about__skills{
-  gap:8px 18px;
-}
-
-.about__skills span{
-  min-height:auto;
-  padding:0;
-  border:0;
-  border-radius:0;
-  background:transparent;
-  color:#66615b;
-  font-size:14px;
-}
-.about__skills span::after{
-  content:"·";
-  margin-left:18px;
-  color:#b1aaa2;
-}
-.about__skills span:last-child::after{
-  content:"";
-  margin:0;
-}
-
-/* ---------- Contact: stronger ending ---------- */
-.contact{
-  min-height:86svh;
-  padding:clamp(110px,13vh,165px) 0 70px;
-}
-.contact__inner{
-  width:min(1050px, calc(100% - 80px));
-}
-.contact__eyebrow{
-  font-family:"Space Mono", monospace;
-  font-size:11px;
-}
-.contact__title{
-  margin-top:10px;
-  font-family:"Instrument Serif", Georgia, serif;
-  font-style:italic;
-  color:#2d2825;
-  font-size:clamp(82px,11vw,170px);
-  line-height:.85;
-  letter-spacing:-.025em;
-}
-.contact__message{
-  margin-top:54px;
-}
-.contact__links{
-  width:min(760px,100%);
-  margin-top:72px;
-}
-.contact__link{
-  grid-template-columns:110px 1fr;
-  padding:24px 0;
-}
-.contact__credit{
-  font-family:"Space Mono", monospace;
-}
-
-/* ---------- Responsive ---------- */
-@media (max-width:1000px){
-  .proj{
-    grid-template-columns:1fr;
-    min-height:auto;
-    padding-top:110px;
-    padding-bottom:110px;
+@media (max-width: 900px) {
+  .proj {
+    padding-right: clamp(28px, 6vw, 58px);
   }
-  .proj__info{
-    max-width:720px;
-  }
-  .project-list .proj:nth-of-type(even) .proj__media,
-  .project-list .proj:nth-of-type(even) .proj__info{
-    order:initial;
-  }
-  .about__card{
-    grid-template-columns:1fr;
-    gap:70px;
-  }
-  .about__information{
-    padding-top:0;
-  }
-}
-
-@media (max-width:560px){
-  .gallery__inner,
-  .about__inner,
-  .artwork-project__inner,
-  .contact__inner{
-    width:calc(100% - 40px);
-  }
-  .gallery__row{
-    gap:14px;
-  }
-  .gallery__title{
-    font-size:clamp(30px,10vw,48px);
-  }
-  .proj{
-    padding:92px 20px 86px;
-  }
-  .proj__title{
-    font-size:clamp(40px,13vw,58px);
-  }
-  .proj__desc{
-    font-size:14px;
-  }
-  .about{
-    min-height:auto;
-  }
-  .about__title{
-    font-size:clamp(50px,15vw,72px);
-  }
-  .contact__title{
-    font-size:clamp(72px,22vw,108px);
-  }
+  .proj__info { transform: none; }
+  .project-quicknav { display: none; }
 }
 
 </style>
@@ -1430,7 +990,7 @@ a {
     <a class="topnav__brand" href="#hero">rozy.</a>
     <ul class="topnav__links">
       <li><a class="topnav__link active" href="#hero">Intro</a></li>
-      <li><a class="topnav__link" href="#project">Project</a></li>
+      <li><a class="topnav__link" href="#project-carrot">Project</a></li>
       <li><a class="topnav__link" href="#about">About</a></li>
       <li><a class="topnav__link" href="#contact">Contact</a></li>
     </ul>
@@ -1513,8 +1073,10 @@ a {
   </section>
 
 
+  <div class="project-zone">
+
   <!-- ======================================================
-       PROJECT 01 : CARROT (원본 유지)
+       PROJECT 01 : CARROT
   ======================================================= -->
   <div class="project-carrot-stage">
 
@@ -1525,7 +1087,7 @@ a {
         </button>
       </div>
       <div class="proj__info">
-        <p class="proj__no">01 / 06</p>
+        <p class="proj__no">01</p>
         <h2 class="proj__title">DAANGN</h2>
         <p class="proj__category">Moim · Motion Graphics · Concept Advertisement</p>
         <p class="proj__desc">
@@ -1543,7 +1105,7 @@ a {
   </div>
 
   <!-- ======================================================
-       BEAUTY + ARTWORK + ANOTHER WORLD (원본 유지)
+       PROJECTS 02–06
   ======================================================= -->
   <div class="visual-stage">
 
@@ -1556,7 +1118,7 @@ a {
         </button>
       </div>
       <div class="proj__info">
-        <p class="proj__no">02 / 06</p>
+        <p class="proj__no">02</p>
         <h2 class="proj__title">AETHEL</h2>
         <p class="proj__category">AI Video · Beauty Advertisement</p>
         <p class="proj__desc">
@@ -1578,7 +1140,7 @@ a {
         </button>
       </div>
       <div class="proj__info">
-        <p class="proj__no">03 / 06</p>
+        <p class="proj__no">03</p>
         <h2 class="proj__title">DAY</h2>
         <p class="proj__category">Blender · Generative AI · 3D Motion</p>
         <p class="proj__desc">
@@ -1587,8 +1149,7 @@ a {
         </p>
         <div class="proj__actions">
           <button class="text-button" type="button" data-video="데이영상.mp4">▶ Watch Video</button>
-          <button class="text-button" type="button" data-process="DAY_CreativeProcess.png">→ Process Book</button>
-          <button class="text-button" type="button" data-storyboard="DAY_Storyboard.jpg">→ View Storyboard</button>
+          <button class="text-button" type="button" data-process-images="DAY_Creative1.png,DAY_Creative2.png">→ Creative Process</button>
         </div>
       </div>
     </article>
@@ -1600,14 +1161,15 @@ a {
         </button>
       </div>
       <div class="proj__info">
-        <p class="proj__no">04 / 06</p>
+        <p class="proj__no">04</p>
         <h2 class="proj__title">NYMPHÉA</h2>
         <p class="proj__category">Perfume Branding · AI Film</p>
         <p class="proj__desc">
-          연꽃이 피어나는 아침빛에서 영감을 받은 향수 브랜드 NYMPHÉA의 브랜딩 프로젝트입니다.
+          연꽃의 맑고 투명한 이미지와 동양적인 여백의 미를 바탕으로, 모네의 수련 연작에서 참고한 색감과 분위기를 더해 완성한 향수 브랜딩 프로젝트입니다.
         </p>
         <div class="proj__actions">
           <button class="text-button" type="button" data-video="님페아영상.mp4">▶ Watch Video</button>
+          <button class="text-button" type="button" data-process="님페아9컷.png" data-fit="contain">→ Visual Board</button>
         </div>
       </div>
     </article>
@@ -1619,14 +1181,24 @@ a {
         </button>
       </div>
       <div class="proj__info">
-        <p class="proj__no">05 / 06</p>
+        <p class="proj__no">05</p>
         <h2 class="proj__title">GEZ</h2>
         <p class="proj__category">Camera Branding · Advertisement</p>
         <p class="proj__desc">
           포켓 카메라 브랜드 GEZ의 브랜딩 및 광고 캠페인 프로젝트입니다.
         </p>
         <div class="proj__actions">
-          <button class="text-button" type="button" data-video="게즈영상.mp4">▶ Watch Video</button>
+          <button class="text-button" type="button" data-video="게즈영상.mp4">
+            ▶ Watch Video
+          </button>
+        
+          <button class="text-button" type="button" data-process="gez_BrandBook.png">
+            → Brand Book
+          </button>
+        
+          <button class="text-button" type="button" data-storyboard="gez_Storyboard.png">
+            → Storyboard
+          </button>
         </div>
       </div>
     </article>
@@ -1634,8 +1206,7 @@ a {
     <article class="artwork-project" id="project-art">
       <div class="artwork-project__inner">
 
-        <div class="beauty-project__heading">
-          <img class="beauty-project__flower" src="워크숫자옆.png" alt="">
+        <div class="artwork-project__heading">
           <div>
             <p class="artwork-project__number">06</p>
             <h2 class="artwork-project__title">Artwork Collection</h2>
@@ -1652,7 +1223,6 @@ a {
         </div>
 
         <div class="artwork-project__details">
-          <p class="artwork-project__label">Overview</p>
           <p class="artwork-project__description">
             다양한 색감과 그래픽을 실험한 개인 아트워크·포스터 컬렉션입니다.<br>
             일러스트와 이미지 편집으로 각기 다른 무드와 이야기를 담았습니다.
@@ -1666,8 +1236,10 @@ a {
 
   </div>
 
+  </div><!-- /.project-zone -->
+
   <!-- ======================================================
-       ABOUT + CONTACT (원본 유지)
+       ABOUT + CONTACT
   ======================================================= -->
   <div class="profile-stage">
 
@@ -1740,6 +1312,19 @@ a {
   </div>
 
 
+
+  <!-- 프로젝트 구간에서만 보이는 퀵 네비 -->
+  <nav class="project-quicknav" aria-label="프로젝트 바로가기">
+    <ol class="project-quicknav__list">
+      <li><a class="project-quicknav__link" href="#project-carrot" data-project-link="project-carrot"><span>01</span><span class="project-quicknav__name">DAANGN</span></a></li>
+      <li><a class="project-quicknav__link" href="#project-ai" data-project-link="project-ai"><span>02</span><span class="project-quicknav__name">AETHEL</span></a></li>
+      <li><a class="project-quicknav__link" href="#project-world" data-project-link="project-world"><span>03</span><span class="project-quicknav__name">DAY</span></a></li>
+      <li><a class="project-quicknav__link" href="#project-nymphea" data-project-link="project-nymphea"><span>04</span><span class="project-quicknav__name">NYMPHÉA</span></a></li>
+      <li><a class="project-quicknav__link" href="#project-gez" data-project-link="project-gez"><span>05</span><span class="project-quicknav__name">GEZ</span></a></li>
+      <li><a class="project-quicknav__link" href="#project-art" data-project-link="project-art"><span>06</span><span class="project-quicknav__name">Artwork</span></a></li>
+    </ol>
+  </nav>
+
   <!-- ======================================================
        VIDEO MODAL
   ======================================================= -->
@@ -1757,10 +1342,11 @@ a {
   <div class="process-modal" aria-hidden="true">
     <button class="process-modal__background" type="button" aria-label="Creative Process 닫기"></button>
     <div class="process-modal__content">
-      <button class="process-modal__close" type="button" aria-label="Creative Process 닫기">×</button>
-      <div class="process-modal__scroll">
-        <img class="process-modal__image" src="" alt="Creative Process">
+      <div class="process-modal__controls">
+        <button class="process-modal__expand" type="button" aria-label="확대 보기" title="확대 보기">⛶</button>
+        <button class="process-modal__close" type="button" aria-label="Creative Process 닫기">×</button>
       </div>
+      <div class="process-modal__scroll" id="processModalScroll"></div>
     </div>
   </div>
 
@@ -1773,8 +1359,9 @@ const modalClose = document.querySelector(".video-modal__close");
 const modalBackground = document.querySelector(".video-modal__background");
 
 const processModal = document.querySelector(".process-modal");
-const processModalImage = document.querySelector(".process-modal__image");
+const processModalScroll = document.querySelector("#processModalScroll");
 const processModalClose = document.querySelector(".process-modal__close");
+const processModalExpand = document.querySelector(".process-modal__expand");
 const processModalBackground = document.querySelector(".process-modal__background");
 
 const artworkVisual = document.querySelector(".artwork-project__visual");
@@ -1793,6 +1380,71 @@ contactTopButton.addEventListener("click", function () {
   window.addEventListener("scroll", function () {
     topnav.classList.toggle("is-scrolled", window.scrollY > 24);
   }, { passive: true });
+})();
+
+/* ---------- TOPNAV — 현재 보이는 구간에 따라 active 변경 ---------- */
+(function () {
+  const navLinks = Array.from(document.querySelectorAll(".topnav__link"));
+
+  const introLink = document.querySelector('.topnav__link[href="#hero"]');
+  const projectLink = document.querySelector('.topnav__link[href="#project-carrot"]');
+  const aboutLink = document.querySelector('.topnav__link[href="#about"]');
+  const contactLink = document.querySelector('.topnav__link[href="#contact"]');
+
+  const projectStart = document.getElementById("project-carrot");
+  const aboutSection = document.getElementById("about");
+  const contactSection = document.getElementById("contact");
+
+  if (
+    !introLink ||
+    !projectLink ||
+    !aboutLink ||
+    !contactLink ||
+    !projectStart ||
+    !aboutSection ||
+    !contactSection
+  ) return;
+
+  function setActive(activeLink) {
+    navLinks.forEach(function (link) {
+      const isActive = link === activeLink;
+      link.classList.toggle("active", isActive);
+
+      if (isActive) {
+        link.setAttribute("aria-current", "page");
+      } else {
+        link.removeAttribute("aria-current");
+      }
+    });
+  }
+
+  function getDocumentTop(element) {
+    return element.getBoundingClientRect().top + window.scrollY;
+  }
+
+  function updateTopnavActive() {
+    const currentY = window.scrollY + 120;
+
+    const projectTop = getDocumentTop(projectStart);
+    const aboutTop = getDocumentTop(aboutSection);
+    const contactTop = getDocumentTop(contactSection);
+
+    if (currentY >= contactTop) {
+      setActive(contactLink);
+    } else if (currentY >= aboutTop) {
+      setActive(aboutLink);
+    } else if (currentY >= projectTop) {
+      setActive(projectLink);
+    } else {
+      setActive(introLink);
+    }
+  }
+
+  updateTopnavActive();
+
+  window.addEventListener("scroll", updateTopnavActive, { passive: true });
+  window.addEventListener("resize", updateTopnavActive);
+  window.addEventListener("load", updateTopnavActive);
 })();
 
 /* =========================================================
@@ -1892,6 +1544,12 @@ if (artworkVisual && artworkMainImage && artworkLeftImage && artworkRightImage) 
     artworkMainImage.src = artworkImages[currentArtworkIndex];
     artworkRightImage.src = artworkImages[nextIndex];
   });
+
+  /* ---------- 아트워크 포스터 클릭 시 확대(process-modal 재사용) ---------- */
+  artworkMainImage.addEventListener("click", function (event) {
+    event.stopPropagation();
+    openProcessModal([artworkMainImage.src], { fit: "contain", alt: "Artwork" });
+  });
 }
 
 /* =========================================================
@@ -1904,20 +1562,36 @@ document.querySelectorAll("[data-video]").forEach(function (trigger) {
   });
 });
 
+let videoPlayTimer = null;
+
 function openModal(videoSource) {
   if (!videoSource) return;
+
+  if (videoPlayTimer) window.clearTimeout(videoPlayTimer);
+
+  modalVideo.pause();
+  modalVideo.src = videoSource;
+  modalVideo.currentTime = 0;
+  modalVideo.volume = 1;
+
   modal.classList.add("active");
   modal.setAttribute("aria-hidden", "false");
   document.body.style.overflow = "hidden";
-  modalVideo.src = videoSource;
-  modalVideo.currentTime = 0;
-  const playPromise = modalVideo.play();
-  if (playPromise !== undefined) {
-    playPromise.catch(function () { /* 자동 재생 제한 시 사용자가 재생 버튼을 누르면 됩니다. */ });
-  }
+
+  /* 모달이 먼저 열린 뒤, 원래 볼륨과 싱크 그대로 재생 */
+  videoPlayTimer = window.setTimeout(function () {
+    const playPromise = modalVideo.play();
+    if (playPromise !== undefined) {
+      playPromise.catch(function () { /* 제한 시 기본 컨트롤로 재생 */ });
+    }
+  }, 250);
 }
 
 function closeModal() {
+  if (videoPlayTimer) {
+    window.clearTimeout(videoPlayTimer);
+    videoPlayTimer = null;
+  }
   modalVideo.pause();
   modalVideo.removeAttribute("src");
   modalVideo.load();
@@ -1937,34 +1611,129 @@ document.addEventListener("keydown", function (event) {
    CREATIVE PROCESS MODAL
 ========================================================= */
 
-document.querySelectorAll("[data-process], [data-storyboard]").forEach(function (button) {
+function openProcessModal(imageSources, options) {
+  options = options || {};
+  if (!imageSources || !imageSources.length) return;
+
+  processModalScroll.innerHTML = "";
+
+  imageSources.forEach(function (imageSource, index) {
+    const image = document.createElement("img");
+    image.className = "process-modal__image";
+    image.src = imageSource;
+    image.alt = options.alt
+      ? (imageSources.length > 1 ? options.alt + " " + (index + 1) : options.alt)
+      : (imageSources.length > 1 ? "Creative Process " + (index + 1) : "Creative Process");
+    processModalScroll.appendChild(image);
+  });
+
+  processModal.classList.remove("is-expanded");
+  processModal.classList.toggle("fit-contain", options.fit === "contain");
+  processModalExpand.textContent = "⛶";
+  processModalExpand.setAttribute("aria-label", "확대 보기");
+  processModalExpand.setAttribute("title", "확대 보기");
+  processModal.classList.add("active");
+  processModal.setAttribute("aria-hidden", "false");
+  document.body.style.overflow = "hidden";
+  processModalScroll.scrollTop = 0;
+}
+
+document.querySelectorAll("[data-process], [data-process-images], [data-storyboard]").forEach(function (button) {
   button.addEventListener("click", function () {
-    const imageSource = button.dataset.process || button.dataset.storyboard;
-    if (!imageSource) return;
+    const singleImageSource = button.dataset.process || button.dataset.storyboard;
+    const multipleImageSources = button.dataset.processImages
+      ? button.dataset.processImages
+          .split(",")
+          .map(function (source) { return source.trim(); })
+          .filter(Boolean)
+      : [];
 
-    processModalImage.src = imageSource;
-    processModal.classList.add("active");
-    processModal.setAttribute("aria-hidden", "false");
-    document.body.style.overflow = "hidden";
+    const imageSources = multipleImageSources.length
+      ? multipleImageSources
+      : (singleImageSource ? [singleImageSource] : []);
 
-    const scrollArea = processModal.querySelector(".process-modal__scroll");
-    if (scrollArea) scrollArea.scrollTop = 0;
+    openProcessModal(imageSources, { fit: button.dataset.fit });
   });
 });
 
+function toggleProcessModalSize() {
+  const expanded = processModal.classList.toggle("is-expanded");
+  processModalExpand.textContent = expanded ? "🗗" : "⛶";
+  processModalExpand.setAttribute("aria-label", expanded ? "기본 크기로 보기" : "확대 보기");
+  processModalExpand.setAttribute("title", expanded ? "기본 크기로 보기" : "확대 보기");
+}
+
 function closeProcessModal() {
-  processModal.classList.remove("active");
+  processModal.classList.remove("active", "fit-contain", "is-expanded");
   processModal.setAttribute("aria-hidden", "true");
-  processModalImage.removeAttribute("src");
+  processModalScroll.innerHTML = "";
+  processModalExpand.textContent = "⛶";
   document.body.style.overflow = "";
 }
 
+processModalExpand.addEventListener("click", toggleProcessModalSize);
 processModalClose.addEventListener("click", closeProcessModal);
 processModalBackground.addEventListener("click", closeProcessModal);
 
 document.addEventListener("keydown", function (event) {
   if (event.key === "Escape" && processModal.classList.contains("active")) closeProcessModal();
 });
+
+
+/* =========================================================
+   PROJECT QUICK NAV — 프로젝트 구간에서만 표시 + 현재 작품 강조
+========================================================= */
+(function () {
+  const quicknav = document.querySelector('.project-quicknav');
+  const projectSections = Array.from(document.querySelectorAll(
+    '#project-carrot, #project-ai, #project-world, #project-nymphea, #project-gez, #project-art'
+  ));
+  const links = Array.from(document.querySelectorAll('[data-project-link]'));
+  const about = document.getElementById('about');
+
+  if (!quicknav || !projectSections.length || !about) return;
+
+  links.forEach(function (link) {
+    link.addEventListener('click', function (event) {
+      event.preventDefault();
+      const target = document.getElementById(link.dataset.projectLink);
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+
+  function updateQuicknav() {
+    const scrollCenter = window.scrollY + window.innerHeight * 0.5;
+    const firstTop = projectSections[0].offsetTop;
+    const aboutTop = about.offsetTop;
+    const inProjectRange = scrollCenter >= firstTop && scrollCenter < aboutTop;
+
+    quicknav.classList.toggle('is-visible', inProjectRange);
+    if (!inProjectRange) return;
+
+    let active = projectSections[0];
+    let smallestDistance = Infinity;
+
+    projectSections.forEach(function (section) {
+      const sectionCenter = section.offsetTop + section.offsetHeight * 0.5;
+      const distance = Math.abs(scrollCenter - sectionCenter);
+      if (distance < smallestDistance) {
+        smallestDistance = distance;
+        active = section;
+      }
+    });
+
+    links.forEach(function (link) {
+      const isActive = link.dataset.projectLink === active.id;
+      link.classList.toggle('is-active', isActive);
+      if (isActive) link.setAttribute('aria-current', 'true');
+      else link.removeAttribute('aria-current');
+    });
+  }
+
+  updateQuicknav();
+  window.addEventListener('scroll', updateQuicknav, { passive: true });
+  window.addEventListener('resize', updateQuicknav);
+})();
 
 /* =========================================================
    NEW HERO — 마우스 파럈렉스 배경
