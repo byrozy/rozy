@@ -73,7 +73,6 @@ a {
   background: var(--bone, #f1efea);
 }
 
-.project-carrot-stage .project-menu,
 .project-carrot-stage #project-carrot {
   position: relative;
   min-height: 100vh;
@@ -114,334 +113,6 @@ a {
 .text-button:hover {
   color: #ee8fb1;
   transform: translateX(5px);
-}
-
-
-/* =========================================================
-   06-1. BEAUTY EDITORIAL LAYOUT
-========================================================= */
-
-.beauty-project {
-  display: block;
-  min-height: 100vh;
-  padding: clamp(70px, 9vh, 130px) 0;
-}
-
-.beauty-project__inner {
-  width: min(980px, calc(100% - 80px));
-  margin: 0 auto;
-}
-
-.beauty-project__heading {
-  display: flex;
-  align-items: center;
-  gap: 18px;
-  margin-bottom: 36px;
-}
-
-.beauty-project__flower {
-  width: 76px;
-  flex: 0 0 auto;
-  opacity: 0.7;
-}
-
-.beauty-project__number {
-  margin-bottom: 8px;
-  font-size: 15px;
-  letter-spacing: 0.14em;
-}
-
-.beauty-project__title {
-  color: #666;
-  font-family: "Instrument Serif", Georgia, serif; font-style:italic;
-  font-size: clamp(28px, 3vw, 42px);
-  font-weight: 500;
-  line-height: 1.2;
-}
-
-.beauty-project__category{
-    margin-top: 10px;
-    color: #999;
-    font-family: "Space Mono", monospace;
-    font-size: 15px;
-    font-weight: 400;
-    letter-spacing: 0.08em;
-}
-
-.beauty-project__poster-button {
-  display: block;
-  width: 100%;
-  max-width: 660px;
-  margin: 0 auto;
-  overflow: hidden;
-  background: transparent;
-  cursor: pointer;
-}
-
-.beauty-project__poster {
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  object-fit: cover;
-  transition: transform 0.45s ease, filter 0.45s ease;
-}
-
-.beauty-project__poster-button:hover .beauty-project__poster {
-  filter: brightness(1.02);
-  transform: scale(1.012);
-}
-
-.beauty-project__watch-row {
-  display: flex;
-  justify-content: flex-end;
-  width: 100%;
-  max-width: 660px;
-  margin: 14px auto 0;
-}
-
-.beauty-project__details {
-  margin-top: 34px;
-  font-family: "Pretendard","Noto Sans KR",sans-serif;
-}
-
-.beauty-project__label {
-  display: inline-block;
-  margin-bottom: 16px;
-  padding-bottom: 5px;
-  border-bottom: 1px solid rgba(102, 102, 102, 0.65);
-  font-family: "Instrument Serif", Georgia, serif; font-style:italic;
-  font-size: 16px;
-}
-
-.beauty-project__description {
-  max-width: 700px;
-  font-size: clamp(16px, 1.2vw, 18px);
-  line-height: 1.65;
-  word-break: keep-all;
-}
-
-.beauty-project__process {
-  margin-top: 28px;
-
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 12px;
-}
-
-
-/* =========================================================
-   06-2. CARROT EDITORIAL LAYOUT
-========================================================= */
-
-.carrot-project {
-  display: block;
-  min-height: 100vh;
-  padding: clamp(95px, 10vh, 135px) 0;
-}
-
-.carrot-project__inner {
-  width: min(1080px, calc(100% - 80px));
-  margin: 0 auto;
-}
-
-.carrot-project__heading {
-  display: flex;
-  align-items: center;
-  gap: 18px;
-  margin-bottom: 48px;
-}
-
-.carrot-project__icon {
-  width: 76px;
-  flex: 0 0 auto;
-  opacity: 0.7;
-}
-
-.carrot-project__number {
-  margin-bottom: 8px;
-  font-size: 15px;
-  letter-spacing: 0.14em;
-}
-
-.carrot-project__title {
-  color: #666;
-  font-family: "Instrument Serif", Georgia, serif; font-style:italic;
-  font-size: clamp(28px, 3vw, 42px);
-  font-weight: 500;
-  line-height: 1.2;
-}
-
-.carrot-project__category {
-  margin-top: 10px;
-  color: #999;
-  font-family: "Space Mono", monospace;
-  font-size: 15px;
-  font-weight: 400;
-  letter-spacing: 0.08em;
-}
-
-.carrot-project__layout {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(330px, 430px);
-  align-items: start;
-  gap: clamp(70px, 8vw, 125px);
-}
-
-.carrot-project__details {
-  padding-top: 8px;
-  font-family: "Pretendard","Noto Sans KR",sans-serif;
-}
-
-.carrot-project__label {
-  display: inline-block;
-  margin-bottom: 28px;
-  padding-bottom: 5px;
-  border-bottom: 1px solid rgba(102, 102, 102, 0.65);
-  font-family: "Instrument Serif", Georgia, serif; font-style:italic;
-  font-size: 16px;
-}
-
-.carrot-project__description {
-  max-width: 520px;
-  font-size: clamp(16px, 1.2vw, 18px);
-  line-height: 1.65;
-  word-break: keep-all;
-}
-
-.carrot-project__storyboard {
-  margin-top: 28px;
-
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 12px;
-}
-
-.carrot-project__visual {
-  width: 100%;
-}
-
-.carrot-project__poster-button {
-  display: block;
-  width: 100%;
-  background: transparent;
-  cursor: pointer;
-}
-
-.carrot-project__poster {
-  width: 100%;
-  height: auto;
-  object-fit: contain;
-  transition:
-    transform 0.45s ease,
-    filter 0.45s ease;
-}
-
-.carrot-project__poster-button:hover .carrot-project__poster {
-  filter: brightness(1.02);
-  transform: scale(1.012);
-}
-
-.carrot-project__watch-row {
-  display: flex;
-  justify-content: flex-start;
-  margin-top: 14px;
-}
-
-
-/* =========================================================
-   06-3. ANOTHER WORLD EDITORIAL LAYOUT
-========================================================= */
-
-.world-project {
-  display: block;
-  min-height: 100vh;
-  padding: clamp(70px, 9vh, 130px) 0;
-}
-
-.world-project__inner {
-  width: min(980px, calc(100% - 80px));
-  margin: 0 auto;
-}
-
-.world-project__heading {
-  margin-bottom: 52px;
-}
-
-.world-project__number {
-  margin-bottom: 8px;
-  font-size: 15px;
-  letter-spacing: 0.14em;
-}
-
-.world-project__title {
-  color: #666;
-  font-family: "Instrument Serif", Georgia, serif; font-style:italic;
-  font-size: clamp(28px, 3vw, 42px);
-  font-weight: 500;
-  line-height: 1.2;
-}
-
-.world-project__category {
-  margin-top: 10px;
-  color: #999;
-  font-family: "Space Mono", monospace;
-  font-size: 15px;
-  font-weight: 400;
-  letter-spacing: 0.08em;
-}
-
-.world-project__poster-button {
-  display: block;
-  width: 100%;
-  max-width: 660px;
-  margin: 0 auto;
-  overflow: hidden;
-  background: transparent;
-  cursor: pointer;
-}
-
-.world-project__poster {
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  object-fit: cover;
-  transition:
-    transform 0.45s ease,
-    filter 0.45s ease;
-}
-
-.world-project__poster-button:hover .world-project__poster {
-  filter: brightness(1.03);
-  transform: scale(1.012);
-}
-
-.world-project__watch-row {
-  display: flex;
-  justify-content: flex-end;
-  width: 100%;
-  max-width: 660px;
-  margin: 14px auto 0;
-}
-
-.world-project__details {
-  margin-top: 34px;
-  font-family: "Pretendard","Noto Sans KR",sans-serif;
-}
-
-.world-project__label {
-  display: inline-block;
-  margin-bottom: 16px;
-  padding-bottom: 5px;
-  border-bottom: 1px solid rgba(102, 102, 102, 0.65);
-  font-family: "Instrument Serif", Georgia, serif; font-style:italic;
-  font-size: 16px;
-}
-
-.world-project__description {
-  max-width: 700px;
-  font-size: clamp(16px, 1.2vw, 18px);
-  line-height: 1.65;
-  word-break: keep-all;
 }
 
 
@@ -703,34 +374,68 @@ a {
 
 .process-modal { position: fixed; inset: 0; z-index: 10000; display: none; }
 .process-modal.active { display: block; }
-.process-modal__background { position: absolute; inset: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.18); cursor: pointer; }
-.process-modal__content { position: absolute; top: 50%; left: 50%; width: min(92vw, 1400px); height: 88vh; transform: translate(-50%, -50%); overflow: visible; background: transparent; }
+.process-modal__background { position: absolute; inset: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.18); cursor: pointer; transition: background .3s ease; }
+.process-modal__content { position: absolute; top: 50%; left: 50%; width: min(92vw, 1400px); height: 88vh; transform: translate(-50%, -50%); overflow: visible; background: transparent; transition: width .3s ease, height .3s ease; }
 .process-modal__scroll { width: 100%; height: 100%; overflow-y: auto; overflow-x: hidden; border: 1px solid rgba(180, 160, 170, 0.22); border-radius: 18px; clip-path: inset(0 round 18px); background: #fff; box-shadow: 0 20px 60px rgba(90, 70, 80, 0.16); scrollbar-width: thin; }
 .process-modal__image { display: block; width: 100%; height: auto; }
-.process-modal__close { position: absolute; top: -48px; right: 0; z-index: 10; background: transparent; color: #444; cursor: pointer; font-size: 38px; line-height: 1; }
+.process-modal__controls { position: absolute; top: -48px; right: 0; z-index: 10; display: flex; align-items: center; gap: 12px; }
+.process-modal__expand,
+.process-modal__close { display: inline-flex; align-items: center; justify-content: center; width: 38px; height: 38px; background: transparent; color: #444; cursor: pointer; line-height: 1; transition: color .2s ease, transform .2s ease; }
+.process-modal__expand { font-size: 25px; }
+.process-modal__close { font-size: 38px; }
+.process-modal__expand:hover,
+.process-modal__close:hover { color: #ee8fb1; transform: translateY(-2px); }
+
+/* 확대 보기: 브라우저 안에서 거의 전체화면으로 확장 */
+.process-modal.is-expanded .process-modal__background { background: rgba(0,0,0,0.72); }
+.process-modal.is-expanded .process-modal__content { width: 96vw; height: 94vh; }
+.process-modal.is-expanded .process-modal__controls { top: 10px; right: 14px; }
+.process-modal.is-expanded .process-modal__expand,
+.process-modal.is-expanded .process-modal__close { color: #fff; text-shadow: 0 1px 8px rgba(0,0,0,.35); }
 
 @media (max-width: 560px) {
   .process-modal__content { width: calc(100% - 30px); height: 84vh; }
-  .process-modal__close { top: -42px; }
+  .process-modal__controls { top: -42px; }
+  .process-modal.is-expanded .process-modal__content { width: calc(100% - 12px); height: 96vh; }
+}
+
+/* Visual Board: 전체 이미지를 한 화면에 맞춰 표시 */
+.process-modal.fit-contain .process-modal__content {
+  width: min(94vw, 1200px);
+  height: 90vh;
+}
+
+.process-modal.fit-contain .process-modal__scroll {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+  clip-path: none;
+}
+
+.process-modal.fit-contain .process-modal__image {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  border-radius: 12px;
+}
+
+.process-modal.fit-contain.is-expanded .process-modal__content {
+  width: 96vw;
+  height: 94vh;
 }
 
 
 /* =========================================================
-   RESPONSIVE (기존 프로젝트 섹션들)
+   RESPONSIVE
 ========================================================= */
 
 @media (max-width: 820px) {
-  .carrot-project__inner { width: min(100% - 64px, 760px); }
-  .carrot-project__heading { margin-bottom: 38px; }
-  .carrot-project__icon { width: 58px; }
-  .carrot-project__layout { grid-template-columns: 1fr; gap: 42px; }
-  .carrot-project__details { padding-top: 0; }
-  .carrot-project__visual { width: min(430px, 100%); }
-  .beauty-project__inner { width: min(100% - 64px, 760px); }
-  .beauty-project__heading { margin-bottom: 38px; }
-  .beauty-project__flower { width: 58px; }
-  .world-project__inner { width: min(100% - 64px, 760px); }
-  .world-project__heading { margin-bottom: 38px; }
   .artwork-project__inner { width: min(100% - 64px, 760px); }
   .artwork-project__heading { margin-bottom: 38px; }
   .artwork-project__poster { width: 36%; }
@@ -738,26 +443,6 @@ a {
 }
 
 @media (max-width: 560px) {
-  .carrot-project { padding: 95px 0 80px; }
-  .carrot-project__inner { width: calc(100% - 40px); }
-  .carrot-project__heading { gap: 12px; margin-bottom: 28px; }
-  .carrot-project__icon { width: 46px; }
-  .carrot-project__layout { gap: 34px; }
-  .carrot-project__watch-row { margin-top: 8px; }
-
-  .beauty-project { padding: 95px 0 80px; }
-  .beauty-project__inner { width: calc(100% - 40px); }
-  .beauty-project__heading { gap: 12px; margin-bottom: 28px; }
-  .beauty-project__flower { width: 46px; }
-  .beauty-project__watch-row { margin-top: 8px; }
-  .beauty-project__details { margin-top: 42px; }
-
-  .world-project { padding: 95px 0 80px; }
-  .world-project__inner { width: calc(100% - 40px); }
-  .world-project__heading { margin-bottom: 28px; }
-  .world-project__watch-row { margin-top: 8px; }
-  .world-project__details { margin-top: 42px; }
-
   .artwork-project { padding: 95px 0 80px; }
   .artwork-project__inner { width: calc(100% - 40px); }
   .artwork-project__heading { margin-bottom: 28px; }
@@ -777,13 +462,6 @@ a {
   .contact__top-button { margin-top: 55px; }
 
   .video-modal__content { width: calc(100% - 30px); }
-}
-
-.carrot-project,
-.beauty-project,
-.world-project,
-.artwork-project {
-  padding: clamp(40px, 4.5vh, 65px) 0 70px;
 }
 
 /* =========================================================
@@ -1047,7 +725,9 @@ a {
 }
 
 .bleed{
-  position:relative; height:32vh; min-height:180px;
+  position:relative;
+  height:10vh;
+  min-height:60px;
   background:linear-gradient(to bottom, var(--bone) 0%, #f6eeea 100%);
 }
 
@@ -1121,7 +801,7 @@ a {
     <a class="topnav__brand" href="#hero">rozy.</a>
     <ul class="topnav__links">
       <li><a class="topnav__link active" href="#hero">Intro</a></li>
-      <li><a class="topnav__link" href="#project">Project</a></li>
+      <li><a class="topnav__link" href="#project-carrot">Project</a></li>
       <li><a class="topnav__link" href="#about">About</a></li>
       <li><a class="topnav__link" href="#contact">Contact</a></li>
     </ul>
@@ -1205,7 +885,7 @@ a {
 
 
   <!-- ======================================================
-       PROJECT 01 : CARROT (원본 유지)
+       PROJECT 01 : CARROT
   ======================================================= -->
   <div class="project-carrot-stage">
 
@@ -1234,7 +914,7 @@ a {
   </div>
 
   <!-- ======================================================
-       BEAUTY + ARTWORK + ANOTHER WORLD (원본 유지)
+       PROJECTS 02–06
   ======================================================= -->
   <div class="visual-stage">
 
@@ -1299,7 +979,7 @@ a {
         </p>
         <div class="proj__actions">
           <button class="text-button" type="button" data-video="님페아영상.mp4">▶ Watch Video</button>
-          <button class="text-button" type="button" data-process="님페아9컷.png">→ Visual Board</button>
+          <button class="text-button" type="button" data-process="님페아9컷.png" data-fit="contain">→ Visual Board</button>
         </div>
       </div>
     </article>
@@ -1326,7 +1006,7 @@ a {
     <article class="artwork-project" id="project-art">
       <div class="artwork-project__inner">
 
-        <div class="beauty-project__heading">
+        <div class="artwork-project__heading">
           <div>
             <p class="artwork-project__number">06</p>
             <h2 class="artwork-project__title">Artwork Collection</h2>
@@ -1357,7 +1037,7 @@ a {
   </div>
 
   <!-- ======================================================
-       ABOUT + CONTACT (원본 유지)
+       ABOUT + CONTACT
   ======================================================= -->
   <div class="profile-stage">
 
@@ -1447,7 +1127,10 @@ a {
   <div class="process-modal" aria-hidden="true">
     <button class="process-modal__background" type="button" aria-label="Creative Process 닫기"></button>
     <div class="process-modal__content">
-      <button class="process-modal__close" type="button" aria-label="Creative Process 닫기">×</button>
+      <div class="process-modal__controls">
+        <button class="process-modal__expand" type="button" aria-label="확대 보기" title="확대 보기">⛶</button>
+        <button class="process-modal__close" type="button" aria-label="Creative Process 닫기">×</button>
+      </div>
       <div class="process-modal__scroll">
         <img class="process-modal__image" src="" alt="Creative Process">
       </div>
@@ -1465,6 +1148,7 @@ const modalBackground = document.querySelector(".video-modal__background");
 const processModal = document.querySelector(".process-modal");
 const processModalImage = document.querySelector(".process-modal__image");
 const processModalClose = document.querySelector(".process-modal__close");
+const processModalExpand = document.querySelector(".process-modal__expand");
 const processModalBackground = document.querySelector(".process-modal__background");
 
 const artworkVisual = document.querySelector(".artwork-project__visual");
@@ -1633,6 +1317,11 @@ document.querySelectorAll("[data-process], [data-storyboard]").forEach(function 
     if (!imageSource) return;
 
     processModalImage.src = imageSource;
+    processModal.classList.remove("is-expanded");
+    processModal.classList.toggle("fit-contain", button.dataset.fit === "contain");
+    processModalExpand.textContent = "⛶";
+    processModalExpand.setAttribute("aria-label", "확대 보기");
+    processModalExpand.setAttribute("title", "확대 보기");
     processModal.classList.add("active");
     processModal.setAttribute("aria-hidden", "false");
     document.body.style.overflow = "hidden";
@@ -1642,13 +1331,22 @@ document.querySelectorAll("[data-process], [data-storyboard]").forEach(function 
   });
 });
 
+function toggleProcessModalSize() {
+  const expanded = processModal.classList.toggle("is-expanded");
+  processModalExpand.textContent = expanded ? "🗗" : "⛶";
+  processModalExpand.setAttribute("aria-label", expanded ? "기본 크기로 보기" : "확대 보기");
+  processModalExpand.setAttribute("title", expanded ? "기본 크기로 보기" : "확대 보기");
+}
+
 function closeProcessModal() {
-  processModal.classList.remove("active");
+  processModal.classList.remove("active", "fit-contain", "is-expanded");
   processModal.setAttribute("aria-hidden", "true");
   processModalImage.removeAttribute("src");
+  processModalExpand.textContent = "⛶";
   document.body.style.overflow = "";
 }
 
+processModalExpand.addEventListener("click", toggleProcessModalSize);
 processModalClose.addEventListener("click", closeProcessModal);
 processModalBackground.addEventListener("click", closeProcessModal);
 
