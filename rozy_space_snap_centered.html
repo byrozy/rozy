@@ -1,0 +1,2064 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Creative Portfolio</title>
+
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+  <link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+/* =========================================================
+   01. RESET
+========================================================= */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  overflow-x: hidden;
+  background: #ffffff;
+  color: #666;
+  font-family: "Pretendard","Noto Sans KR",sans-serif;
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+}
+
+button {
+  border: 0;
+}
+
+img,
+video {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+
+/* =========================================================
+   02. COMMON
+========================================================= */
+
+.container {
+  width: min(1280px, calc(100% - 80px));
+  margin: 0 auto;
+}
+
+.project-carrot-stage {
+  position: relative;
+  width: 100%;
+  background: var(--bone, #f1efea);
+}
+
+.project-carrot-stage #project-carrot {
+  position: relative;
+  min-height: 100vh;
+  background: transparent;
+}
+
+
+.visual-stage {
+  position: relative;
+  width: 100%;
+  background: var(--bone, #f1efea);
+}
+
+.visual-stage .project-card {
+  position: relative;
+  background: transparent;
+}
+
+.text-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 44px;
+  background: transparent;
+  color: #666;
+  cursor: pointer;
+
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 15px;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+
+  transition:
+    color 0.25s ease,
+    transform 0.25s ease;
+}
+
+.text-button:hover {
+  color: #ee8fb1;
+  transform: translateX(5px);
+}
+
+
+/* =========================================================
+   06-4. ARTWORK EDITORIAL LAYOUT
+========================================================= */
+
+.artwork-project {
+  position: relative;
+  display: block;
+  min-height: 100vh;
+  padding: clamp(110px, 13vh, 165px) 0;
+}
+
+.artwork-project__inner {
+  width: min(980px, calc(100% - 80px));
+  margin: 0 auto;
+}
+
+.artwork-project__heading {
+  margin-bottom: 52px;
+}
+
+.artwork-project__number {
+  margin-bottom: 8px;
+  font-family: "Space Mono", monospace;
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  color: var(--muted, #8c8880);
+}
+
+.artwork-project__title{
+  color:#666;
+  font-family:Georgia, "Times New Roman", serif;
+  font-weight:400;
+  font-size:clamp(30px,3vw,42px);
+  line-height:1.08;
+  letter-spacing:-0.008em;
+}
+
+.artwork-project__category {
+  margin-top: 20px;
+  color: var(--muted, #8c8880);
+  font-family: "Space Mono", monospace;
+  font-size: 10.5px;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.artwork-project__visual {
+  position: relative;
+  width: min(760px, 100%);
+  margin: -60px auto 0;
+  cursor: ns-resize;
+}
+
+.artwork-project__folder {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: auto;
+  pointer-events: none;
+}
+
+.artwork-project__poster {
+  position: absolute;
+  top: 51%;
+  left: 50%;
+  z-index: 2;
+  width: 34%;
+  max-height: 78%;
+  object-fit: contain;
+  transform: translate(-50%, -50%);
+  pointer-events: auto;
+  cursor: zoom-in;
+  filter: drop-shadow(0 16px 24px rgba(0, 0, 0, 0.14));
+}
+
+.artwork-project__details {
+  margin-top: 56px;
+  font-family: "Pretendard","Noto Sans KR",sans-serif;
+}
+
+.artwork-project__label {
+  display: inline-block;
+  margin-bottom: 28px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid rgba(102, 102, 102, 0.65);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 16px;
+}
+
+.artwork-project__description {
+  max-width: 700px;
+  font-size: clamp(16px, 1.2vw, 18px);
+  line-height: 1.65;
+  word-break: keep-all;
+}
+
+.artwork-project__side {
+  position: absolute;
+  top: 51%;
+  z-index: 2;
+  width: 18%;
+  max-height: 230px;
+  object-fit: contain;
+  opacity: 0.68;
+  pointer-events: none;
+  filter: drop-shadow(0 12px 20px rgba(0, 0, 0, 0.1));
+  transition: opacity 0.25s ease, transform 0.35s ease;
+}
+
+.artwork-project__side--left { left: 8%; transform: translateY(-50%) rotate(-4deg); }
+.artwork-project__side--right { right: 8%; transform: translateY(-50%) rotate(4deg); }
+
+.artwork-project__wheel-guide {
+  position: absolute;
+  left: 50%;
+  bottom: 7%;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #777;
+  font-family: "Space Mono", monospace;
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  white-space: nowrap;
+  opacity: 0.6;
+  pointer-events: none;
+  transform: translate(-50%, 0px);
+}
+
+.artwork-project__visual:hover .artwork-project__side--left {
+  opacity: 0.82;
+  transform: translateY(-50%) translateX(-8px) rotate(-5deg);
+}
+.artwork-project__visual:hover .artwork-project__side--right {
+  opacity: 0.82;
+  transform: translateY(-50%) translateX(8px) rotate(5deg);
+}
+.artwork-project__visual:hover .artwork-project__poster {
+  filter: drop-shadow(0 19px 28px rgba(0, 0, 0, 0.17));
+}
+
+
+/* =========================================================
+   07. ABOUT
+========================================================= */
+
+.profile-stage {
+  position: relative;
+  width: 100%;
+  background: url("프로필뒷배경.jpg") center -1px / 100% 100% no-repeat;
+}
+
+.about {
+  position: relative;
+  min-height: 100vh;
+  margin-top: -1px;
+  padding: clamp(110px, 13vh, 165px) 0 100px;
+  overflow: hidden;
+}
+
+.about__inner {
+  width: min(1180px, calc(100% - 80px));
+  margin: 0 auto;
+}
+
+.about__card {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(300px, 0.85fr);
+  gap: clamp(60px, 8vw, 120px);
+  padding: clamp(55px, 7vw, 90px);
+  border: 1px solid rgba(255, 255, 255, 0.78);
+  border-radius: 36px;
+  background: rgba(255, 255, 255, 0.74);
+  box-shadow: 0 30px 70px rgba(178, 126, 151, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.about__intro { min-width: 0; }
+.about__number { margin-bottom: 26px; color: #999; font-family: "Space Mono", monospace; font-size: 15px; letter-spacing: 0.14em; }
+.about__title { color: #666; font-family: "Instrument Serif", Georgia, serif; font-style:italic; font-size: clamp(40px, 4.5vw, 68px); font-weight: 400; line-height: 1.08; }
+.about__description { margin-top: 48px; color: #666; font-family: "Pretendard","Noto Sans KR",sans-serif; font-size: clamp(15px, 1.2vw, 18px); line-height: 1.75; word-break: keep-all; }
+.about__information { display: flex; flex-direction: column; justify-content: center; gap: 44px; font-family: "Pretendard","Noto Sans KR",sans-serif; }
+.about__group { display: flex; flex-direction: column; align-items: flex-start; padding-bottom: 28px; border-bottom: 1px solid rgba(102, 102, 102, 0.16); }
+.about__group:last-child { padding-bottom: 0; border-bottom: 0; }
+.about__label { display: inline-block; margin-bottom: 18px; padding-bottom: 5px; border-bottom: 1px solid rgba(102, 102, 102, 0.58); color: #777; font-family: "Instrument Serif", Georgia, serif; font-style:italic; font-size: 16px; }
+.about__text { color: #666; font-size: 16px; line-height: 1.8; }
+.about__skills { display: flex; flex-wrap: wrap; gap: 10px; }
+.about__skills span { display: inline-flex; align-items: center; min-height: 38px; padding: 8px 14px; border: 1px solid rgba(238, 143, 177, 0.3); border-radius: 999px; background: rgba(255, 255, 255, 0.5); color: #777; font-size: 14px; line-height: 1; }
+.about__email { display: inline-block; color: #666; font-family: "Instrument Serif", Georgia, serif; font-style:italic; font-size: clamp(19px, 2vw, 26px); transition: color 0.25s ease, transform 0.25s ease; }
+.about__email:hover { color: #ee8fb1; transform: translateX(5px); }
+
+
+/* =========================================================
+   07-2. CONTACT
+========================================================= */
+
+.contact { position: relative; min-height: 100vh; margin-top: -1px; display: flex; align-items: center; padding: 110px 0 70px; overflow: hidden; background: none; }
+.contact__inner { width: min(1180px, calc(100% - 80px)); margin: 0 auto; text-align: center; }
+.contact__eyebrow {
+  margin-bottom: 26px;
+  color: #999;
+  font-family: "Space Mono", monospace;
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+.contact__title {
+  color: #666;
+  font-family: "Instrument Serif", Georgia, serif;
+  font-style: italic;
+  font-size: clamp(64px, 8vw, 130px);
+  font-weight: 400;
+  line-height: 0.95;
+  letter-spacing: -0.015em;
+}
+.contact__message { margin-top: 40px; color: #777; font-family: "Pretendard","Noto Sans KR",sans-serif; font-size: clamp(16px, 1.3vw, 19px); line-height: 1.75; }
+.contact__links { width: min(720px, 100%); margin: 65px auto 0; border-top: 1px solid rgba(102, 102, 102, 0.2); }
+.contact__link { display: grid; grid-template-columns: 130px 1fr; gap: 30px; padding: 22px 0; border-bottom: 1px solid rgba(102, 102, 102, 0.2); color: #666; text-align: left; transition: color 0.25s ease, padding-left 0.25s ease; }
+.contact__link span {
+  color: #999;
+  font-family: "Space Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.contact__link:hover { padding-left: 8px; color: #ee8fb1; }
+.contact__top-button { display: inline-flex; flex-direction: column; align-items: center; gap: 8px; margin-top: 70px; background: transparent; color: #888; cursor: pointer; font-size: 12px; letter-spacing: 0.1em; }
+.contact__top-button img { width: 48px; height: 70px; object-fit: contain; transition: transform 0.3s ease, filter 0.3s ease; }
+.contact__top-button:hover img { transform: translateY(-7px) scale(1.04); filter: drop-shadow(0 10px 16px rgba(238, 143, 177, 0.25)); }
+.contact__credit {
+  margin-top: 60px;
+  color: rgba(102, 102, 102, 0.55);
+  font-family: "Space Mono", monospace;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+}
+
+
+/* =========================================================
+   08. VIDEO MODAL
+========================================================= */
+
+.video-modal { position: fixed; inset: 0; z-index: 9999; display: none; }
+.video-modal.active { display: block; }
+.video-modal__background { position: absolute; inset: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.76); cursor: pointer; }
+.video-modal__content { position: absolute; top: 50%; left: 50%; width: min(92vw, 900px); transform: translate(-50%, -50%); }
+.video-modal__video { width: 100%; max-height: 85vh; margin: 0 auto; border-radius: 18px; background: #000; }
+.video-modal__close { position: absolute; top: -50px; right: 0; background: transparent; color: #fff; cursor: pointer; font-size: 38px; line-height: 1; }
+
+
+/* =========================================================
+   08-2. CREATIVE PROCESS MODAL
+========================================================= */
+
+.process-modal { position: fixed; inset: 0; z-index: 10000; display: none; }
+.process-modal.active { display: block; }
+.process-modal__background { position: absolute; inset: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.18); cursor: pointer; transition: background .3s ease; }
+.process-modal__content { position: absolute; top: 50%; left: 50%; width: min(92vw, 1400px); height: 88vh; transform: translate(-50%, -50%); overflow: visible; background: transparent; transition: width .3s ease, height .3s ease; }
+.process-modal__scroll { width: 100%; height: 100%; overflow-y: auto; overflow-x: hidden; border: 1px solid rgba(180, 160, 170, 0.22); border-radius: 18px; clip-path: inset(0 round 18px); background: #fff; box-shadow: 0 20px 60px rgba(90, 70, 80, 0.16); scrollbar-width: thin; line-height: 0; }
+.process-modal__image { display: block; width: 100%; height: auto; }
+.process-modal__controls { position: absolute; top: -48px; right: 0; z-index: 10; display: flex; align-items: center; gap: 12px; }
+.process-modal__expand,
+.process-modal__close { display: inline-flex; align-items: center; justify-content: center; width: 38px; height: 38px; background: transparent; color: #444; cursor: pointer; line-height: 1; transition: color .2s ease, transform .2s ease; }
+.process-modal__expand { font-size: 25px; }
+.process-modal__close { font-size: 38px; }
+.process-modal__expand:hover,
+.process-modal__close:hover { color: #ee8fb1; transform: translateY(-2px); }
+
+/* 확대 보기: 브라우저 안에서 거의 전체화면으로 확장 */
+.process-modal.is-expanded .process-modal__background { background: rgba(0,0,0,0.72); }
+.process-modal.is-expanded .process-modal__content { width: 96vw; height: 94vh; }
+.process-modal.is-expanded .process-modal__controls { top: 10px; right: 14px; }
+.process-modal.is-expanded .process-modal__expand,
+.process-modal.is-expanded .process-modal__close { color: #fff; text-shadow: 0 1px 8px rgba(0,0,0,.35); }
+
+@media (max-width: 560px) {
+  .process-modal__content { width: calc(100% - 30px); height: 84vh; }
+  .process-modal__controls { top: -42px; }
+  .process-modal.is-expanded .process-modal__content { width: calc(100% - 12px); height: 96vh; }
+}
+
+/* Visual Board: 전체 이미지를 한 화면에 맞춰 표시 */
+.process-modal.fit-contain .process-modal__content {
+  width: min(94vw, 1200px);
+  height: 90vh;
+}
+
+.process-modal.fit-contain .process-modal__scroll {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+  clip-path: none;
+}
+
+.process-modal.fit-contain .process-modal__image {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  border-radius: 12px;
+}
+
+.process-modal.fit-contain.is-expanded .process-modal__content {
+  width: 96vw;
+  height: 94vh;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 820px) {
+  .artwork-project__inner { width: min(100% - 64px, 760px); }
+  .artwork-project__heading { margin-bottom: 38px; }
+  .artwork-project__poster { width: 36%; }
+  .about__card { grid-template-columns: 1fr; gap: 65px; }
+}
+
+@media (max-width: 560px) {
+  .artwork-project { padding: 95px 0 80px; }
+  .artwork-project__inner { width: calc(100% - 40px); }
+  .artwork-project__heading { margin-bottom: 28px; }
+  .artwork-project__details { margin-top: 32px; }
+  .artwork-project__poster { width: 40%; }
+
+  .about { min-height: 150vh; padding: 90px 0 70px; }
+  .about__inner { width: calc(100% - 40px); }
+  .about__card { gap: 52px; padding: 42px 25px; border-radius: 26px; }
+  .about__description { margin-top: 36px; }
+  .about__information { gap: 34px; }
+
+  .contact { padding: 90px 0 50px; }
+  .contact__inner { width: calc(100% - 40px); }
+  .contact__links { margin-top: 48px; }
+  .contact__link { grid-template-columns: 1fr; gap: 7px; padding: 18px 0; }
+  .contact__top-button { margin-top: 55px; }
+
+  .video-modal__content { width: calc(100% - 30px); }
+}
+
+/* =========================================================
+   PROJECT LAYOUT V2 — 이미지+정보 2단 그리드, 배경색 없이 본톤 유지
+   (당근/뷰티/DAY 3개 프로젝트에 적용)
+========================================================= */
+.proj{
+  position:relative;
+  min-height:100vh;
+  display:grid;
+  grid-template-columns:minmax(0,1.25fr) minmax(320px,.75fr);
+  gap:clamp(40px,7vw,110px);
+  align-items:center;
+  padding:clamp(100px,12vh,150px) clamp(22px,5vw,76px);
+  background:var(--bone, #f1efea);
+}
+.proj__media{
+  position:relative;
+  min-height:60vh;
+  display:grid;
+  place-items:center;
+}
+.proj__frame{
+  display:block;
+  width:100%;
+  max-width:980px;
+  overflow:hidden;
+  border:0;
+  background:transparent;
+  cursor:pointer;
+}
+.proj__frame.is-landscape{ aspect-ratio:16/10; }
+.proj__frame.is-portrait{ aspect-ratio:4/5; max-width:520px; }
+.proj__poster{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transition:transform .8s cubic-bezier(.16,1,.3,1);
+}
+.proj__frame:hover .proj__poster{ transform:scale(1.03); }
+.proj__info{ max-width:520px; }
+.proj__no{
+  font-family:"Space Mono", monospace;
+  font-size:11px;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:var(--muted, #8c8880);
+}
+.proj__title{
+  margin-top:16px;
+  font-family:Georgia, "Times New Roman", serif;
+  font-weight:400;
+  font-size:clamp(36px,4.8vw,60px);
+  line-height:1.04;
+  letter-spacing:-0.012em;
+  color:var(--ink, #2d2825);
+}
+.proj__category{
+  margin-top:20px;
+  font-family:"Space Mono", monospace;
+  font-size:10.5px;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:var(--muted, #8c8880);
+}
+.proj__label{
+  display:inline-block;
+  margin-top:20px;
+  margin-bottom:0;
+  padding-bottom:5px;
+  border-bottom:1px solid rgba(102, 102, 102, 0.65);
+  font-family:Georgia, "Times New Roman", serif;
+  font-size:16px;
+  color:var(--ink, #2d2825);
+}
+.proj__desc{
+  margin-top:26px;
+  font-family:"Pretendard","Noto Sans KR",sans-serif;
+  font-size:15px;
+  line-height:1.75;
+  color:#5f5b55;
+  word-break:keep-all;
+}
+.proj__actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px 26px;
+  margin-top:30px;
+}
+
+@media (max-width:900px){
+  .proj{ grid-template-columns:1fr; }
+  .proj__media{ min-height:auto; }
+}
+
+/* =========================================================
+   NEW INTRO + TOPNAV + GALLERY (오늘 작업한 리디자인분)
+========================================================= */
+
+:root{
+  --bone:#f1efea;
+  --ink:#2d2825;
+  --muted:#8c8880;
+  --rose:#c98f8a;
+  --line: rgba(34,31,28,0.14);
+}
+
+.topnav{
+  position:fixed;
+  top:0; left:0; right:0;
+  z-index:60;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:22px clamp(24px, 4vw, 56px);
+  background:transparent;
+  border-bottom:1px solid transparent;
+  transition:background 0.3s ease, backdrop-filter 0.3s ease, border-color 0.3s ease, padding 0.3s ease;
+}
+.topnav.is-scrolled{
+  padding:16px clamp(24px, 4vw, 56px);
+  background:rgba(241,239,234,0.55);
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
+}
+.topnav__brand{ font-family:"Instrument Serif", Georgia, serif; font-style:italic; font-size:19px; color:var(--ink); }
+.topnav__links{ display:flex; align-items:center; gap:clamp(18px, 3vw, 36px); list-style:none; }
+.topnav__link{ position:relative; color:var(--muted); font-family:"Space Mono", monospace; font-size:11px; letter-spacing:0.16em; text-transform:uppercase; text-decoration:none; padding-bottom:3px; transition:color 0.25s ease; }
+.topnav__link::after{ content:""; position:absolute; left:0; right:100%; bottom:0; height:1px; background:var(--ink); transition:right 0.3s cubic-bezier(.19,1,.22,1); }
+.topnav__link:hover{ color:var(--ink); }
+.topnav__link:hover::after, .topnav__link.active::after{ right:0; }
+.topnav__link.active{ color:var(--ink); }
+
+@media (max-width:560px){
+  .topnav{ padding:16px 20px; }
+  .topnav__links{ gap:14px; }
+  .topnav__link{ font-size:10px; letter-spacing:0.12em; }
+}
+
+.hero{
+  position:relative;
+  height:100vh;
+  min-height:680px;
+  overflow:hidden;
+  background:var(--bone);
+}
+.hero__bg{
+  position:absolute;
+  inset:0;
+  background:url("intro-bg.png") center 30% / cover no-repeat;
+  transform:none;
+}
+.hero__overlay{
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(circle at var(--mx,50%) var(--my,42%), rgba(255,255,255,.20), transparent 26%),
+    linear-gradient(180deg,rgba(34,31,28,.02),transparent 50%,rgba(34,31,28,.16));
+  pointer-events:none;
+}
+.hero__ui{
+  position:absolute;
+  inset:0;
+  z-index:2;
+  padding:96px clamp(22px,4vw,64px) 34px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  grid-template-rows:auto 1fr auto;
+}
+.hero__meta{
+  font-family:"Space Mono", monospace;
+  font-size:10px; letter-spacing:.14em; text-transform:uppercase;
+  color:rgba(34,31,28,.62);
+}
+.hero__meta--right{ text-align:right; }
+.hero__mark-row{
+  grid-column:1 / -1;
+  align-self:end;
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+  gap:30px;
+  padding-bottom:6vh;
+}
+.hero__mark{
+  font-family:"Instrument Serif", Georgia, serif;
+  font-style:italic;
+  font-weight:400;
+  font-size:clamp(86px,15vw,250px);
+  line-height:.82;
+  letter-spacing:-.02em;
+  color:var(--ink);
+}
+.hero__mark-row p{
+  max-width:250px;
+  padding-bottom:8px;
+  font-family:"Pretendard","Noto Sans KR",sans-serif;
+  font-size:13px;
+  line-height:1.65;
+  color:rgba(34,31,28,.7);
+  word-break:keep-all;
+}
+.hero__bottom{
+  grid-column:1 / -1;
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+  font-family:"Space Mono", monospace;
+  font-size:10px; letter-spacing:.14em; text-transform:uppercase;
+  color:rgba(34,31,28,.62);
+}
+.hero__scroll::after{
+  content:"";
+  display:inline-block;
+  width:55px; height:1px;
+  margin-left:12px;
+  background:var(--ink);
+  vertical-align:middle;
+}
+
+.statement{
+  min-height:44vh;
+  padding:clamp(90px,11vw,150px) clamp(22px,5vw,76px);
+  display:grid;
+  grid-template-columns:.6fr 1.4fr;
+  gap:60px;
+  align-items:start;
+  background:var(--bone);
+}
+.statement__label{
+  font-family:"Space Mono", monospace;
+  font-size:10px; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--muted);
+}
+.statement__copy{
+  max-width:1000px;
+  font-family:"Pretendard","Noto Sans KR",sans-serif;
+  font-size:clamp(30px,4.2vw,60px);
+  line-height:1.2;
+  letter-spacing:-0.02em;
+  color:var(--ink);
+  font-weight:500;
+  word-break:keep-all;
+}
+.statement__copy em{
+  font-family:"Instrument Serif", Georgia, serif; font-style:italic;
+  font-weight:400;
+}
+
+@media (max-width:900px){
+  .statement{ grid-template-columns:1fr; }
+  .hero__mark-row{ align-items:flex-end; }
+}
+@media (max-width:620px){
+  .hero__ui{ padding:90px 20px 24px; }
+  .hero__mark-row{ flex-direction:column; align-items:flex-start; justify-content:flex-end; }
+  .hero__mark-row p{ max-width:290px; }
+}
+
+.bleed{
+  position:relative;
+  height:10vh;
+  min-height:60px;
+  background:linear-gradient(to bottom, var(--bone) 0%, #f6eeea 100%);
+}
+
+/* ---------- BOXLESS TYPO LIST (Selected Works index) ---------- */
+.gallery{
+  position:relative;
+  padding:clamp(24px, 3vh, 48px) 0 clamp(40px, 5vh, 64px);
+  background:#f6eeea;
+  overflow:hidden;
+}
+.gallery__wash{
+  position:absolute; inset:0; z-index:0; opacity:0;
+  transition:opacity 0.7s ease, background 0.7s ease; pointer-events:none;
+}
+.gallery__wash.show{ opacity:1; }
+
+.gallery__inner{ position:relative; z-index:2; width:min(1100px, calc(100% - 64px)); margin:0 auto; }
+
+.gallery__row{
+  position:relative;
+  display:flex;
+  align-items:baseline;
+  gap:28px;
+  padding:16px 4px;
+  border-bottom:1px solid var(--line);
+  cursor:pointer;
+  text-align:left;
+  transition:padding-left 0.35s ease, opacity 0.4s ease;
+}
+.gallery__row:first-child{ border-top:1px solid var(--line); }
+
+.gallery__list:hover .gallery__row{ opacity:0.4; }
+.gallery__list .gallery__row:hover{ opacity:1; padding-left:16px; }
+
+.gallery__num{
+  font-family:"Space Mono", monospace; font-size:12px; color:var(--muted);
+  min-width:28px;
+}
+
+.gallery__title{
+  flex:1;
+  font-family:"Instrument Serif", Georgia, serif; font-style:italic; font-weight:400;
+  font-size:clamp(24px, 3.8vw, 48px); line-height:1.08; letter-spacing:-0.01em; color:var(--ink);
+  text-transform:uppercase;
+}
+
+.gallery__cat{
+  font-family:"Space Mono", monospace; font-size:10.5px; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted);
+  white-space:nowrap;
+  align-self:center;
+}
+
+@media (max-width:700px){
+  .gallery__cat{ display:none; }
+  .gallery__list:hover .gallery__row{ opacity:1; }
+}
+
+@media (max-width:560px){
+  .hero__sub{ padding:0 20px; }
+  .hero__scroll{ bottom:28px; }
+}
+
+
+/* =========================================================
+   FINAL PROJECT EXPERIENCE
+   - 현재의 2단 정보 구조 유지
+   - 예전 포트폴리오의 파스텔 공간감 복원
+   - 예전 캡슐 네비를 프로젝트 퀵 네비로 재해석
+========================================================= */
+
+/* 포스터를 조금 줄이고 설명을 안쪽으로 당겨 여백을 확보 */
+.proj {
+  grid-template-columns: minmax(0, 1.02fr) minmax(330px, .78fr);
+  gap: clamp(34px, 4.2vw, 68px);
+  padding-left: clamp(42px, 6vw, 96px);
+  padding-right: clamp(112px, 9vw, 150px);
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.proj__media {
+  min-height: 56vh;
+}
+
+.proj__frame.is-landscape {
+  max-width: 760px;
+}
+
+.proj__frame.is-portrait {
+  max-width: 455px;
+}
+
+.proj__info {
+  max-width: 480px;
+  transform: translateX(clamp(-22px, -1.5vw, -8px));
+}
+
+/* 프로젝트 전체를 하나의 배경 이미지로 연결
+   - 인덱스는 기존 배경 유지
+   - 당근부터 Artwork까지 하나의 project-zone
+   - 뷰티배경.png의 끝을 About 시작점에 맞춤
+   - 이미지가 없는 위쪽 구간은 자연스럽게 흰색으로 유지 */
+.project-zone {
+  position: relative;
+  width: 100%;
+  background-color: #fff;
+  background-image: url("뷰티배경.png");
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  background-size: 100% auto;
+}
+
+/* 기존 래퍼와 각 프로젝트의 개별 배경 제거 */
+.project-zone .project-carrot-stage,
+.project-zone .visual-stage {
+  background: transparent;
+}
+
+.project-zone .proj,
+.project-zone .artwork-project,
+.project-zone #project-carrot,
+.project-zone #project-ai,
+.project-zone #project-world,
+.project-zone #project-nymphea,
+.project-zone #project-gez,
+.project-zone #project-art {
+  background: transparent;
+}
+
+/* 섹션 사이 인위적인 경계선 제거 */
+.project-zone .proj + .proj,
+.project-zone #project-art {
+  border-top: 0;
+}
+
+/* 예전 캡슐 네비 감성을 살린 프로젝트 퀵 네비 */
+.project-quicknav {
+  position: fixed;
+  top: 50%;
+  right: clamp(18px, 2.2vw, 34px);
+  z-index: 55;
+  width: 58px;
+  padding: 13px 8px;
+  border: 1px solid rgba(45, 40, 37, .16);
+  border-radius: 999px;
+  background: rgba(255,255,255,.46);
+  box-shadow: 0 14px 34px rgba(55, 47, 42, .08);
+  backdrop-filter: blur(13px);
+  -webkit-backdrop-filter: blur(13px);
+  opacity: 0;
+  visibility: hidden;
+  transform: translate(18px, -50%);
+  transition: opacity .35s ease, transform .45s cubic-bezier(.16,1,.3,1), visibility .35s;
+}
+
+.project-quicknav.is-visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(0, -50%);
+}
+
+.project-quicknav__list {
+  display: grid;
+  gap: 5px;
+  list-style: none;
+}
+
+.project-quicknav__link {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  color: rgba(45, 40, 37, .43);
+  font-family: "Space Mono", monospace;
+  font-size: 9px;
+  letter-spacing: .08em;
+  transition: color .25s ease, background .25s ease, transform .25s ease;
+}
+
+.project-quicknav__link::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 6px;
+  width: 0;
+  height: 1px;
+  background: currentColor;
+  transform: translateX(-50%);
+  transition: width .3s cubic-bezier(.19,1,.22,1);
+}
+
+.project-quicknav__link:hover,
+.project-quicknav__link.is-active {
+  color: var(--ink);
+  background: rgba(255,255,255,.62);
+}
+
+.project-quicknav__link:hover {
+  transform: scale(1.04);
+}
+
+.project-quicknav__link:hover::after,
+.project-quicknav__link.is-active::after {
+  width: 13px;
+}
+
+/* 캡슐 폭은 그대로 두고 이름만 왼쪽 툴팁으로 노출 */
+.project-quicknav__name {
+  position: absolute;
+  top: 50%;
+  right: calc(100% + 13px);
+  min-width: max-content;
+  padding: 7px 10px 6px;
+  border: 1px solid rgba(45,40,37,.10);
+  border-radius: 999px;
+  background: rgba(255,255,255,.72);
+  color: var(--ink);
+  box-shadow: 0 9px 24px rgba(55,47,42,.07);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 12px;
+  letter-spacing: .015em;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(8px, -50%);
+  transition: opacity .22s ease, transform .28s cubic-bezier(.16,1,.3,1);
+}
+
+.project-quicknav__link:hover .project-quicknav__name,
+.project-quicknav__link:focus-visible .project-quicknav__name {
+  opacity: 1;
+  transform: translate(0, -50%);
+}
+
+.project-quicknav__link:focus-visible {
+  outline: 1px solid rgba(45,40,37,.55);
+  outline-offset: 2px;
+}
+
+@media (max-width: 900px) {
+  .proj {
+    padding-right: clamp(28px, 6vw, 58px);
+  }
+  .proj__info { transform: none; }
+  .project-quicknav { display: none; }
+}
+
+
+/* =========================================================
+   ARTWORK MODAL — final gallery view
+========================================================= */
+.process-modal.artwork-mode .process-modal__content {
+  width: min(84vw, 1120px);
+  height: 90vh;
+  transform: translate(-50%, -50%) scale(.94);
+  opacity: 0;
+  transition:
+    width .3s ease,
+    height .3s ease,
+    transform .38s cubic-bezier(.16,1,.3,1),
+    opacity .28s ease;
+}
+
+.process-modal.active.artwork-mode .process-modal__content {
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 1;
+}
+
+.process-modal.artwork-mode .process-modal__background {
+  background: rgba(20, 18, 17, 0.76);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.process-modal.artwork-mode .process-modal__scroll {
+  overflow: visible;
+}
+
+.process-modal.artwork-mode .process-modal__image {
+  max-width: 100%;
+  max-height: 84vh;
+  cursor: zoom-out;
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.28);
+}
+
+/* artwork modal arrows — circle removed */
+.artwork-modal__prev,
+.artwork-modal__next {
+  position: absolute;
+  top: 50%;
+  z-index: 20;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  height: auto;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: rgba(255,255,255,.82);
+  cursor: pointer;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 44px;
+  font-weight: 400;
+  line-height: 1;
+  transform: translateY(-50%);
+  transition:
+    color .25s ease,
+    transform .25s ease,
+    opacity .25s ease;
+}
+
+.artwork-modal__prev:hover,
+.artwork-modal__next:hover {
+  background: transparent;
+  color: #fff;
+}
+
+.process-modal.artwork-mode .artwork-modal__prev,
+.process-modal.artwork-mode .artwork-modal__next {
+  display: flex;
+}
+
+.artwork-modal__prev { left: -95px; }
+.artwork-modal__next { right: -95px; }
+
+.artwork-modal__prev:hover {
+  transform: translate(-5px, -50%);
+}
+
+.artwork-modal__next:hover {
+  transform: translate(5px, -50%);
+}
+
+@media (max-width: 760px) {
+  .process-modal.artwork-mode .process-modal__content {
+    width: calc(100% - 84px);
+    height: 80vh;
+  }
+
+  .process-modal.artwork-mode .process-modal__image {
+    max-height: 74vh;
+  }
+
+  .artwork-modal__prev {
+    left: -44px;
+    font-size: 34px;
+  }
+
+  .artwork-modal__next {
+    right: -44px;
+    font-size: 34px;
+  }
+}
+
+
+
+/* =========================================================
+   PRESENTATION VIEW — one screen per section
+   Space/PageDown 이동 뒤 각 섹션이 화면 중앙에 안정적으로 정렬
+========================================================= */
+html {
+  scroll-snap-type: y mandatory;
+  scroll-padding-top: 0;
+}
+
+/* Intro 뒤에 있던 별도 전환 여백 제거 */
+.bleed {
+  display: none;
+}
+
+/* 한 번에 보여줄 주요 화면 */
+.hero,
+.gallery,
+.project-zone .proj,
+.project-zone .artwork-project,
+.about,
+.contact {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
+.hero {
+  height: 100svh;
+  min-height: 680px;
+}
+
+/* Selected Works를 독립된 한 화면으로 중앙 배치 */
+.gallery {
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  padding: clamp(82px, 9vh, 112px) 0 clamp(44px, 6vh, 72px);
+}
+
+.gallery__inner {
+  width: min(1100px, calc(100% - 64px));
+}
+
+/* 각 프로젝트를 한 화면 안에서 정확히 중앙 정렬 */
+.project-zone .proj {
+  min-height: 100svh;
+  padding-top: clamp(82px, 9vh, 112px);
+  padding-bottom: clamp(52px, 6vh, 78px);
+  align-items: center;
+}
+
+/* Artwork도 다른 프로젝트처럼 한 화면 중앙에 배치 */
+.project-zone .artwork-project {
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  padding-top: clamp(82px, 9vh, 112px);
+  padding-bottom: clamp(52px, 6vh, 78px);
+}
+
+/* 고정 네비에 제목이 가려지지 않도록 앵커 여유 */
+.hero,
+.gallery,
+.project-zone .proj,
+.project-zone .artwork-project,
+.about,
+.contact {
+  scroll-margin-top: 0;
+}
+
+/* 낮은 화면이나 모바일에서는 콘텐츠 잘림을 막기 위해 부드러운 스냅으로 완화 */
+@media (max-height: 760px), (max-width: 900px) {
+  html {
+    scroll-snap-type: y proximity;
+  }
+
+  .gallery,
+  .project-zone .proj,
+  .project-zone .artwork-project {
+    min-height: 100vh;
+  }
+}
+
+</style>
+</head>
+
+<body>
+
+  <!-- ======================================================
+       TOP NAV (기존 좌우 사이드/퀵 네비 대체)
+  ======================================================= -->
+  <nav class="topnav">
+    <a class="topnav__brand" href="#hero">rozy.</a>
+    <ul class="topnav__links">
+      <li><a class="topnav__link active" href="#hero">Intro</a></li>
+      <li><a class="topnav__link" href="#project-carrot">Project</a></li>
+      <li><a class="topnav__link" href="#about">About</a></li>
+      <li><a class="topnav__link" href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- ======================================================
+       NEW INTRO (ROZY 큰 타이틀 + 마우스 파럈렉스 배경)
+  ======================================================= -->
+  <header class="hero" id="hero">
+    <div class="hero__bg" id="heroBg"></div>
+    <div class="hero__overlay" id="heroOverlay"></div>
+
+    <div class="hero__ui">
+      <p class="hero__meta">Visual Designer · 2026</p>
+      <p class="hero__meta hero__meta--right">Seoul, Korea</p>
+
+      <div class="hero__mark-row">
+        <p>3D Motion, AI Visual과 Interactive Web을 오가며<br>감각적인 장면과 경험을 설계합니다.</p>
+      </div>
+
+      <div class="hero__bottom">
+        <span class="hero__scroll">Scroll to view</span>
+        <span>07 Selected Works</span>
+      </div>
+    </div>
+  </header>
+
+  <div class="bleed"></div>
+
+  <!-- ======================================================
+       SELECTED WORKS — 박스 없는 타이포 리스트 인덱스
+       (실제 프로젝트 포스터 이미지를 워시 배경으로 사용)
+  ======================================================= -->
+  <section class="gallery" id="project">
+
+    <div class="gallery__wash" id="galleryWash"></div>
+
+    <div class="gallery__inner">
+
+      <div class="gallery__list" id="galleryList">
+
+        <div class="gallery__row" data-target="#project-carrot" data-wash="url('당근포스터.png')">
+          <span class="gallery__num">01</span>
+          <span class="gallery__title">DAANGN</span>
+          <span class="gallery__cat">Moim · Motion Graphics · Ad</span>
+        </div>
+
+        <div class="gallery__row" data-target="#project-ai" data-wash="url('뷰티포스터.png')">
+          <span class="gallery__num">02</span>
+          <span class="gallery__title">AETHEL</span>
+          <span class="gallery__cat">AI Video · Beauty</span>
+        </div>
+
+        <div class="gallery__row" data-target="#project-world" data-wash="url('데이포스터.png')">
+          <span class="gallery__num">03</span>
+          <span class="gallery__title">DAY</span>
+          <span class="gallery__cat">Blender · 3D Motion</span>
+        </div>
+
+        <div class="gallery__row" data-target="#project-nymphea" data-wash="url('님페아포스터.png')">
+          <span class="gallery__num">04</span>
+          <span class="gallery__title">NYMPHÉA</span>
+          <span class="gallery__cat">Perfume Branding</span>
+        </div>
+
+        <div class="gallery__row" data-target="#project-gez" data-wash="url('게즈포스터.png')">
+          <span class="gallery__num">05</span>
+          <span class="gallery__title">GEZ</span>
+          <span class="gallery__cat">Camera Branding</span>
+        </div>
+
+        <div class="gallery__row" data-target="#project-art" data-wash="url('포스터/2.jpg')">
+          <span class="gallery__num">06</span>
+          <span class="gallery__title">Artwork Collection</span>
+          <span class="gallery__cat">Illustration · Poster</span>
+        </div>
+
+        <div class="gallery__row" data-target="#project-space" data-wash="url('우주포스터.png')">
+          <span class="gallery__num">07</span>
+          <span class="gallery__title">SPACE DUST</span>
+          <span class="gallery__cat">AI Visual · Short Film</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <div class="project-zone">
+
+  <!-- ======================================================
+       PROJECT 01 : CARROT
+  ======================================================= -->
+  <div class="project-carrot-stage">
+
+    <article class="proj" id="project-carrot">
+      <div class="proj__media">
+        <button class="proj__frame is-portrait" type="button" data-video="당근영상.mp4" aria-label="당근 모임 서비스 홍보 영상 보기">
+          <img class="proj__poster" src="당근포스터.png" alt="당근 모임 서비스 홍보 포스터">
+        </button>
+      </div>
+      <div class="proj__info">
+        <p class="proj__no">01</p>
+        <h2 class="proj__title">DAANGN</h2>
+        <p class="proj__category">Moim · Motion Graphics · Concept Advertisement</p>
+        <p class="proj__desc">
+          중고 거래를 넘어 이웃과 취향을 연결하는 당근의 '모임' 서비스에 주목했습니다.
+          친근한 캐릭터와 따뜻한 모션그래픽을 활용해 서비스의 특징과 매력을 쉽고 직관적으로 전달한 홍보 콘셉트 프로젝트입니다.
+        </p>
+        <div class="proj__actions">
+          <button class="text-button" type="button" data-video="당근영상.mp4">▶ Watch Video</button>
+          <button class="text-button" type="button" data-process="Creative Process.jpg">→ Process Book</button>
+          <button class="text-button" type="button" data-storyboard="Storyboard.jpg">→ View Storyboard</button>
+        </div>
+      </div>
+    </article>
+
+  </div>
+
+  <!-- ======================================================
+       PROJECTS 02–06
+  ======================================================= -->
+  <div class="visual-stage">
+
+  <main class="project-list">
+
+    <article class="proj" id="project-ai">
+      <div class="proj__media">
+        <button class="proj__frame is-landscape" type="button" data-video="뷰티영상.mp4" aria-label="AI Beauty Campaign 영상 보기">
+          <img class="proj__poster" src="뷰티포스터.png" alt="AI Beauty Campaign 가로 포스터">
+        </button>
+      </div>
+      <div class="proj__info">
+        <p class="proj__no">02</p>
+        <h2 class="proj__title">AETHEL</h2>
+        <p class="proj__category">AI Video · Beauty Advertisement</p>
+        <p class="proj__desc">
+          18세기 로코코 미술의 우아한 색감과 조형미에서 영감을 받아, 현대적인 뷰티 캠페인으로 재해석했습니다.
+          생성형 AI를 활용해 기획부터 제작, 편집까지 브랜드 광고 형태로 완성한 프로젝트입니다.
+        </p>
+        <div class="proj__actions">
+          <button class="text-button" type="button" data-video="뷰티영상.mp4">▶ Watch Video</button>
+          <button class="text-button" type="button" data-process="Beauty_CreativeProcess.png">→ Process Book</button>
+          <button class="text-button" type="button" data-storyboard="Beauty_Storyboar.png">→ View Storyboard</button>
+        </div>
+      </div>
+    </article>
+
+    <article class="proj" id="project-world">
+      <div class="proj__media">
+        <button class="proj__frame is-landscape" type="button" data-video="데이영상.mp4" aria-label="DAY 영상 보기">
+          <img class="proj__poster" src="데이포스터.png" alt="DAY 대표 이미지">
+        </button>
+      </div>
+      <div class="proj__info">
+        <p class="proj__no">03</p>
+        <h2 class="proj__title">DAY</h2>
+        <p class="proj__category">Blender · Generative AI · 3D Motion</p>
+        <p class="proj__desc">
+          오늘 하루는 어떤 하루일까, 라는 질문에서 출발해 기분좋은 하루이길 바라며 따뜻한 파스텔빛 세계와 캐릭터를 그려냈습니다.
+          Blender와 생성형 AI를 결합한 하이브리드 제작으로 DAY의 화장품 광고 영상을 완성한 프로젝트입니다.
+        </p>
+        <div class="proj__actions">
+          <button class="text-button" type="button" data-video="데이영상.mp4">▶ Watch Video</button>
+          <button class="text-button" type="button" data-process-images="DAY_Creative1.png,DAY_Creative2.png">→ Creative Process</button>
+        </div>
+      </div>
+    </article>
+
+    <article class="proj" id="project-nymphea">
+      <div class="proj__media">
+        <button class="proj__frame is-portrait" type="button" data-video="님페아영상.mp4" aria-label="NYMPHÉA 영상 보기">
+          <img class="proj__poster" src="님페아포스터.png" alt="NYMPHÉA 대표 이미지">
+        </button>
+      </div>
+      <div class="proj__info">
+        <p class="proj__no">04</p>
+        <h2 class="proj__title">NYMPHÉA</h2>
+        <p class="proj__category">Perfume Branding · AI Film</p>
+        <p class="proj__desc">
+          연꽃의 맑고 투명한 이미지와 동양적인 여백의 미를 바탕으로, 모네의 수련 연작에서 참고한 색감과 분위기를 더해 완성한 향수 브랜딩 프로젝트입니다.
+        </p>
+        <div class="proj__actions">
+          <button class="text-button" type="button" data-video="님페아영상.mp4">▶ Watch Video</button>
+          <button class="text-button" type="button" data-process="님페아9컷.png" data-fit="contain">→ Visual Board</button>
+        </div>
+      </div>
+    </article>
+
+    <article class="proj" id="project-gez">
+      <div class="proj__media">
+        <button class="proj__frame is-portrait" type="button" data-video="게즈영상.mp4" aria-label="GEZ 영상 보기">
+          <img class="proj__poster" src="게즈포스터.png" alt="GEZ 대표 이미지">
+        </button>
+      </div>
+      <div class="proj__info">
+        <p class="proj__no">05</p>
+        <h2 class="proj__title">GEZ</h2>
+        <p class="proj__category">Camera Branding · Advertisement</p>
+        <p class="proj__desc">
+          포켓 카메라 브랜드 GEZ의 브랜딩 및 광고 캠페인 프로젝트입니다.
+        </p>
+        <div class="proj__actions">
+          <button class="text-button" type="button" data-video="게즈영상.mp4">
+            ▶ Watch Video
+          </button>
+        
+          <button class="text-button" type="button" data-process="gez_BrandBook.png">
+            → Brand Book
+          </button>
+        
+          <button class="text-button" type="button" data-storyboard="gez_Storyboard.png">
+            → Storyboard
+          </button>
+        </div>
+      </div>
+    </article>
+
+    <article class="artwork-project" id="project-art">
+      <div class="artwork-project__inner">
+
+        <div class="artwork-project__heading">
+          <div>
+            <p class="artwork-project__number">06</p>
+            <h2 class="artwork-project__title">Artwork Collection</h2>
+            <p class="artwork-project__category">Illustration · Poster Design</p>
+          </div>
+        </div>
+
+        <div class="artwork-project__visual">
+          <img class="artwork-project__folder" src="폴더이미지.png" alt="">
+          <img class="artwork-project__side artwork-project__side--left" src="포스터/3.jpg" alt="">
+          <img class="artwork-project__poster" src="포스터/2.jpg" alt="">
+          <img class="artwork-project__side artwork-project__side--right" src="포스터/4.jpg" alt="">
+          <p class="artwork-project__wheel-guide">Scroll to explore <span>↕</span></p>
+        </div>
+
+        <div class="artwork-project__details">
+          <p class="artwork-project__description">
+            다양한 색감과 그래픽을 실험한 개인 아트워크·포스터 컬렉션입니다.<br>
+            일러스트와 이미지 편집으로 각기 다른 무드와 이야기를 담았습니다.
+          </p>
+        </div>
+
+      </div>
+    </article>
+
+    <article class="proj" id="project-space">
+      <div class="proj__media">
+        <button class="proj__frame is-landscape" type="button" data-video="우주영상.mp4" aria-label="SPACE DUST 영상 보기">
+          <img class="proj__poster" src="우주포스터.png" alt="SPACE DUST 우주 먼지의 이야기 대표 이미지">
+        </button>
+      </div>
+      <div class="proj__info">
+        <p class="proj__no">07</p>
+        <h2 class="proj__title">SPACE DUST</h2>
+        <p class="proj__category">AI Visual · Short Film</p>
+        <p class="proj__desc">
+          힘든 날이면 스스로를 우주의 먼지 같은 존재라고 생각하는 개인적인 독백에서 출발했습니다.
+          저 멀리서 바라보면 지금의 힘듦도 조금은 작아질 것 같다는 마음을 우주와 꽃의 이미지로 담아낸 짧은 영상입니다.
+        </p>
+        <div class="proj__actions">
+          <button class="text-button" type="button" data-video="우주영상.mp4">▶ Watch Video</button>
+        </div>
+      </div>
+    </article>
+
+  </main>
+
+  </div>
+
+  </div><!-- /.project-zone -->
+
+  <!-- ======================================================
+       ABOUT + CONTACT
+  ======================================================= -->
+  <div class="profile-stage">
+
+    <section class="about" id="about">
+      <div class="about__inner">
+        <div class="about__card">
+
+          <div class="about__intro">
+            <p class="about__number">ABOUT</p>
+            <h2 class="about__title">Creating dreamy<br>visual experiences.</h2>
+            <p class="about__description">
+              3D Motion과 Interactive Web을 중심으로<br>
+              감성과 이야기를 담은 콘텐츠를 제작합니다.<br><br>
+              Blender를 활용한 3D Motion,<br>
+              인터랙티브 웹, 브랜딩 프로젝트를 통해<br>
+              사용자가 몰입할 수 있는 경험을 디자인합니다.
+            </p>
+          </div>
+
+          <div class="about__information">
+            <div class="about__group">
+              <p class="about__label">Education</p>
+              <div class="about__text">오산대학교 패션디자인과</div>
+            </div>
+
+            <div class="about__group">
+              <p class="about__label">Skills</p>
+              <div class="about__skills">
+                <span>Blender</span>
+                <span>After Effects</span>
+                <span>Premiere Pro</span>
+                <span>Photoshop</span>
+                <span>Illustrator</span>
+                <span>HTML</span>
+                <span>CSS</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <section class="contact" id="contact">
+      <div class="contact__inner">
+        <p class="contact__eyebrow">CONTACT</p>
+        <h2 class="contact__title">Thank you.</h2>
+        <p class="contact__message">Thanks for visiting my portfolio.<br>Feel free to get in touch.</p>
+
+        <div class="contact__links">
+          <a class="contact__link" href="mailto:livehappilyforgood@gmail.com">
+            <span>Email</span>
+            livehappilyforgood@gmail.com
+          </a>
+          <a class="contact__link" href="#" target="_blank" rel="noopener noreferrer">
+            <span>Instagram</span>
+            @fsiffil
+          </a>
+        </div>
+
+        <button class="contact__top-button" type="button" aria-label="맨 위로 이동">
+          <img src="door.png" alt="">
+          <span>Back to top</span>
+        </button>
+
+        <p class="contact__credit">Designed &amp; created by me · 2026</p>
+      </div>
+    </section>
+
+  </div>
+
+
+
+  <!-- 프로젝트 구간에서만 보이는 퀵 네비 -->
+  <nav class="project-quicknav" aria-label="프로젝트 바로가기">
+    <ol class="project-quicknav__list">
+      <li><a class="project-quicknav__link" href="#project-carrot" data-project-link="project-carrot"><span>01</span><span class="project-quicknav__name">DAANGN</span></a></li>
+      <li><a class="project-quicknav__link" href="#project-ai" data-project-link="project-ai"><span>02</span><span class="project-quicknav__name">AETHEL</span></a></li>
+      <li><a class="project-quicknav__link" href="#project-world" data-project-link="project-world"><span>03</span><span class="project-quicknav__name">DAY</span></a></li>
+      <li><a class="project-quicknav__link" href="#project-nymphea" data-project-link="project-nymphea"><span>04</span><span class="project-quicknav__name">NYMPHÉA</span></a></li>
+      <li><a class="project-quicknav__link" href="#project-gez" data-project-link="project-gez"><span>05</span><span class="project-quicknav__name">GEZ</span></a></li>
+      <li><a class="project-quicknav__link" href="#project-art" data-project-link="project-art"><span>06</span><span class="project-quicknav__name">Artwork</span></a></li>
+      <li><a class="project-quicknav__link" href="#project-space" data-project-link="project-space"><span>07</span><span class="project-quicknav__name">SPACE DUST</span></a></li>
+    </ol>
+  </nav>
+
+  <!-- ======================================================
+       VIDEO MODAL
+  ======================================================= -->
+  <div class="video-modal" aria-hidden="true">
+    <button class="video-modal__background" type="button" aria-label="영상 닫기"></button>
+    <div class="video-modal__content">
+      <button class="video-modal__close" type="button" aria-label="영상 닫기">×</button>
+      <video class="video-modal__video" controls playsinline></video>
+    </div>
+  </div>
+
+  <!-- ======================================================
+       CREATIVE PROCESS IMAGE MODAL
+  ======================================================= -->
+  <div class="process-modal" aria-hidden="true">
+    <button class="process-modal__background" type="button" aria-label="Creative Process 닫기"></button>
+    <div class="process-modal__content">
+      <div class="process-modal__controls">
+        <button class="process-modal__expand" type="button" aria-label="확대 보기" title="확대 보기">⛶</button>
+        <button class="process-modal__close" type="button" aria-label="Creative Process 닫기">×</button>
+      </div>
+      <button class="artwork-modal__prev" type="button" aria-label="이전 아트워크">←</button>
+      <button class="artwork-modal__next" type="button" aria-label="다음 아트워크">→</button>
+      <div class="process-modal__scroll" id="processModalScroll"></div>
+    </div>
+  </div>
+
+  <script>
+
+const contactTopButton = document.querySelector(".contact__top-button");
+const modal = document.querySelector(".video-modal");
+const modalVideo = document.querySelector(".video-modal__video");
+const modalClose = document.querySelector(".video-modal__close");
+const modalBackground = document.querySelector(".video-modal__background");
+
+const processModal = document.querySelector(".process-modal");
+const processModalScroll = document.querySelector("#processModalScroll");
+const processModalClose = document.querySelector(".process-modal__close");
+const processModalExpand = document.querySelector(".process-modal__expand");
+const processModalBackground = document.querySelector(".process-modal__background");
+
+const artworkModalPrev = document.querySelector(".artwork-modal__prev");
+const artworkModalNext = document.querySelector(".artwork-modal__next");
+let artworkModalOpen = false;
+
+
+const artworkVisual = document.querySelector(".artwork-project__visual");
+const artworkMainImage = document.querySelector(".artwork-project__poster");
+const artworkLeftImage = document.querySelector(".artwork-project__side--left");
+const artworkRightImage = document.querySelector(".artwork-project__side--right");
+
+contactTopButton.addEventListener("click", function () {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+});
+
+/* ---------- TOPNAV — 스크롤하면 배경이 나타남 ---------- */
+(function () {
+  const topnav = document.querySelector(".topnav");
+  if (!topnav) return;
+  window.addEventListener("scroll", function () {
+    topnav.classList.toggle("is-scrolled", window.scrollY > 24);
+  }, { passive: true });
+})();
+
+/* ---------- TOPNAV — 현재 보이는 구간에 따라 active 변경 ---------- */
+(function () {
+  const navLinks = Array.from(document.querySelectorAll(".topnav__link"));
+
+  const introLink = document.querySelector('.topnav__link[href="#hero"]');
+  const projectLink = document.querySelector('.topnav__link[href="#project-carrot"]');
+  const aboutLink = document.querySelector('.topnav__link[href="#about"]');
+  const contactLink = document.querySelector('.topnav__link[href="#contact"]');
+
+  const projectStart = document.getElementById("project-carrot");
+  const aboutSection = document.getElementById("about");
+  const contactSection = document.getElementById("contact");
+
+  if (
+    !introLink ||
+    !projectLink ||
+    !aboutLink ||
+    !contactLink ||
+    !projectStart ||
+    !aboutSection ||
+    !contactSection
+  ) return;
+
+  function setActive(activeLink) {
+    navLinks.forEach(function (link) {
+      const isActive = link === activeLink;
+      link.classList.toggle("active", isActive);
+
+      if (isActive) {
+        link.setAttribute("aria-current", "page");
+      } else {
+        link.removeAttribute("aria-current");
+      }
+    });
+  }
+
+  function getDocumentTop(element) {
+    return element.getBoundingClientRect().top + window.scrollY;
+  }
+
+  function updateTopnavActive() {
+    const currentY = window.scrollY + 120;
+
+    const projectTop = getDocumentTop(projectStart);
+    const aboutTop = getDocumentTop(aboutSection);
+    const contactTop = getDocumentTop(contactSection);
+
+    if (currentY >= contactTop) {
+      setActive(contactLink);
+    } else if (currentY >= aboutTop) {
+      setActive(aboutLink);
+    } else if (currentY >= projectTop) {
+      setActive(projectLink);
+    } else {
+      setActive(introLink);
+    }
+  }
+
+  updateTopnavActive();
+
+  window.addEventListener("scroll", updateTopnavActive, { passive: true });
+  window.addEventListener("resize", updateTopnavActive);
+  window.addEventListener("load", updateTopnavActive);
+})();
+
+/* =========================================================
+   ARTWORK FOLDER WHEEL GALLERY
+========================================================= */
+
+const artworkImages = [
+  "포스터/3.jpg", "포스터/2.jpg", "포스터/4.jpg",
+  "포스터/5.png", "포스터/5-1.png", "포스터/7.jpg", "포스터/8.png"
+];
+
+let currentArtworkIndex = 1;
+let artworkWheelLocked = false;
+
+function getArtworkIndex(index) {
+  return (index + artworkImages.length) % artworkImages.length;
+}
+
+function showArtworkImages(index, direction = 1) {
+  const previousIndex = getArtworkIndex(index - 1);
+  const nextIndex = getArtworkIndex(index + 1);
+  const moveDistance = direction > 0 ? -45 : 45;
+
+  artworkLeftImage.style.transition = "transform .42s ease, opacity .42s ease";
+  artworkMainImage.style.transition = "transform .42s ease, opacity .42s ease";
+  artworkRightImage.style.transition = "transform .42s ease, opacity .42s ease";
+
+  artworkLeftImage.style.transform = `translateY(-50%) translateX(${moveDistance}px) rotate(-4deg)`;
+  artworkMainImage.style.transform = `translate(-50%, -50%) translateX(${moveDistance}px)`;
+  artworkRightImage.style.transform = `translateY(-50%) translateX(${moveDistance}px) rotate(4deg)`;
+
+  artworkLeftImage.style.opacity = "0";
+  artworkMainImage.style.opacity = "0.35";
+  artworkRightImage.style.opacity = "0";
+
+  window.setTimeout(function () {
+    artworkLeftImage.src = artworkImages[previousIndex];
+    artworkMainImage.src = artworkImages[index];
+    artworkRightImage.src = artworkImages[nextIndex];
+
+    const startDistance = direction > 0 ? 45 : -45;
+
+    artworkLeftImage.style.transition = "none";
+    artworkMainImage.style.transition = "none";
+    artworkRightImage.style.transition = "none";
+
+    artworkLeftImage.style.transform = `translateY(-50%) translateX(${startDistance}px) rotate(-4deg)`;
+    artworkMainImage.style.transform = `translate(-50%, -50%) translateX(${startDistance}px)`;
+    artworkRightImage.style.transform = `translateY(-50%) translateX(${startDistance}px) rotate(4deg)`;
+
+    artworkLeftImage.style.opacity = "0";
+    artworkMainImage.style.opacity = "0.35";
+    artworkRightImage.style.opacity = "0";
+
+    requestAnimationFrame(function () {
+      requestAnimationFrame(function () {
+        artworkLeftImage.style.transition = "transform .42s ease, opacity .42s ease";
+        artworkMainImage.style.transition = "transform .42s ease, opacity .42s ease";
+        artworkRightImage.style.transition = "transform .42s ease, opacity .42s ease";
+
+        artworkLeftImage.style.transform = "translateY(-50%) rotate(-4deg)";
+        artworkMainImage.style.transform = "translate(-50%, -50%)";
+        artworkRightImage.style.transform = "translateY(-50%) rotate(4deg)";
+
+        artworkLeftImage.style.opacity = "0.68";
+        artworkMainImage.style.opacity = "1";
+        artworkRightImage.style.opacity = "0.68";
+      });
+    });
+  }, 420);
+}
+
+if (artworkVisual && artworkMainImage && artworkLeftImage && artworkRightImage) {
+  artworkVisual.addEventListener("wheel", function (event) {
+    event.preventDefault();
+    if (artworkWheelLocked) return;
+    artworkWheelLocked = true;
+
+    let direction = 1;
+    if (event.deltaY > 0) {
+      direction = 1;
+      currentArtworkIndex = getArtworkIndex(currentArtworkIndex + 1);
+    } else if (event.deltaY < 0) {
+      direction = -1;
+      currentArtworkIndex = getArtworkIndex(currentArtworkIndex - 1);
+    }
+
+    showArtworkImages(currentArtworkIndex, direction);
+
+    window.setTimeout(function () { artworkWheelLocked = false; }, 900);
+  }, { passive: false });
+
+  window.addEventListener("load", function () {
+    const previousIndex = getArtworkIndex(currentArtworkIndex - 1);
+    const nextIndex = getArtworkIndex(currentArtworkIndex + 1);
+    artworkLeftImage.src = artworkImages[previousIndex];
+    artworkMainImage.src = artworkImages[currentArtworkIndex];
+    artworkRightImage.src = artworkImages[nextIndex];
+  });
+
+  /* ---------- 아트워크 포스터 클릭 시 작게 확대 ---------- */
+  artworkMainImage.addEventListener("click", function (event) {
+    event.stopPropagation();
+    artworkModalOpen = true;
+    openProcessModal([artworkImages[currentArtworkIndex]], {
+      fit: "contain",
+      alt: "Artwork",
+      artwork: true
+    });
+  });
+}
+
+/* =========================================================
+   VIDEO MODAL
+========================================================= */
+
+document.querySelectorAll("[data-video]").forEach(function (trigger) {
+  trigger.addEventListener("click", function () {
+    openModal(trigger.dataset.video);
+  });
+});
+
+let videoPlayTimer = null;
+
+function openModal(videoSource) {
+  if (!videoSource) return;
+
+  if (videoPlayTimer) window.clearTimeout(videoPlayTimer);
+
+  modalVideo.pause();
+  modalVideo.src = videoSource;
+  modalVideo.currentTime = 0;
+  modalVideo.volume = 1;
+
+  modal.classList.add("active");
+  modal.setAttribute("aria-hidden", "false");
+  document.body.style.overflow = "hidden";
+
+  /* 모달이 먼저 열린 뒤, 원래 볼륨과 싱크 그대로 재생 */
+  videoPlayTimer = window.setTimeout(function () {
+    const playPromise = modalVideo.play();
+    if (playPromise !== undefined) {
+      playPromise.catch(function () { /* 제한 시 기본 컨트롤로 재생 */ });
+    }
+  }, 250);
+}
+
+function closeModal() {
+  if (videoPlayTimer) {
+    window.clearTimeout(videoPlayTimer);
+    videoPlayTimer = null;
+  }
+  modalVideo.pause();
+  modalVideo.removeAttribute("src");
+  modalVideo.load();
+  modal.classList.remove("active");
+  modal.setAttribute("aria-hidden", "true");
+  document.body.style.overflow = "";
+}
+
+modalClose.addEventListener("click", closeModal);
+modalBackground.addEventListener("click", closeModal);
+
+document.addEventListener("keydown", function (event) {
+  if (event.key === "Escape" && modal.classList.contains("active")) closeModal();
+});
+
+/* =========================================================
+   CREATIVE PROCESS MODAL
+========================================================= */
+
+function openProcessModal(imageSources, options) {
+  options = options || {};
+  if (!imageSources || !imageSources.length) return;
+
+  processModalScroll.innerHTML = "";
+
+  imageSources.forEach(function (imageSource, index) {
+    const image = document.createElement("img");
+    image.className = "process-modal__image";
+    image.src = imageSource;
+    image.alt = options.alt
+      ? (imageSources.length > 1 ? options.alt + " " + (index + 1) : options.alt)
+      : (imageSources.length > 1 ? "Creative Process " + (index + 1) : "Creative Process");
+    processModalScroll.appendChild(image);
+  });
+
+  processModal.classList.remove("is-expanded", "artwork-mode");
+  processModal.classList.toggle("fit-contain", options.fit === "contain");
+  processModal.classList.toggle("artwork-mode", options.artwork === true);
+  processModalExpand.textContent = "⛶";
+  processModalExpand.setAttribute("aria-label", "확대 보기");
+  processModalExpand.setAttribute("title", "확대 보기");
+  processModal.classList.add("active");
+  processModal.setAttribute("aria-hidden", "false");
+  document.body.style.overflow = "hidden";
+  processModalScroll.scrollTop = 0;
+}
+
+document.querySelectorAll("[data-process], [data-process-images], [data-storyboard]").forEach(function (button) {
+  button.addEventListener("click", function () {
+    const singleImageSource = button.dataset.process || button.dataset.storyboard;
+    const multipleImageSources = button.dataset.processImages
+      ? button.dataset.processImages
+          .split(",")
+          .map(function (source) { return source.trim(); })
+          .filter(Boolean)
+      : [];
+
+    const imageSources = multipleImageSources.length
+      ? multipleImageSources
+      : (singleImageSource ? [singleImageSource] : []);
+
+    openProcessModal(imageSources, { fit: button.dataset.fit });
+  });
+});
+
+function toggleProcessModalSize() {
+  const expanded = processModal.classList.toggle("is-expanded");
+  processModalExpand.textContent = expanded ? "🗗" : "⛶";
+  processModalExpand.setAttribute("aria-label", expanded ? "기본 크기로 보기" : "확대 보기");
+  processModalExpand.setAttribute("title", expanded ? "기본 크기로 보기" : "확대 보기");
+}
+
+function closeProcessModal() {
+  processModal.classList.remove("active", "fit-contain", "is-expanded", "artwork-mode");
+  processModal.setAttribute("aria-hidden", "true");
+  processModalScroll.innerHTML = "";
+  processModalExpand.textContent = "⛶";
+  artworkModalOpen = false;
+  document.body.style.overflow = "";
+}
+
+processModalExpand.addEventListener("click", toggleProcessModalSize);
+processModalClose.addEventListener("click", closeProcessModal);
+
+processModalBackground.addEventListener("click", closeProcessModal);
+
+function showArtworkInModal(direction) {
+  currentArtworkIndex = getArtworkIndex(currentArtworkIndex + direction);
+  showArtworkImages(currentArtworkIndex, direction);
+
+  const modalImage = processModalScroll.querySelector(".process-modal__image");
+  if (modalImage) {
+    modalImage.src = artworkImages[currentArtworkIndex];
+    modalImage.alt = "Artwork " + (currentArtworkIndex + 1);
+  }
+}
+
+artworkModalPrev.addEventListener("click", function (event) {
+  event.stopPropagation();
+  showArtworkInModal(-1);
+});
+
+artworkModalNext.addEventListener("click", function (event) {
+  event.stopPropagation();
+  showArtworkInModal(1);
+});
+
+/* 확대된 포스터를 다시 누르면 닫혀서 휠 갤러리로 돌아감 */
+processModalScroll.addEventListener("click", function (event) {
+  if (
+    artworkModalOpen &&
+    event.target.classList.contains("process-modal__image")
+  ) {
+    closeProcessModal();
+  }
+});
+
+
+document.addEventListener("keydown", function (event) {
+  if (!processModal.classList.contains("active")) return;
+
+  if (event.key === "Escape") {
+    closeProcessModal();
+  } else if (artworkModalOpen && event.key === "ArrowLeft") {
+    showArtworkInModal(-1);
+  } else if (artworkModalOpen && event.key === "ArrowRight") {
+    showArtworkInModal(1);
+  }
+});
+
+
+/* =========================================================
+   PROJECT QUICK NAV — 프로젝트 구간에서만 표시 + 현재 작품 강조
+========================================================= */
+(function () {
+  const quicknav = document.querySelector('.project-quicknav');
+  const projectSections = Array.from(document.querySelectorAll(
+    '#project-carrot, #project-ai, #project-world, #project-nymphea, #project-gez, #project-art, #project-space'
+  ));
+  const links = Array.from(document.querySelectorAll('[data-project-link]'));
+  const about = document.getElementById('about');
+
+  if (!quicknav || !projectSections.length || !about) return;
+
+  links.forEach(function (link) {
+    link.addEventListener('click', function (event) {
+      event.preventDefault();
+      const target = document.getElementById(link.dataset.projectLink);
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+
+  function updateQuicknav() {
+    const scrollCenter = window.scrollY + window.innerHeight * 0.5;
+    const firstTop = projectSections[0].offsetTop;
+    const aboutTop = about.offsetTop;
+    const inProjectRange = scrollCenter >= firstTop && scrollCenter < aboutTop;
+
+    quicknav.classList.toggle('is-visible', inProjectRange);
+    if (!inProjectRange) return;
+
+    let active = projectSections[0];
+    let smallestDistance = Infinity;
+
+    projectSections.forEach(function (section) {
+      const sectionCenter = section.offsetTop + section.offsetHeight * 0.5;
+      const distance = Math.abs(scrollCenter - sectionCenter);
+      if (distance < smallestDistance) {
+        smallestDistance = distance;
+        active = section;
+      }
+    });
+
+    links.forEach(function (link) {
+      const isActive = link.dataset.projectLink === active.id;
+      link.classList.toggle('is-active', isActive);
+      if (isActive) link.setAttribute('aria-current', 'true');
+      else link.removeAttribute('aria-current');
+    });
+  }
+
+  updateQuicknav();
+  window.addEventListener('scroll', updateQuicknav, { passive: true });
+  window.addEventListener('resize', updateQuicknav);
+})();
+
+/* =========================================================
+   NEW HERO — 마우스 파럈렉스 배경
+========================================================= */
+(function () {
+  const hero = document.getElementById('hero');
+  const heroBg = document.getElementById('heroBg');
+  const heroOverlay = document.getElementById('heroOverlay');
+  if (!hero || !heroBg || !heroOverlay) return;
+
+  hero.addEventListener('mousemove', function (e) {
+    const r = hero.getBoundingClientRect();
+    const x = (e.clientX - r.left) / r.width;
+    const y = (e.clientY - r.top) / r.height;
+    heroBg.style.transform = `scale(1.035) translate(${(x - .5) * -6}px, ${(y - .5) * -4}px)`;
+    heroOverlay.style.setProperty('--mx', `${x * 100}%`);
+    heroOverlay.style.setProperty('--my', `${y * 100}%`);
+  });
+  hero.addEventListener('mouseleave', function () {
+    heroBg.style.transform = 'scale(1.035) translate(0,0)';
+    heroOverlay.style.setProperty('--mx', '50%');
+    heroOverlay.style.setProperty('--my', '42%');
+  });
+})();
+
+/* =========================================================
+   NEW GALLERY — 박스 없는 타이포 리스트 + 실제 포스터 워시
+========================================================= */
+(function () {
+  const wash = document.getElementById('galleryWash');
+  const rows = document.querySelectorAll('.gallery__row');
+  if (!wash || !rows.length) return;
+
+  rows.forEach(function (row) {
+    row.addEventListener('mouseenter', function () {
+      wash.style.backgroundImage =
+        `linear-gradient(rgba(246,238,234,0.55), rgba(246,238,234,0.75)), ${row.dataset.wash}`;
+      wash.style.backgroundSize = 'cover';
+      wash.style.backgroundPosition = 'center';
+      wash.classList.add('show');
+    });
+    row.addEventListener('mouseleave', function () {
+      wash.classList.remove('show');
+    });
+    row.addEventListener('click', function () {
+      const target = document.querySelector(row.dataset.target);
+      if (target) target.scrollIntoView({ behavior: 'smooth' });
+    });
+  });
+})();
+
+  </script>
+
+</body>
+</html>
