@@ -1331,6 +1331,18 @@ html {
 
 
 @media (max-width: 768px) {
+  .proj {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    padding: 90px 20px 60px;
+    overflow: visible;
+  }
+
+  .proj__media {
+    width: 100%;
+    min-height: auto;
+  }
+
   .proj__frame,
   .proj__frame.is-portrait,
   .proj__frame.is-landscape {
@@ -1346,6 +1358,12 @@ html {
     width: 100%;
     height: auto;
     object-fit: contain;
+  }
+
+  .proj__info {
+    width: 100%;
+    max-width: none;
+    transform: none;
   }
 
   #project-gez .proj__poster {
