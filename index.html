@@ -675,6 +675,11 @@ a {
   transition:transform .8s cubic-bezier(.16,1,.3,1);
 }
 .proj__frame:hover .proj__poster{ transform:scale(1.03); }
+/* GEZ 포스터는 프레임 안에서 전체 이미지가 보이도록 */
+#project-gez .proj__poster{
+  object-fit:contain;
+}
+
 .proj__info{ max-width:520px; }
 .proj__no{
   font-family:"Space Mono", monospace;
@@ -1949,36 +1954,22 @@ document.querySelectorAll("[data-video]").forEach(function (trigger) {
   });
 });
 
-let videoPlayTimer = null;
-
 function openModal(videoSource) {
   if (!videoSource) return;
 
-  if (videoPlayTimer) window.clearTimeout(videoPlayTimer);
-
   modalVideo.pause();
   modalVideo.src = videoSource;
-  modalVideo.currentTime = 0;
+  modalVideo.load();
   modalVideo.volume = 1;
 
   modal.classList.add("active");
   modal.setAttribute("aria-hidden", "false");
   document.body.style.overflow = "hidden";
 
-  /* 모달이 먼저 열린 뒤, 원래 볼륨과 싱크 그대로 재생 */
-  videoPlayTimer = window.setTimeout(function () {
-    const playPromise = modalVideo.play();
-    if (playPromise !== undefined) {
-      playPromise.catch(function () { /* 제한 시 기본 컨트롤로 재생 */ });
-    }
-  }, 250);
+  /* 자동재생하지 않음: 발표자가 직접 재생/전체화면 선택 */
 }
 
 function closeModal() {
-  if (videoPlayTimer) {
-    window.clearTimeout(videoPlayTimer);
-    videoPlayTimer = null;
-  }
   modalVideo.pause();
   modalVideo.removeAttribute("src");
   modalVideo.load();
