@@ -1,0 +1,1035 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="권경혜 — 생성형 AI, 모션 디자인, 브랜드 콘텐츠를 연결하는 AI Visual Designer 포트폴리오">
+  <meta name="theme-color" content="#f1efea">
+  <title>rozy. — AI Visual Designer</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;500&display=swap">
+
+  <style>
+    :root {
+      --bone: #f1efea;
+      --paper: transparent;
+      --ink: #221f1c;
+      --muted: #77706a;
+      --line: rgba(34, 31, 28, .17);
+      --rose: #c98f8a;
+      --pink: #ffecf4;
+      --sky: #e4f6fe;
+      --nav-h: 68px;
+      --page-x: clamp(24px, 6vw, 96px);
+      --serif: Georgia, "Times New Roman", serif;
+      --sans: Pretendard, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --mono: "Space Mono", ui-monospace, monospace;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: var(--nav-h); background: var(--bone); }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--bone);
+      font-family: var(--sans);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    body.is-locked { overflow: hidden; }
+    a { color: inherit; text-decoration: none; }
+    button { color: inherit; font: inherit; }
+    img, video { display: block; width: 100%; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    :focus-visible { outline: 2px solid var(--rose); outline-offset: 4px; }
+
+    .skip-link {
+      position: fixed;
+      z-index: 999;
+      top: 12px;
+      left: 12px;
+      padding: 10px 14px;
+      background: var(--ink);
+      color: white;
+      transform: translateY(-160%);
+      transition: transform .2s;
+    }
+    .skip-link:focus { transform: none; }
+
+    .topbar {
+      position: fixed;
+      z-index: 100;
+      inset: 0 0 auto;
+      height: var(--nav-h);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 var(--page-x);
+      border-bottom: 1px solid transparent;
+      transition: background .25s, border-color .25s;
+    }
+    .topbar.is-scrolled {
+      background: rgba(241, 239, 234, .60);
+      border-color: rgba(34,31,28,.08);
+      backdrop-filter: blur(8px);
+    }
+    .brand {
+      font: italic 25px/1 var(--serif);
+      letter-spacing: -.02em;
+    }
+    .topnav { display: flex; align-items: center; gap: clamp(20px, 3vw, 44px); }
+    .topnav a {
+      position: relative;
+      color: rgba(34, 31, 28, .55);
+      font: 10px/1 var(--mono);
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      transition: color .2s;
+    }
+    .topnav a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 100%;
+      bottom: -7px;
+      height: 1px;
+      background: currentColor;
+      transition: right .25s;
+    }
+    .topnav a:hover,
+    .topnav a.is-active { color: var(--ink); }
+    .topnav a:hover::after,
+    .topnav a.is-active::after { right: 0; }
+
+    .hero {
+      position: relative;
+      min-height: 100svh;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      isolation: isolate;
+      background: url("intro-bg.png") center/cover no-repeat;
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      z-index: -2;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(241,239,234,.14) 0%, rgba(241,239,234,.05) 38%, transparent 72%);
+      pointer-events: none;
+    }
+    .hero::after { display: none; }
+    .hero__inner {
+      width: min(1480px, 100%);
+      min-height: 100svh;
+      padding: calc(var(--nav-h) + 34px) var(--page-x) 44px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.12fr) minmax(320px, .62fr);
+      gap: clamp(36px, 5.5vw, 88px);
+      align-items: center;
+    }
+    .kicker {
+      margin: 0 0 10px;
+      font: 10px/1.5 var(--mono);
+      letter-spacing: .2em;
+      text-transform: uppercase;
+    }
+    .hero__title {
+      margin: 0;
+      max-width: 650px;
+      font: 400 clamp(38px, 4vw, 54px)/1.04 var(--serif);
+      letter-spacing: -.018em;
+    }
+    .hero__title em { color: var(--rose); font-weight: 400; }
+    .hero__statement {
+      max-width: 520px;
+      margin: clamp(24px, 4vh, 42px) 0 0;
+      font-size: clamp(15px, 1.2vw, 18px);
+      line-height: 1.8;
+      letter-spacing: -.025em;
+    }
+    .hero__statement strong { font-weight: 600; }
+    .hero__roles {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+      margin-top: 24px;
+    }
+    .hero__roles span {
+      position: relative;
+      padding-right: 16px;
+      font: 8px/1 var(--mono);
+      letter-spacing: .13em;
+      text-transform: uppercase;
+      color: rgba(34,31,28,.62);
+    }
+    .hero__roles span:not(:last-child)::after {
+      content: "·";
+      position: absolute;
+      right: 2px;
+      color: rgba(34,31,28,.34);
+    }
+    .hero__actions { display: flex; gap: 24px; margin-top: 28px; align-items: center; }
+    .hero__actions a {
+      display: inline-flex;
+      align-items: center;
+      gap: 11px;
+      font: 10px/1 var(--mono);
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+    .hero__actions a {
+      padding: 0 0 4px;
+      border-bottom: 1px solid rgba(34,31,28,.42);
+      background: transparent;
+      color: var(--ink);
+    }
+    .hero__actions a:first-child::after { content: " ↓"; }
+
+    .work-index {
+      align-self: center;
+      padding: 18px 0 4px;
+      border-top: 1px solid rgba(34,31,28,.28);
+      border-bottom: 0;
+      background: transparent;
+    }
+    .work-index__head {
+      display: flex;
+      justify-content: space-between;
+      margin: 0 0 10px;
+      padding: 0 4px;
+      font: 8px/1 var(--mono);
+      letter-spacing: .16em;
+      text-transform: uppercase;
+    }
+    .work-index__link {
+      display: grid;
+      grid-template-columns: 32px minmax(0, 1fr) auto;
+      gap: 12px;
+      align-items: baseline;
+      padding: 9px 4px;
+      border-top: 1px solid rgba(34,31,28,.14);
+      transition: padding .22s, color .22s, background .22s;
+    }
+    .work-index__link:hover {
+      padding-left: 9px;
+      padding-right: 4px;
+      color: #7f514d;
+      background: transparent;
+    }
+    .work-index__num,
+    .work-index__type { font: 8px/1 var(--mono); letter-spacing: .1em; text-transform: uppercase; }
+    .work-index__name { font: 400 clamp(20px, 2.25vw, 32px)/1.05 var(--serif); letter-spacing: -.008em; }
+    .work-index__type { color: rgba(34,31,28,.56); text-align: right; }
+    .scroll-mark {
+      position: absolute;
+      left: var(--page-x);
+      bottom: 23px;
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      font: 8px/1 var(--mono);
+      letter-spacing: .16em;
+      text-transform: uppercase;
+    }
+    .scroll-mark::after { content: ""; width: 54px; height: 1px; background: currentColor; }
+
+    .project-side-nav {
+      position: fixed;
+      z-index: 60;
+      right: 23px;
+      top: 50%;
+      transform: translateY(-50%);
+      display: grid;
+      gap: 12px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .25s;
+    }
+    .project-side-nav.is-visible { opacity: 1; pointer-events: auto; }
+    .project-side-nav a {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 9px;
+      min-height: 20px;
+      color: rgba(34,31,28,.3);
+      font: 8px/1 var(--mono);
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      transition: color .2s;
+    }
+    .project-side-nav .nav-name { max-width: 0; overflow: hidden; white-space: nowrap; transition: max-width .25s; }
+    .project-side-nav a:hover .nav-name,
+    .project-side-nav a.is-active .nav-name { max-width: 110px; }
+    .project-side-nav a.is-active { color: var(--ink); }
+    .project-side-nav a.is-active::before { content: ""; width: 18px; height: 1px; background: currentColor; }
+
+    .project {
+      min-height: 100svh;
+      display: grid;
+      align-items: center;
+      padding: calc(var(--nav-h) + 52px) max(var(--page-x), 7vw) 56px;
+      background: transparent;
+      border-top: 1px solid rgba(34,31,28,.045);
+      content-visibility: auto;
+      contain-intrinsic-size: 100svh;
+    }
+    .project:nth-of-type(even) { background: transparent; }
+    .project__inner {
+      width: min(1240px, 100%);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(360px, .85fr);
+      gap: clamp(36px, 6vw, 84px);
+      align-items: center;
+    }
+    .project__media,
+    .project__content,
+    .artwork__head,
+    .artwork__grid,
+    .about__inner {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity .85s ease, transform .95s cubic-bezier(.2,.75,.2,1);
+    }
+    .project.is-inview .project__media,
+    .project.is-inview .project__content,
+    .artwork.is-inview .artwork__head,
+    .artwork.is-inview .artwork__grid,
+    .about.is-inview .about__inner {
+      opacity: 1;
+      transform: none;
+    }
+    .project.is-inview .project__content,
+    .artwork.is-inview .artwork__grid { transition-delay: .09s; }
+    .project[data-format="portrait"] .project__media { max-width: 470px; justify-self: center; }
+    .project__media {
+      position: relative;
+      width: 100%;
+      max-width: 680px;
+      padding: 0;
+      overflow: hidden;
+      border: 0;
+      background: #e8e5df;
+      cursor: pointer;
+      box-shadow: none;
+    }
+    .project__media[data-ratio="landscape"] { aspect-ratio: 16 / 10; }
+    .project__media[data-ratio="portrait"] { aspect-ratio: 4 / 5; }
+    .project__poster,
+    .project__preview {
+      position: absolute;
+      inset: 0;
+      height: 100%;
+      object-fit: cover;
+      transition: opacity .35s, transform .6s cubic-bezier(.2,.7,.2,1);
+    }
+    .project__preview { opacity: 0; background: #111; }
+    .project__media:hover .project__poster { transform: scale(1.025); }
+    .project__media.is-previewing .project__poster { opacity: 0; }
+    .project__media.is-previewing .project__preview { opacity: 1; }
+    .project__play-label {
+      position: absolute;
+      z-index: 2;
+      right: 14px;
+      bottom: 14px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 0;
+      border: 0;
+      color: white;
+      background: transparent;
+      text-shadow: 0 1px 8px rgba(0,0,0,.45);
+      font: 8px/1 var(--mono);
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+    .project__play-label::before { content: "▶"; font-size: 7px; }
+    .project__number { margin: 0 0 22px; font: 9px/1 var(--mono); letter-spacing: .16em; }
+    .project__title { margin: 0; font: 400 clamp(31px, 3.8vw, 46px)/1.05 var(--serif); letter-spacing: -.008em; }
+    .project__category { margin: 16px 0 0; color: var(--muted); font: 9px/1.5 var(--mono); letter-spacing: .14em; text-transform: uppercase; }
+    .project__description { margin: 24px 0 0; max-width: 560px; font-size: 14px; line-height: 1.85; word-break: keep-all; }
+    .project__facts { margin: 22px 0 0; border-top: 1px solid rgba(34,31,28,.13); }
+    .fact {
+      display: grid;
+      grid-template-columns: 76px 1fr;
+      gap: 16px;
+      padding: 9px 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .fact dt { margin: 0; color: var(--muted); font: 8px/1.6 var(--mono); letter-spacing: .1em; text-transform: uppercase; }
+    .fact dd { margin: 0; font-size: 12px; line-height: 1.65; }
+    .project__actions { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 22px; }
+    .action {
+      min-height: 0;
+      padding: 0 0 4px;
+      border: 0;
+      border-bottom: 1px solid rgba(34,31,28,.34);
+      background: transparent;
+      cursor: pointer;
+      font: 8px/1 var(--mono);
+      letter-spacing: .09em;
+      text-transform: uppercase;
+      transition: color .2s, border-color .2s;
+    }
+    .action:hover { color: var(--rose); border-color: var(--rose); }
+    .action--primary { color: var(--ink); }
+
+    .artwork {
+      min-height: 100svh;
+      padding: calc(var(--nav-h) + 72px) var(--page-x) 80px;
+      display: grid;
+      align-items: center;
+      background: transparent;
+      content-visibility: auto;
+      contain-intrinsic-size: 100svh;
+    }
+    .artwork__inner { width: min(1280px, 100%); margin: auto; }
+    .artwork__head { display: flex; align-items: end; justify-content: space-between; gap: 30px; margin-bottom: 36px; }
+    .artwork__title { margin: 0; font: 400 clamp(30px, 3vw, 42px)/1.08 var(--serif); letter-spacing: -.008em; }
+    .artwork__copy { max-width: 430px; margin: 0; font-size: 14px; line-height: 1.8; word-break: keep-all; }
+    .artwork__grid { display: grid; grid-template-columns: .8fr 1.25fr .8fr; gap: clamp(12px, 2vw, 28px); align-items: center; }
+    .artwork-card {
+      padding: 0;
+      border: 0;
+      background: transparent;
+      cursor: zoom-in;
+      overflow: hidden;
+    }
+    .artwork-card img { aspect-ratio: 1 / 1.28; object-fit: cover; transition: transform .55s, filter .35s; }
+    .artwork-card:nth-child(2) img { aspect-ratio: 1 / 1.18; }
+    .artwork-card:hover img { transform: scale(1.025); filter: brightness(1.04); }
+
+    .about {
+      min-height: 100svh;
+      padding: calc(var(--nav-h) + 66px) var(--page-x) 56px;
+      display: grid;
+      align-items: center;
+      background: url("프로필뒷배경.jpg") center/cover no-repeat;
+      content-visibility: auto;
+      contain-intrinsic-size: 100svh;
+    }
+    .about__inner {
+      width: min(1220px, 100%);
+      margin: auto;
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      gap: clamp(50px, 9vw, 140px);
+      align-items: center;
+    }
+    .profile__image { aspect-ratio: 4/5; object-fit: cover; filter: saturate(.78) contrast(.96); }
+    .profile__education { padding-top: 23px; }
+    .about-label { margin: 0 0 12px; font: 8px/1 var(--mono); letter-spacing: .14em; text-transform: uppercase; }
+    .profile__education p { margin: 5px 0; font-size: 12px; }
+    .about__name { margin: 0; font: 400 clamp(38px, 4vw, 52px)/1.04 var(--serif); letter-spacing: -.012em; }
+    .about__role { margin: 17px 0 0; font: 9px/1 var(--mono); letter-spacing: .14em; text-transform: uppercase; }
+    .about__intro { margin: 26px 0 0; max-width: 690px; font-size: 14px; line-height: 1.85; word-break: keep-all; }
+    .skills { margin-top: 24px; border-top: 1px solid rgba(34,31,28,.13); }
+    .skill-row { display: grid; grid-template-columns: 170px 1fr; gap: 18px; padding: 9px 0; border-bottom: 1px solid rgba(34,31,28,.12); }
+    .skill-row dt { margin: 0; color: var(--muted); font: 8px/1.5 var(--mono); letter-spacing: .1em; text-transform: uppercase; }
+    .skill-row dd { margin: 0; font-size: 12px; line-height: 1.55; }
+    .contact-line {
+      margin-top: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 20px;
+    }
+    .email { display: inline-block; font: 400 clamp(15px, 1.6vw, 22px)/1.2 var(--serif); border-bottom: 1px solid currentColor; padding-bottom: 3px; }
+    .back-top { border: 0; background: none; padding: 8px 0; cursor: pointer; font: 8px/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; }
+    .footer { margin-top: 22px; padding-top: 0; border-top: 0; font: 7px/1.6 var(--mono); letter-spacing: .12em; text-transform: uppercase; opacity: .62; }
+
+    dialog {
+      width: min(1120px, calc(100vw - 34px));
+      max-height: calc(100svh - 34px);
+      padding: 0;
+      border: 0;
+      color: var(--ink);
+      background: transparent;
+      overflow: visible;
+    }
+    dialog::backdrop { background: rgba(22, 19, 17, .75); backdrop-filter: blur(10px); }
+    .dialog__panel { position: relative; background: #111; box-shadow: 0 30px 100px rgba(0,0,0,.35); }
+    .dialog__video { max-height: calc(100svh - 46px); aspect-ratio: 16/9; object-fit: contain; background: #000; }
+    .dialog__close {
+      position: absolute;
+      z-index: 5;
+      top: -14px;
+      right: -14px;
+      width: 38px;
+      height: 38px;
+      padding: 0;
+      border: 1px solid rgba(255,255,255,.45);
+      border-radius: 50%;
+      color: white;
+      background: rgba(20,18,17,.72);
+      cursor: pointer;
+      font-size: 22px;
+      line-height: 1;
+    }
+    .image-dialog .dialog__panel { max-height: calc(100svh - 38px); overflow: auto; background: #ece9e3; }
+    .image-dialog__content { display: grid; gap: 10px; padding: 10px; }
+    .image-dialog__content img { width: 100%; height: auto; object-fit: contain; background: white; }
+
+    @media (max-width: 980px) {
+      .hero__inner { grid-template-columns: 1fr; align-content: center; gap: 52px; padding-top: calc(var(--nav-h) + 64px); }
+      .hero__title { max-width: 680px; }
+      .work-index { max-width: 680px; width: 100%; }
+      .project__inner { grid-template-columns: 1fr 1fr; gap: 38px; }
+      .project-side-nav { display: none; }
+      .about__inner { grid-template-columns: 250px 1fr; gap: 50px; }
+    }
+
+    @media (max-width: 720px) {
+      :root { --nav-h: 58px; --page-x: 20px; }
+      .topbar { padding: 0 20px; }
+      .topnav { gap: 16px; }
+      .topnav a { font-size: 8px; letter-spacing: .1em; }
+      .topnav a:first-child { display: none; }
+      .hero { min-height: auto; }
+      .hero__inner { min-height: auto; padding: 120px 20px 72px; }
+      .hero__statement { margin-top: 31px; font-size: 16px; }
+      .work-index__link { grid-template-columns: 26px 1fr; }
+      .work-index__type { display: none; }
+      .scroll-mark { display: none; }
+      .project { min-height: auto; padding: 96px 20px 76px; }
+      .project__inner { grid-template-columns: 1fr; gap: 38px; }
+      .project[data-format="portrait"] .project__media { max-width: none; }
+      .project__description { font-size: 14px; }
+      .fact { grid-template-columns: 68px 1fr; }
+      .project__actions { display: flex; flex-wrap: wrap; gap: 16px; }
+      .artwork { padding: 96px 20px 72px; }
+      .artwork__head { display: block; }
+      .artwork__copy { margin-top: 24px; }
+      .artwork__grid { grid-template-columns: 1fr 1fr; }
+      .artwork-card:nth-child(2) { grid-row: span 2; }
+      .about { padding: 88px 20px 48px; }
+      .about__inner { grid-template-columns: 1fr; gap: 42px; }
+      .profile { display: grid; grid-template-columns: 132px 1fr; gap: 18px; align-items: end; }
+      .profile__education { padding: 0 0 4px; }
+      .skill-row { grid-template-columns: 1fr; gap: 7px; }
+      .contact-line { align-items: start; flex-direction: column; }
+      .email { font-size: clamp(15px, 4.6vw, 21px); word-break: break-all; }
+      .dialog__close { top: 8px; right: 8px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+      .project__preview { display: none; }
+      .project__media,
+      .project__content,
+      .artwork__head,
+      .artwork__grid,
+      .about__inner { opacity: 1; transform: none; }
+    }
+
+    /* Rain mini-series — photographic stills from the user's actual final videos */
+    .project--rain { padding-bottom: max(85px, 8vh); }
+    .rain-section-kicker { width:min(1240px,100%); margin:0 auto clamp(20px,3vw,42px); display:flex;justify-content:space-between;gap:16px; font:8px/1.5 var(--mono);letter-spacing:.16em;color:var(--muted); }
+    .project--rain .project__inner { align-items:center; }
+    .rain-cover { isolation:isolate;background:#585756;aspect-ratio:16/10;overflow:hidden; }
+    .rain-cover .project__poster { object-position:center; }
+    .rain-cover__shade { position:absolute;z-index:1;inset:0;background:linear-gradient(180deg,rgba(22,23,26,.40) 0%,rgba(15,17,20,.02) 33%,rgba(11,12,16,.66) 100%);pointer-events:none; }
+    .rain-cover__top {position:absolute;z-index:2;left:6%;right:6%;top:6%;display:flex;justify-content:space-between;align-items:center;gap:10px;color:rgba(255,255,255,.85);font:8px/1.45 var(--mono);letter-spacing:.16em;text-align:left;pointer-events:none;}
+    .rain-cover__type {position:absolute;z-index:2;left:6%;right:6%;bottom:10%;color:#f8f5f0;display:flex;flex-direction:column;gap:7px;text-align:left;pointer-events:none;}
+    .rain-cover__jp{font:400 clamp(29px,3.8vw,56px)/1.15 'Noto Serif JP',Georgia,'Times New Roman',serif;letter-spacing:.015em;text-shadow:0 2px 20px rgba(0,0,0,.15);}
+    .rain-cover__ko{font:400 clamp(14px,1.5vw,19px)/1.3 var(--sans);letter-spacing:-.045em;}
+    .rain-cover__small{margin-top:6px;font:8px/1.4 var(--mono);letter-spacing:.2em;color:rgba(255,255,255,.7);}
+    .rain-cover__view{position:absolute;z-index:3;right:6%;bottom:7%;font:8px/1.3 var(--mono);letter-spacing:.12em;color:white;opacity:0;transform:translateY(4px);transition:all .25s;}
+    .rain-cover:hover .rain-cover__view,.rain-cover:focus-visible .rain-cover__view{opacity:1;transform:translateY(0);}
+    .rain-content__title{font-family:'Noto Serif JP',Georgia,'Times New Roman',serif;font-size:clamp(33px,3.65vw,51px);letter-spacing:-.035em;}
+    .rain-content__subtitle{font:500 16px/1.5 var(--sans);letter-spacing:-.05em;margin:10px 0 -5px;}
+    .rain-episodes{width:min(1240px,100%);margin:clamp(50px,7vh,88px) auto 0;border-top:1px solid var(--line);padding-top:22px;}
+    .rain-episodes__head{display:flex;justify-content:space-between;align-items:baseline;gap:16px;margin-bottom:21px;}
+    .rain-episodes__head>span,.rain-episodes__foot{font:8px/1.5 var(--mono);letter-spacing:.18em;color:var(--muted);}
+    .rain-episodes__head p{font:italic clamp(14px,2vw,20px)/1.4 var(--serif);margin:0;}
+    .rain-episodes__grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(12px,2vw,24px);}
+    .rain-episode{min-width:0;padding:0;margin:0;background:none;border:0;text-align:left;cursor:pointer;}
+    .rain-episode__photo{display:block;position:relative;aspect-ratio:16/9;overflow:hidden;background:#c5c0b9;}
+    .rain-episode__photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .5s cubic-bezier(.2,.7,.2,1);}
+    .rain-episode:hover .rain-episode__photo img,.rain-episode:focus-visible .rain-episode__photo img{transform:scale(1.045);}
+    .rain-episode__photo--pending{background:linear-gradient(138deg,#415568 4%,#6c7881 46%,#85828a 100%);display:grid;place-items:center;}
+    .rain-episode__drop{font:400 clamp(28px,5vw,62px)/1 var(--serif);color:rgba(255,255,255,.62);transform:rotate(-15deg);}
+    .rain-episode__scene{position:absolute;bottom:11%;left:9%;font:8px/1.2 var(--mono);letter-spacing:.18em;color:#e9edef;}
+    .rain-episode__play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:43px;height:43px;border:1px solid rgba(255,255,255,.75);color:#fff;border-radius:50%;display:grid;place-items:center;font:11px/1 var(--mono);background:rgba(12,15,20,.12);backdrop-filter:blur(3px);opacity:0;transition:opacity .2s;}
+    .rain-episode:hover .rain-episode__play,.rain-episode:focus-visible .rain-episode__play{opacity:1;}
+    .rain-episode__label{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:baseline;gap:14px;padding-top:13px;border-top:1px solid transparent;border-bottom:1px solid var(--line);padding-bottom:15px;}
+    .rain-episode__label strong{font:9px/1 var(--mono);letter-spacing:.05em;}
+    .rain-episode__label span{font:500 clamp(12px,1.2vw,14px)/1.3 var(--sans);letter-spacing:-.04em;}
+    .rain-episode__label i{font-style:normal;font-size:15px;transition:transform .2s;}
+    .rain-episode:hover .rain-episode__label i{transform:translate(2px,-2px);}
+    .rain-episodes__foot{margin:22px 0 0;text-align:right;}
+    .rain-episodes__foot span{padding:0 5px;color:var(--rose);}
+    #videoError {color:#f1efea;font:13px/1.7 var(--sans);text-align:center;padding:20px;display:none;}
+    #videoError.is-visible{display:block;}
+    @media(max-width:900px){.rain-section-kicker{margin-bottom:18px;}}
+    @media(max-width:680px){.rain-section-kicker{font-size:7px;}.rain-cover__jp{font-size:clamp(27px,8vw,45px);}.rain-cover__top{font-size:6px;}.rain-cover__type{bottom:9%;}.rain-cover__ko{font-size:14px;}.rain-episodes{margin-top:48px;}.rain-episodes__grid{grid-template-columns:1fr;gap:22px;}.rain-episode__play{opacity:1;}.rain-episodes__head{display:block;}.rain-episodes__head p{margin-top:8px;}.rain-episodes__foot{text-align:left;font-size:7px;}.rain-episode__photo{aspect-ratio:16/8.6;}}
+
+
+    /* Original HTML's poster-on-hover effect, adapted to the second-version intro. */
+    .hero__wash {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      opacity: 0;
+      pointer-events: none;
+      background-position: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+      transition: opacity .52s ease;
+    }
+    .hero.is-hovering .hero__wash { opacity: 1; }
+    .hero__inner { position: relative; z-index: 1; }
+    .hero .scroll-mark { z-index: 1; }
+    .work-index__link { transition: padding .22s, color .22s, background .22s, opacity .25s; }
+    .work-index:has(.work-index__link:hover) .work-index__link:not(:hover) { opacity: .58; }
+    /* One-screen scrolling from the original HTML. Preserve normal flow within taller episodes. */
+    html { scroll-snap-type: y mandatory; scroll-padding-top: 0; }
+    .hero, .project, .about, .rain-episodes { scroll-snap-align: start; scroll-snap-stop: always; }
+    .rain-episodes { scroll-margin-top: calc(var(--nav-h) + 20px); }
+    @media (max-width: 900px), (max-height: 760px) {
+      html { scroll-snap-type: y proximity; }
+      .hero, .project, .about, .rain-episodes { scroll-snap-stop: normal; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .hero__wash { transition: none; }
+    }
+
+  </style>
+</head>
+
+<body>
+  <a class="skip-link" href="#projects">프로젝트로 바로가기</a>
+
+  <header class="topbar" id="topbar">
+    <a class="brand" href="#intro" aria-label="rozy. 인트로로 이동">rozy.</a>
+    <nav class="topnav" aria-label="주요 메뉴">
+      <a class="is-active" href="#intro">Intro</a>
+      <a href="#projects">Project</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="intro" data-nav="Intro">
+      <div class="hero__wash" id="heroWash" aria-hidden="true"></div>
+      <div class="hero__inner">
+        <div class="hero__copy">
+          <p class="kicker">Gyeonghye Kwon · Seoul · 2026</p>
+          <h1 class="hero__title">AI VISUAL<br><em>DESIGNER</em></h1>
+          <p class="hero__statement">
+            생성형 AI와 모션 디자인을 결합해<br>
+            <strong>브랜드의 이미지와 이야기를 영상으로 설계합니다.</strong>
+          </p>
+          <div class="hero__roles" aria-label="주요 작업 영역">
+            <span>AI Visual</span><span>Motion Design</span><span>Brand Content</span>
+          </div>
+          <div class="hero__actions">
+            <a href="#projects">View Selected Works</a>
+            <a href="#about">About Me</a>
+          </div>
+        </div>
+
+        <div class="work-index" aria-label="선정 프로젝트">
+          <div class="work-index__head"><span>Selected Works</span><span>06 Projects</span></div>
+          <a class="work-index__link" href="#rain" data-hover-poster="rain-assets/rain-cover.jpg"><span class="work-index__num">01</span><span class="work-index__name">雨がやむまで</span><span class="work-index__type">AI Short Drama</span></a>
+          <a class="work-index__link" href="#aethel" data-hover-poster="뷰티포스터.png"><span class="work-index__num">02</span><span class="work-index__name">AETHEL</span><span class="work-index__type">AI Beauty Film</span></a>
+          <a class="work-index__link" href="#nymphea" data-hover-poster="님페아포스터.png"><span class="work-index__num">03</span><span class="work-index__name">NYMPHÉA</span><span class="work-index__type">Perfume Branding</span></a>
+          <a class="work-index__link" href="#day" data-hover-poster="데이포스터.png"><span class="work-index__num">04</span><span class="work-index__name">DAY</span><span class="work-index__type">3D + AI Motion</span></a>
+          <a class="work-index__link" href="#gez" data-hover-poster="게즈포스터.png"><span class="work-index__num">05</span><span class="work-index__name">GEZ</span><span class="work-index__type">Camera Branding</span></a>
+          <a class="work-index__link" href="#daangn" data-hover-poster="당근포스터.png"><span class="work-index__num">06</span><span class="work-index__name">DAANGN</span><span class="work-index__type">Motion Graphics</span></a>
+        </div>
+      </div>
+      <div class="scroll-mark">Scroll to explore</div>
+    </section>
+
+    <nav class="project-side-nav" id="projectSideNav" aria-label="프로젝트 바로가기">
+      <a href="#rain"><span class="nav-name">RAIN DRAMA</span><span>01</span></a>
+      <a href="#aethel"><span class="nav-name">AETHEL</span><span>02</span></a>
+      <a href="#nymphea"><span class="nav-name">NYMPHÉA</span><span>03</span></a>
+      <a href="#day"><span class="nav-name">DAY</span><span>04</span></a>
+      <a href="#gez"><span class="nav-name">GEZ</span><span>05</span></a>
+      <a href="#daangn"><span class="nav-name">DAANGN</span><span>06</span></a>
+    </nav>
+
+    <div id="projects">
+      <section class="project project--rain" id="rain" data-project>
+        <div class="rain-section-kicker" aria-hidden="true"><span>01 / SELECTED FILM</span><span>AI SHORT DRAMA · 2026</span></div>
+        <div class="project__inner">
+          <button class="project__media rain-cover" type="button" data-ratio="landscape" data-video="비가그칠때까지.03.mp4" aria-label="비가 그칠 때까지 3화 재생">
+            <img class="project__poster" src="rain-assets/rain-cover.jpg" alt="비가 그칠 때까지 3화 장면: 현관 앞에서 마주 보는 미오와 렌" loading="lazy" decoding="async">
+            <span class="rain-cover__shade" aria-hidden="true"></span>
+            <span class="rain-cover__top" aria-hidden="true">A SHORT FILM IN THREE EPISODES <span>2026</span></span>
+            <span class="rain-cover__type" aria-hidden="true"><span class="rain-cover__jp">雨がやむまで</span><span class="rain-cover__ko">비가 그칠 때까지</span><span class="rain-cover__small">UNTIL THE RAIN STOPS</span></span>
+            <span class="rain-cover__view" aria-hidden="true">WATCH EP.03 ↗</span>
+          </button>
+          <div class="project__content rain-content">
+            <p class="project__number">01 · Personal Project / 3-Part Series</p>
+            <h2 class="project__title rain-content__title">雨がやむまで</h2>
+            <p class="rain-content__subtitle">비가 그칠 때까지</p>
+            <p class="project__category">AI SHORT DRAMA · FANTASY ROMANCE</p>
+            <p class="project__description">비 오는 골목에서 고양이의 모습이 된 미오와, 그녀를 집으로 데려온 렌. 우연한 만남과 예상치 못한 비밀, 그리고 다시 만날 수 있을지 모르는 두 사람의 이야기를 세 편의 짧은 에피소드로 담았습니다.</p>
+            <dl class="project__facts">
+              <div class="fact"><dt>Role</dt><dd>Story Planning · Character Direction · AI Video Generation · Video Editing · Subtitles</dd></div>
+              <div class="fact"><dt>Tools</dt><dd>Higgsfield · Seedance 2.5 · Premiere Pro · ChatGPT</dd></div>
+              <div class="fact"><dt>Output</dt><dd>3-Episode AI Short Drama · Japanese Dialogue · Korean / English Captions</dd></div>
+            </dl>
+            <div class="project__actions">
+              <button class="action action--primary" type="button" data-video="비가그칠때까지.03.mp4">▶ Watch Final Episode</button>
+              <a class="action" href="#rain-episodes">Explore All Episodes ↓</a>
+            </div>
+          </div>
+        </div>
+        <div class="rain-episodes" id="rain-episodes">
+          <div class="rain-episodes__head"><span>THE STORY / 01 — 03</span><p>Three episodes, one unexpected encounter.</p></div>
+          <div class="rain-episodes__grid">
+            <button class="rain-episode rain-episode--first" type="button" data-video="비가그칠때까지.01.mp4" aria-label="1화, 비 오는 밤 영상 보기">
+              <span class="rain-episode__photo rain-episode__photo--pending"><span class="rain-episode__drop">☂</span><span class="rain-episode__scene">RAINY NIGHT</span></span>
+              <span class="rain-episode__label"><strong>EP.01</strong><span>비 오는 밤의 만남</span><i>↗</i></span>
+            </button>
+            <button class="rain-episode" type="button" data-video="비가그칠때까지.02.mp4" aria-label="2화, 고양이였던 그녀 영상 보기">
+              <span class="rain-episode__photo"><img src="rain-assets/rain-ep02.jpg" loading="lazy" alt="2화 미오와 렌이 거실에서 대화하는 장면"><span class="rain-episode__play">▶</span></span>
+              <span class="rain-episode__label"><strong>EP.02</strong><span>고양이였던 그녀</span><i>↗</i></span>
+            </button>
+            <button class="rain-episode" type="button" data-video="비가그칠때까지.03.mp4" aria-label="3화, 다시 만날 수 있을까 영상 보기">
+              <span class="rain-episode__photo"><img src="rain-assets/rain-ep03.jpg" loading="lazy" alt="3화 현관에서 웃는 미오와 렌"><span class="rain-episode__play">▶</span></span>
+              <span class="rain-episode__label"><strong>EP.03</strong><span>비가 오면…</span><i>↗</i></span>
+            </button>
+          </div>
+          <p class="rain-episodes__foot">CHARACTER CONSISTENCY <span>·</span> NARRATIVE CONTINUITY <span>·</span> POST-PRODUCTION</p>
+        </div>
+      </section>
+
+      <section class="project" id="aethel" data-project>
+        <div class="project__inner">
+          <button class="project__media" type="button" data-ratio="landscape" data-video="뷰티영상.mp4" aria-label="AETHEL 영상 보기">
+            <img class="project__poster" src="뷰티포스터.png" alt="AETHEL AI Beauty Campaign" decoding="async" fetchpriority="high">
+            <video class="project__preview" muted loop playsinline preload="none" aria-hidden="true"></video>
+            <span class="project__play-label">Hover Preview</span>
+          </button>
+          <div class="project__content">
+            <p class="project__number">02 · Personal Project</p>
+            <h2 class="project__title">AETHEL</h2>
+            <p class="project__category">AI Video · Beauty Advertisement</p>
+            <p class="project__description">18세기 로코코 미술의 우아한 색감과 조형미를 현대적인 뷰티 캠페인으로 재해석했습니다. 콘셉트 기획부터 이미지 생성, 영상화와 후반 편집까지 하나의 브랜드 필름으로 완성했습니다.</p>
+            <dl class="project__facts">
+              <div class="fact"><dt>Scope</dt><dd>Concept Planning · Prompting · AI Image/Video · Compositing · Editing</dd></div>
+              <div class="fact"><dt>Tools</dt><dd>Nano Banana · Kling · After Effects · Premiere Pro</dd></div>
+              <div class="fact"><dt>Output</dt><dd>Beauty Campaign Film · Process Book · Storyboard</dd></div>
+            </dl>
+            <div class="project__actions">
+              <button class="action action--primary" type="button" data-video="뷰티영상.mp4">▶ Watch Film</button>
+              <button class="action" type="button" data-image="Beauty_CreativeProcess.png">Process Book</button>
+              <button class="action" type="button" data-image="Beauty_Storyboar.png">Storyboard</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="project" id="nymphea" data-project data-format="portrait">
+        <div class="project__inner">
+          <button class="project__media" type="button" data-ratio="portrait" data-video="님페아영상.mp4" aria-label="NYMPHÉA 영상 보기">
+            <img class="project__poster" src="님페아포스터.png" alt="NYMPHÉA Perfume Branding" loading="lazy" decoding="async">
+            <video class="project__preview" muted loop playsinline preload="none" aria-hidden="true"></video>
+            <span class="project__play-label">Hover Preview</span>
+          </button>
+          <div class="project__content">
+            <p class="project__number">03 · Personal Project</p>
+            <h2 class="project__title">NYMPHÉA</h2>
+            <p class="project__category">Perfume Branding · AI Film</p>
+            <p class="project__description">연꽃의 맑고 투명한 이미지와 동양적인 여백의 미를 바탕으로, 모네의 수련 연작에서 참고한 색감과 분위기를 더한 향수 브랜딩 프로젝트입니다.</p>
+            <dl class="project__facts">
+              <div class="fact"><dt>Scope</dt><dd>Brand Concept · Art Direction · AI Visual · Film Editing</dd></div>
+              <div class="fact"><dt>Tools</dt><dd>Nano Banana · Kling · Photoshop · Premiere Pro</dd></div>
+              <div class="fact"><dt>Output</dt><dd>Perfume Brand Film · Visual Board</dd></div>
+            </dl>
+            <div class="project__actions">
+              <button class="action action--primary" type="button" data-video="님페아영상.mp4">▶ Watch Film</button>
+              <button class="action" type="button" data-image="님페아9컷.png">Visual Board</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="project" id="day" data-project>
+        <div class="project__inner">
+          <button class="project__media" type="button" data-ratio="landscape" data-video="데이영상.mp4" aria-label="DAY 영상 보기">
+            <img class="project__poster" src="데이포스터.png" alt="DAY 3D Motion Campaign" loading="lazy" decoding="async">
+            <video class="project__preview" muted loop playsinline preload="none" aria-hidden="true"></video>
+            <span class="project__play-label">Hover Preview</span>
+          </button>
+          <div class="project__content">
+            <p class="project__number">04 · Personal Project</p>
+            <h2 class="project__title">DAY</h2>
+            <p class="project__category">Blender · Generative AI · 3D Motion</p>
+            <p class="project__description">‘오늘 하루는 어떤 하루일까?’라는 질문에서 출발해 파스텔빛 세계와 캐릭터를 설계했습니다. Blender의 3D 오브젝트와 생성형 AI 비주얼을 결합한 하이브리드 화장품 광고 프로젝트입니다.</p>
+            <dl class="project__facts">
+              <div class="fact"><dt>Scope</dt><dd>Concept · 3D Design · AI Visual · Motion · Editing</dd></div>
+              <div class="fact"><dt>Tools</dt><dd>Blender · Nano Banana · Kling · After Effects</dd></div>
+              <div class="fact"><dt>Focus</dt><dd>3D와 AI 소스의 톤 통일 · 캐릭터 중심 브랜드 무드 설계</dd></div>
+            </dl>
+            <div class="project__actions">
+              <button class="action action--primary" type="button" data-video="데이영상.mp4">▶ Watch Film</button>
+              <button class="action" type="button" data-images="DAY_Creative1.png,DAY_Creative2.png">Creative Process</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="project" id="gez" data-project data-format="portrait">
+        <div class="project__inner">
+          <button class="project__media" type="button" data-ratio="portrait" data-video="게즈영상.mp4" aria-label="GEZ 영상 보기">
+            <img class="project__poster" src="게즈포스터.png" alt="GEZ Camera Branding" loading="lazy" decoding="async">
+            <video class="project__preview" muted loop playsinline preload="none" aria-hidden="true"></video>
+            <span class="project__play-label">Hover Preview</span>
+          </button>
+          <div class="project__content">
+            <p class="project__number">05 · Team Project</p>
+            <h2 class="project__title">GEZ</h2>
+            <p class="project__category">Camera Branding · Advertisement</p>
+            <p class="project__description">기술 기기가 공간에 자연스럽게 어우러지는 오브제가 될 수 있다는 관점에서 출발한 포켓 카메라 브랜드입니다. 제품의 형태, 네이밍과 메시지를 하나의 브랜드 경험으로 연결했습니다.</p>
+            <dl class="project__facts">
+              <div class="fact"><dt>My Role</dt><dd>Project Planning · Naming · Product Design · Brand Direction</dd></div>
+              <div class="fact"><dt>Tools</dt><dd>Photoshop · Illustrator · Premiere Pro</dd></div>
+              <div class="fact"><dt>Output</dt><dd>Product Design · 25 sec Advertisement · Brand Book</dd></div>
+            </dl>
+            <div class="project__actions">
+              <button class="action action--primary" type="button" data-video="게즈영상.mp4">▶ Watch Film</button>
+              <button class="action" type="button" data-image="gez_BrandBook.png">Brand Book</button>
+              <button class="action" type="button" data-image="gez_Storyboard.png">Storyboard</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="project" id="daangn" data-project data-format="portrait">
+        <div class="project__inner">
+          <button class="project__media" type="button" data-ratio="portrait" data-video="당근영상.mp4" aria-label="DAANGN 영상 보기">
+            <img class="project__poster" src="당근포스터.png" alt="당근 모임 서비스 모션그래픽" loading="lazy" decoding="async">
+            <video class="project__preview" muted loop playsinline preload="none" aria-hidden="true"></video>
+            <span class="project__play-label">Hover Preview</span>
+          </button>
+          <div class="project__content">
+            <p class="project__number">06 · Personal Concept Project</p>
+            <h2 class="project__title">DAANGN</h2>
+            <p class="project__category">Moim · Motion Graphics · Concept Ad</p>
+            <p class="project__description">중고 거래를 넘어 이웃과 취향을 연결하는 당근의 ‘모임’ 서비스에 주목했습니다. 친근한 캐릭터와 리듬감 있는 모션그래픽으로 서비스의 특징을 쉽고 직관적으로 전달했습니다.</p>
+            <dl class="project__facts">
+              <div class="fact"><dt>Scope</dt><dd>Concept · Storyboard · Illustration · Motion Design · Editing</dd></div>
+              <div class="fact"><dt>Tools</dt><dd>After Effects · Illustrator · Premiere Pro</dd></div>
+              <div class="fact"><dt>Output</dt><dd>1 min Vertical Motion Graphic · Process Book · Storyboard</dd></div>
+            </dl>
+            <div class="project__actions">
+              <button class="action action--primary" type="button" data-video="당근영상.mp4">▶ Watch Film</button>
+              <button class="action" type="button" data-image="Creative Process.jpg">Process Book</button>
+              <button class="action" type="button" data-image="Storyboard.jpg">Storyboard</button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+
+    <section class="about" id="about" data-nav="About">
+      <div class="about__inner">
+        <div class="profile">
+          <img class="profile__image" src="프로필사진.jpg" alt="권경혜 프로필 사진" loading="lazy" decoding="async">
+          <div class="profile__education"><p class="about-label">Education</p><p>오산대학교 패션디자인과</p><p>한국방송통신대학교 농학과</p></div>
+        </div>
+        <div class="about__content">
+          <h2 class="about__name">Gyeonghye Kwon</h2>
+          <p class="about__role">AI Visual · Motion · Brand Content</p>
+          <p class="about__intro">생성형 AI와 Motion Design을 결합해 브랜드의 이미지와 이야기를 영상으로 설계합니다. 콘셉트 기획부터 이미지 생성, 영상화와 편집까지 하나의 흐름으로 연결합니다.</p>
+          <dl class="skills">
+            <div class="skill-row"><dt>AI Visual</dt><dd>Higgsfield · Kling · Seedance · Nano Banana</dd></div>
+            <div class="skill-row"><dt>Planning & Prompting</dt><dd>ChatGPT · Claude · Gemini</dd></div>
+            <div class="skill-row"><dt>Voice & Audio</dt><dd>ElevenLabs · Typecast · CLOVA Dubbing</dd></div>
+            <div class="skill-row"><dt>Motion & Design</dt><dd>After Effects · Premiere Pro · Blender · Photoshop · Illustrator</dd></div>
+            <div class="skill-row"><dt>Web</dt><dd>HTML · CSS</dd></div>
+          </dl>
+          <div class="contact-line" id="contact">
+            <div><p class="about-label">Contact</p><a class="email" href="mailto:livehappilyforgood@gmail.com">livehappilyforgood@gmail.com</a></div>
+            <button class="back-top" type="button" id="backTop">↑ Back to top</button>
+          </div>
+          <footer class="footer">Seoul, Korea · Designed & created by Gyeonghye Kwon · 2026</footer>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <dialog id="videoDialog" aria-label="프로젝트 영상">
+    <div class="dialog__panel">
+      <button class="dialog__close" type="button" data-close aria-label="영상 닫기">×</button>
+      <video class="dialog__video" id="dialogVideo" controls autoplay playsinline preload="metadata"></video>
+      <p id="videoError" role="status" aria-live="polite">영상 파일을 찾을 수 없습니다. 기존 프로젝트 폴더에 해당 MP4 파일을 넣어주세요.</p>
+    </div>
+  </dialog>
+
+  <dialog class="image-dialog" id="imageDialog" aria-label="프로젝트 상세 이미지">
+    <div class="dialog__panel">
+      <button class="dialog__close" type="button" data-close aria-label="상세 이미지 닫기">×</button>
+      <div class="image-dialog__content" id="imageDialogContent"></div>
+    </div>
+  </dialog>
+
+  <script>
+    const topbar = document.getElementById('topbar');
+    const sideNav = document.getElementById('projectSideNav');
+    const topLinks = [...document.querySelectorAll('.topnav a')];
+    const sideLinks = [...sideNav.querySelectorAll('a')];
+    const projectSections = [...document.querySelectorAll('[data-project]')];
+    const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+
+    // Intro work-index hover: show the matching real portfolio poster, not a stock image.
+    const hero = document.getElementById('intro');
+    const heroWash = document.getElementById('heroWash');
+    if (hero && heroWash) {
+      const showPoster = (link) => {
+        if (matchMedia('(hover: none)').matches || reduceMotion) return;
+        const poster = link.dataset.hoverPoster;
+        if (!poster) return;
+        const encoded = encodeURI(poster).replace(/'/g, '%27');
+        heroWash.style.backgroundImage = `linear-gradient(rgba(246,238,234,.55), rgba(246,238,234,.75)), url('${encoded}')`;
+        hero.classList.add('is-hovering');
+      };
+      const hidePoster = () => hero.classList.remove('is-hovering');
+      document.querySelectorAll('.work-index__link').forEach(link => {
+        link.addEventListener('pointerenter', () => showPoster(link));
+        link.addEventListener('pointerleave', hidePoster);
+        link.addEventListener('focus', () => showPoster(link));
+        link.addEventListener('blur', hidePoster);
+      });
+      hero.addEventListener('pointerleave', hidePoster);
+    }
+
+    /* Native browser scrolling. */
+
+    addEventListener('scroll', () => {
+      topbar.classList.toggle('is-scrolled', scrollY > 24);
+      sideNav.classList.toggle('is-visible', scrollY > innerHeight * .65 && scrollY < document.body.scrollHeight - innerHeight * .65);
+    }, { passive: true });
+
+    const projectObserver = new IntersectionObserver(entries => {
+      const visible = entries.filter(e => e.isIntersecting).sort((a,b) => b.intersectionRatio - a.intersectionRatio)[0];
+      if (!visible) return;
+      sideLinks.forEach(link => link.classList.toggle('is-active', link.hash === '#' + visible.target.id));
+      topLinks.forEach(link => link.classList.toggle('is-active', link.hash === '#projects'));
+    }, { threshold: [.3, .55] });
+    projectSections.forEach(section => projectObserver.observe(section));
+
+    const revealObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-inview');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: .16, rootMargin: '0px 0px -6% 0px' });
+    document.querySelectorAll('.project, .about').forEach(section => revealObserver.observe(section));
+
+    const navObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        const hash = entry.target.id === 'intro' ? '#intro' : '#about';
+        topLinks.forEach(link => link.classList.toggle('is-active', link.hash === hash || (hash === '#about' && link.hash === '#contact' && location.hash === '#contact')));
+      });
+    }, { threshold: .4 });
+    document.querySelectorAll('[data-nav]').forEach(section => navObserver.observe(section));
+
+    const videoDialog = document.getElementById('videoDialog');
+    const dialogVideo = document.getElementById('dialogVideo');
+    const imageDialog = document.getElementById('imageDialog');
+    const imageDialogContent = document.getElementById('imageDialogContent');
+
+    function lockPage(locked) { document.body.classList.toggle('is-locked', locked); }
+    const videoError = document.getElementById('videoError');
+    dialogVideo.addEventListener('error', () => {
+      dialogVideo.style.display = 'none';
+      videoError.classList.add('is-visible');
+    });
+    function openVideo(src) {
+      videoError.classList.remove('is-visible');
+      dialogVideo.style.display = 'block';
+      document.querySelectorAll('.project__preview').forEach(video => video.pause());
+      dialogVideo.pause();
+      dialogVideo.src = src;
+      dialogVideo.autoplay = true;
+      dialogVideo.muted = false;
+      dialogVideo.currentTime = 0;
+      videoDialog.showModal();
+      lockPage(true);
+      const startPlayback = () => {
+        dialogVideo.play().catch(() => {
+          dialogVideo.muted = true;
+          dialogVideo.play().catch(() => {});
+        });
+      };
+      if (dialogVideo.readyState >= 2) startPlayback();
+      else dialogVideo.addEventListener('canplay', startPlayback, { once: true });
+    }
+    function closeVideo() {
+      videoDialog.close();
+      dialogVideo.pause();
+      dialogVideo.removeAttribute('src');
+      dialogVideo.load();
+      lockPage(false);
+    }
+    function openImages(sources) {
+      imageDialogContent.replaceChildren(...sources.map(src => {
+        const img = document.createElement('img');
+        img.src = src.trim();
+        img.alt = '프로젝트 상세 이미지';
+        return img;
+      }));
+      imageDialog.showModal();
+      lockPage(true);
+    }
+    function closeImages() {
+      imageDialog.close();
+      imageDialogContent.replaceChildren();
+      lockPage(false);
+    }
+
+    document.querySelectorAll('[data-video]').forEach(trigger => trigger.addEventListener('click', () => openVideo(trigger.dataset.video)));
+    document.querySelectorAll('[data-image]').forEach(trigger => trigger.addEventListener('click', () => openImages([trigger.dataset.image])));
+    document.querySelectorAll('[data-images]').forEach(trigger => trigger.addEventListener('click', () => openImages(trigger.dataset.images.split(','))));
+
+    document.querySelectorAll('.project__media').forEach(card => {
+      const preview = card.querySelector('.project__preview');
+      if (!preview) return; // rain cinematic poster intentionally has no hover video
+      const playPreview = () => {
+        if (reduceMotion || matchMedia('(hover: none)').matches) return;
+        if (!preview.src) preview.src = card.dataset.video;
+        preview.muted = true;
+        preview.play().then(() => card.classList.add('is-previewing')).catch(() => {});
+      };
+      const stopPreview = () => {
+        preview.pause();
+        card.classList.remove('is-previewing');
+      };
+      card.addEventListener('pointerenter', playPreview);
+      card.addEventListener('pointerleave', stopPreview);
+      card.addEventListener('focus', playPreview);
+      card.addEventListener('blur', stopPreview);
+    });
+
+    videoDialog.querySelector('[data-close]').addEventListener('click', closeVideo);
+    imageDialog.querySelector('[data-close]').addEventListener('click', closeImages);
+    videoDialog.addEventListener('click', e => { if (e.target === videoDialog) closeVideo(); });
+    imageDialog.addEventListener('click', e => { if (e.target === imageDialog) closeImages(); });
+    videoDialog.addEventListener('cancel', e => { e.preventDefault(); closeVideo(); });
+    imageDialog.addEventListener('cancel', e => { e.preventDefault(); closeImages(); });
+    document.getElementById('backTop').addEventListener('click', () => scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' }));
+  </script>
+</body>
+</html>
